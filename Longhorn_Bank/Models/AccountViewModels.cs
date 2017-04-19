@@ -69,7 +69,7 @@ namespace Longhorn_Bank.Models
 
         [Required(ErrorMessage = "ZIP Code Required.")]
         [Display(Name = "ZIP Code")]
-        public string ZIP { get; set; }
+        public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "Phone Number Required.")]
         [DataType(DataType.PhoneNumber)]

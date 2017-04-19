@@ -15,13 +15,13 @@ namespace Longhorn_Bank.Models
 
         //TODO: Put any additional fields that you need for your user here
         //For instance
-        public string FName { get; set; }
-        public string LName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public StateAbrv State { get; set; }
-        public string Zip { get; set; }
-        public string Birthday { get; set; }
+        public string ZipCode { get; set; }
+        public string DOB { get; set; }
         public string MiddleInitial { get; set; }
 
 

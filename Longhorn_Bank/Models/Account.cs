@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-//yo yo yo
-
 namespace Longhorn_Bank.Models
 {
     //Account model
