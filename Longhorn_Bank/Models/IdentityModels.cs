@@ -25,9 +25,9 @@ namespace Longhorn_Bank.Models
         public string MiddleInitial { get; set; }
 
 
-        public virtual List<Checking> CheckingAccounts { get; set; }
-        public virtual List<Saving> SavingAccounts { get; set; }
-        public virtual List<IRA> IRAAccounts { get; set; }
+        public virtual List<Checking> Checkings { get; set; }
+        public virtual List<Saving> Savings { get; set; }
+        public virtual List<IRA> IRAs { get; set; }
         public virtual List<StockPortfolio> StockPortfolios { get; set; }
 
 
@@ -40,16 +40,16 @@ namespace Longhorn_Bank.Models
             return userIdentity;
         }
     }
-
+    
     //TODO: Here's your db context for the project.  All of your db sets should go in here
     public class AppDbContext : IdentityDbContext<AppUser>
     {
         //TODO:  Add dbsets here, for instance there's one for books
         //Remember, Identity adds a db set for users, so you shouldn't add that one - you will get an error
         //public DbSet<Book> Books { get; set; }
-        public DbSet<Checking> CheckingAccounts { get; set; }
-        public DbSet<Saving> SavingAcocunts { get; set; }
-        public DbSet<IRA> IRAAccounts { get; set; }
+        public DbSet<Checking> Checkings { get; set; }
+        public DbSet<Saving> Savings { get; set; }
+        public DbSet<IRA> IRAs { get; set; }
         public DbSet<StockPortfolio> StockPortfolios { get; set; }
 
 

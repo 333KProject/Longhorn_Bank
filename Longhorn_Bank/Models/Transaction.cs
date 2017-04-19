@@ -29,11 +29,10 @@ namespace Longhorn_Bank.Models
         public Decimal Amount { get; set; }
 
         //navigational properties
-        /*public virtual CheckingAccount CheckingAccount { get; set; }
-        public virtual SavingsAccount SavingsAccount { get; set; }*/
+        public virtual List<Checking> Checkings { get; set; }
+        public virtual List<Saving> Savings { get; set; }
         
-        //transactions model (which has a 1:1 relationship with IRA Accounts - below)
-        /*public virtual IRAAccount IRAAccount { get; set; }
-        public virtual StockAccount StockAccount { get; set; }*/
+        public virtual List<IRA> IRAs { get; set; }
+        public virtual List<StockPortfolio> StockPortfolios { get; set; }
     }
 }
