@@ -1,0 +1,42 @@
+﻿@model Longhorn_Bank.Models.Saving
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Saving</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SavingsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SavingsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SavingsBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SavingsBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SavingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
