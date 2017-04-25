@@ -1,9 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Longhorn_Bank.Models
 {
@@ -52,6 +53,13 @@ namespace Longhorn_Bank.Models
         public DbSet<IRA> IRAs { get; set; }
         public DbSet<StockPortfolio> StockPortfolios { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //it will automatically create something like base(**) if you let intelisense auto-create, keep that in there.
+            modelBuilder.Entity<Account>()
+                    .HasOptional(f => f.IRA)
+                    .WithRequired(s => s.Account);
+        }
 
         //TODO: Make sure that your connection string name is correct here.
         public AppDbContext()
