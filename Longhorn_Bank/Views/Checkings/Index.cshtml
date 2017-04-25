@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Longhorn_Bank.Models.Checking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckingsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckingsBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckingsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckingsBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CheckingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CheckingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CheckingID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -21,7 +21,7 @@ namespace Longhorn_Bank.Models
         public TransactionType TransactionType { get; set; }
 
         //navigation properties 
-        public virtual Account Account { get; set; }
+        public virtual AppUser User { get; set; }
         public virtual List<Transaction> Transactions { get; set; }
 
     }

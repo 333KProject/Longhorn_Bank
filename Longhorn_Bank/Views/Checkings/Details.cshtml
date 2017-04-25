@@ -1,0 +1,42 @@
+﻿@model Longhorn_Bank.Models.Checking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Checking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckingsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingsBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckingsBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CheckingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -28,8 +28,8 @@ namespace Longhorn_Bank.Models
 
         public virtual List<Checking> Checkings { get; set; }
         public virtual List<Saving> Savings { get; set; }
-        public virtual List<IRA> IRAs { get; set; }
-        public virtual List<StockPortfolio> StockPortfolios { get; set; }
+        public virtual IRA IRA { get; set; }
+        public virtual StockPortfolio StockPortfolio { get; set; }
 
 
         //This method allows you to create a new user
@@ -55,10 +55,16 @@ namespace Longhorn_Bank.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             //it will automatically create something like base(**) if you let intelisense auto-create, keep that in there.
             modelBuilder.Entity<AppUser>()
-                    .HasOptional(f => f.IRAs)
-                    .WithRequired(s => s.AppUser);
+                    .HasOptional(f => f.IRA)
+                    .WithRequired(s => s.User);
+            modelBuilder.Entity<AppUser>()
+                    .HasOptional(f => f.StockPortfolio)
+                    .WithRequired(s => s.User);
+
+
         }
 
         //TODO: Make sure that your connection string name is correct here.
