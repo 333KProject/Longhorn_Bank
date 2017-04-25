@@ -56,9 +56,9 @@ namespace Longhorn_Bank.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //it will automatically create something like base(**) if you let intelisense auto-create, keep that in there.
-            modelBuilder.Entity<Account>()
-                    .HasOptional(f => f.IRA)
-                    .WithRequired(s => s.Account);
+            modelBuilder.Entity<AppUser>()
+                    .HasOptional(f => f.IRAs)
+                    .WithRequired(s => s.AppUser);
         }
 
         //TODO: Make sure that your connection string name is correct here.

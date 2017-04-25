@@ -20,6 +20,6 @@ namespace Longhorn_Bank.Models
    
         
         public virtual List<Transaction> Transactions { get; set; }
-        public virtual Account Account { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }
