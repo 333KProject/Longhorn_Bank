@@ -107,7 +107,7 @@ namespace Longhorn_Bank.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AllUsers = GetAllUsers(@checking);
-            return View(checking);
+            return View(@checking);
         }
 
         // GET: Checkings/Delete/5
@@ -131,7 +131,7 @@ namespace Longhorn_Bank.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Checking @checking = db.CheckingsDbSet.Find(id);
-            db.CheckingsDbSet.Remove(checking);
+            db.CheckingsDbSet.Remove(@checking);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

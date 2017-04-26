@@ -13,7 +13,6 @@ namespace Longhorn_Bank.Models
     public enum StateAbrv { AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WV, WI, WY }
     public class AppUser : IdentityUser
     {
-
         //TODO: Put any additional fields that you need for your user here
         //For instance
         public string FirstName { get; set; }

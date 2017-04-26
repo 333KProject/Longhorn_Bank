@@ -17,7 +17,7 @@ namespace Longhorn_Bank.Controllers
         // GET: Savings
         public ActionResult Index()
         {
-            return View(db.Savings.ToList());
+            return View(db.SavingsDbSet.ToList());
         }
 
         // GET: Savings/Details/5
@@ -27,50 +27,56 @@ namespace Longhorn_Bank.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saving saving = db.Savings.Find(id);
-            if (saving == null)
+
+            Saving @saving = db.SavingsDbSet.Find(id);
+            if (@saving == null)
             {
                 return HttpNotFound();
             }
-            return View(saving);
+            return View(@saving);
         }
 
         // GET: Savings/Create
         public ActionResult Create()
         {
+            ViewBag.AllUsers = GetAllUsers();
             return View();
         }
 
         // POST: Savings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //TO DO: create customer ID to add into if loop
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SavingID,SavingsName,SavingsBalance,TransactionType")] Saving saving)
+        public ActionResult Create([Bind(Include = "SavingID,SavingsName,SavingsBalance,TransactionType")] Saving @saving, string Id)
         {
+            AppUser SelectedUser = db.Users.Find(Id);
+            @saving.User = SelectedUser;
             if (ModelState.IsValid)
             {
-                db.Savings.Add(saving);
+                db.SavingsDbSet.Add(@saving);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(saving);
+            ViewBag.AllUsers = GetAllUsers(@saving);
+            return View(@saving);
         }
 
         // GET: Savings/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? Id)
         {
-            if (id == null)
+            if (Id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saving saving = db.Savings.Find(id);
-            if (saving == null)
+            Saving @saving = db.SavingsDbSet.Find(Id);
+            if (@saving == null)
             {
                 return HttpNotFound();
             }
-            return View(saving);
+            ViewBag.AllUsers = GetAllUsers(@saving);
+            return View(@saving);
         }
 
         // POST: Savings/Edit/5
@@ -78,15 +84,30 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SavingID,SavingsName,SavingsBalance,TransactionType")] Saving saving)
+        public ActionResult Edit([Bind(Include = "SavingID,SavingsName,SavingsBalance,TransactionType")] Saving @saving, string Id, string[] SelectedUsers)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(saving).State = EntityState.Modified;
+                //find associated user
+                Saving savingToChange = db.SavingsDbSet.Find(@saving.SavingID);
+
+                if (savingToChange.User.Id != Id)
+                {
+                    //find user
+                    AppUser SelectedUser = db.Users.Find(Id);
+
+                    //update user
+                    savingToChange.User = SelectedUser;
+                }
+
+                savingToChange.SavingsName = @saving.SavingsName;
+
+                db.Entry(savingToChange).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(saving);
+            ViewBag.AllUsers = GetAllUsers(@saving);
+            return View(@saving);
         }
 
         // GET: Savings/Delete/5
@@ -96,12 +117,12 @@ namespace Longhorn_Bank.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saving saving = db.Savings.Find(id);
-            if (saving == null)
+            Saving @saving = db.SavingsDbSet.Find(id);
+            if (@saving == null)
             {
                 return HttpNotFound();
             }
-            return View(saving);
+            return View(@saving);
         }
 
         // POST: Savings/Delete/5
@@ -109,8 +130,8 @@ namespace Longhorn_Bank.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Saving saving = db.Savings.Find(id);
-            db.Savings.Remove(saving);
+            Saving @saving = db.SavingsDbSet.Find(id);
+            db.SavingsDbSet.Remove(@saving);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -122,6 +143,26 @@ namespace Longhorn_Bank.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public SelectList GetAllUsers()
+        {
+            var query = from u in db.Users
+                        orderby u.FirstName
+                        select u;
+            List<AppUser> allUsers = query.ToList();
+            SelectList allUsersList = new SelectList(allUsers, "Id", "FirstName");
+            return allUsersList;
+        }
+
+        public MultiSelectList GetAllUsers(Saving @saving)
+        {
+            var query = from u in db.Users
+                        orderby u.FirstName
+                        select u;
+            List<AppUser> allUsers = query.ToList();
+            SelectList list = new SelectList(allUsers, "Id", "FirstName", @saving.User.Id);
+            return list;
         }
     }
 }
