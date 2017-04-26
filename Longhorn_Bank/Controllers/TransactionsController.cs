@@ -8,8 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using Longhorn_Bank.Models;
 
+
+public enum Limit {  $0-$100, }
 namespace Longhorn_Bank.Controllers
 {
+
+   
     public class TransactionsController : Controller
     {
         private AppDbContext db = new AppDbContext();
@@ -133,7 +137,47 @@ namespace Longhorn_Bank.Controllers
             Transactions.Add(SelectNone);
 
             //select list
-            SelectList ALLTransactions = new SelectList(Transactions.OrderBy(t =>))
+            SelectList ALLTransactions = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "TransactionType");
+            ViewBag.Transactions = ALLTransactions;
+            return View();
+        }
+
+        //search method for description of transaction
+        public ActionResult TransactionSearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, Int32 TransactionNumber, DateTime Date, Limit SelectedLimit)
+        {
+            //create variable
+            var query = from t in db.TransactionsDbSet select t;
+
+            //code for searching descriiption
+            if (SearchString == null || SearchString == "")
+            {
+
+            }
+            else
+            {
+                ViewBag.SearchString = "Search string is " + SearchString;
+                query = query.Where(t => t.Description.Contains(SearchString));
+            }
+
+            //transaction type search criteria
+            if (SelectedTransaction != 0)
+            {
+                query = query.Where(t => t.Transactions.TransactionID == SelectedTransaction);
+            }
+            else
+            {
+
+            }
+
+            //amount search criteria
+            if ((Amount == null || Amount.ToString() == "") && (SelectedLimit == Limit.GreaterThan || SelectedLimit == Limit.LessThan))
+            {
+              
+            }
+            else if (SelectedLimit == Limit.GreaterThan)
+            {
+                query = query.Where
+            }
         }
     }
 }

@@ -80,4 +80,9 @@ namespace Longhorn_Bank.Models
 
         public DbSet<AppRole> AppRoles { get; set; }
     }
+
+    public class AccountNumber
+    {
+
+    }
 }
