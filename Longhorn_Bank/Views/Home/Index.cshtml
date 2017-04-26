@@ -3,6 +3,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Welcome to Longhorn Bank</h2>
 
-Hi
+@using (Html.BeginForm())
+{
+    <p class="form-group">
+        @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-info" })
+    </p>
+}
