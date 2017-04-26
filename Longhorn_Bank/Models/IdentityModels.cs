@@ -48,10 +48,11 @@ namespace Longhorn_Bank.Models
         //TODO:  Add dbsets here, for instance there's one for books
         //Remember, Identity adds a db set for users, so you shouldn't add that one - you will get an error
         //public DbSet<Book> Books { get; set; }
-        public DbSet<Checking> Checkings { get; set; }
-        public DbSet<Saving> Savings { get; set; }
-        public DbSet<IRA> IRAs { get; set; }
-        public DbSet<StockPortfolio> StockPortfolios { get; set; }
+        public DbSet<Checking> CheckingsDbSet { get; set; }
+        public DbSet<Saving> SavingsDbSet { get; set; }
+        public DbSet<IRA> IRAsDbSet { get; set; }
+        public DbSet<StockPortfolio> StockPortfoliosDbSet { get; set; }
+        public DbSet<Transaction> TransactionsDbSet { get; set;  }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
