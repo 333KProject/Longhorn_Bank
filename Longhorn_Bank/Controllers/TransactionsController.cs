@@ -15,7 +15,6 @@ public enum DateRange { last15days, last30days, last60days }
 namespace Longhorn_Bank.Controllers
 {
 
-   
     public class TransactionsController : Controller
     {
         private AppDbContext db = new AppDbContext();
@@ -178,7 +177,7 @@ namespace Longhorn_Bank.Controllers
             //transaction type search criteria
             if (SelectedTransaction != 0)
             {
-                query = query.Where(t => t.Transactions.TransactionID == SelectedTransaction);
+                query = query.Where(t => t.TransactionID == SelectedTransaction);
             }
             else
             {
@@ -214,7 +213,7 @@ namespace Longhorn_Bank.Controllers
             }
             else if (SelectedDateRange == DateRange.last15days)
             {
-                query = query.Where(t => t.Amount >= 0 && t.Amount <= 100);
+                query = query.Where(t => t.TimeStamp <=  );
             }
             else if (SelectedDateRange == DateRange.last30days)
             {

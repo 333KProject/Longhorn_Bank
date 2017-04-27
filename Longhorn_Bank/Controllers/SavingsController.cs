@@ -64,13 +64,13 @@ namespace Longhorn_Bank.Controllers
         }
 
         // GET: Savings/Edit/5
-        public ActionResult Edit(int? Id)
+        public ActionResult Edit(int? id)
         {
-            if (Id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saving @saving = db.SavingsDbSet.Find(Id);
+            Saving @saving = db.SavingsDbSet.Find(id);
             if (@saving == null)
             {
                 return HttpNotFound();

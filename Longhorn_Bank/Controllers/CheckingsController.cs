@@ -64,13 +64,14 @@ namespace Longhorn_Bank.Controllers
         }
 
         // GET: Checkings/Edit/5
-        public ActionResult Edit(int? Id)
+        //changed Id to id
+        public ActionResult Edit(int? id)
         {
-            if (Id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Checking @checking = db.CheckingsDbSet.Find(Id);
+            Checking @checking = db.CheckingsDbSet.Find(id);
             if (@checking == null)
             {
                 return HttpNotFound();

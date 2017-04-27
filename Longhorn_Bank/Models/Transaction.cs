@@ -33,6 +33,17 @@ namespace Longhorn_Bank.Models
         [Required]
         public Decimal Amount { get; set; }
 
+        //current date variable for detail search
+        public static String GetTimestamp(DateTime value)
+        {
+            return value.ToString("yyyyMMddHHmmssffff");
+        }
+
+        public String TimeStamp = GetTimestamp(DateTime.Now);
+        public DateTime DateForPast15 = DateTime.Now.AddDays(-15);
+        public DateTime DateForPast30 = DateTime.Now.AddDays(-30);
+        public DateTime DateForPast60 = DateTime.Now.AddDays(-60);
+
         //navigational properties
         public virtual List<Checking> Checkings { get; set; }
         public virtual List<Saving> Savings { get; set; }
