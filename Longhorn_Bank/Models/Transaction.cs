@@ -14,6 +14,10 @@ namespace Longhorn_Bank.Models
 
         public Int32 TransactionNumber { get; set; }
 
+        //this is not the name of the transaction
+        //only used to name variable in search method in transaction controller
+        public string TransactionName { get; set; }
+
         [Required(ErrorMessage = "Please enter a valid date")]
         public DateTime Date { get; set; }
 
@@ -35,5 +39,7 @@ namespace Longhorn_Bank.Models
         
         public virtual List<IRA> IRAs { get; set; }
         public virtual List<StockPortfolio> StockPortfolios { get; set; }
+
+        public virtual AppUser User { get; set; }
     }
 }

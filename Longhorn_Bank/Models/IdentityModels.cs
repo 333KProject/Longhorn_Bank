@@ -30,6 +30,8 @@ namespace Longhorn_Bank.Models
         public virtual IRA IRA { get; set; }
         public virtual StockPortfolio StockPortfolio { get; set; }
 
+        public virtual List<Transaction> Transactions { get; set; }
+
 
         //This method allows you to create a new user
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser> manager)

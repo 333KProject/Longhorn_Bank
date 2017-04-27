@@ -9,7 +9,9 @@ using System.Web.Mvc;
 using Longhorn_Bank.Models;
 
 
-public enum Limit {  $0-$100, }
+public enum AmountRange { A, B, C, D }
+public enum DateRange { last15days, last30days, last60days }
+
 namespace Longhorn_Bank.Controllers
 {
 
@@ -133,8 +135,8 @@ namespace Longhorn_Bank.Controllers
         {
             //create list for transaction type
             List<Transaction> Transactions = db.TransactionsDbSet.ToList();
-            Transaction SelectNone = new Models.Transaction() { TransactionID = 0, TransactionType = "All Transactions" };
-            Transactions.Add(SelectNone);
+            Transaction SelectNoTransactions = new Models.Transaction() { TransactionID = 0, TransactionName = "All Transactions" };
+            Transactions.Add(SelectNoTransactions);
 
             //select list
             SelectList ALLTransactions = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "TransactionType");
@@ -142,8 +144,22 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
+        //detailed search method for date
+        public ActionResult DateSearch()
+        {
+            //create list for date
+            List<Transaction> Transactions = db.TransactionsDbSet.ToList();
+            Transaction SelectNoDates = new Models.Transaction() { TransactionID = 0, TransactionName = "All Dates" };
+            Transactions.Add(SelectNoDates);
+
+            //select list
+            SelectList ALLDates = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "Date");
+            ViewBag.Transactions = ALLDates;
+            return View();
+        }
+
         //search method for description of transaction
-        public ActionResult TransactionSearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, Int32 TransactionNumber, DateTime Date, Limit SelectedLimit)
+        public ActionResult TransactionSearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, Int32 TransactionNumber, DateTime Date, AmountRange SelectedAmountRange, DateRange SelectedDateRange)
         {
             //create variable
             var query = from t in db.TransactionsDbSet select t;
@@ -170,14 +186,52 @@ namespace Longhorn_Bank.Controllers
             }
 
             //amount search criteria
-            if ((Amount == null || Amount.ToString() == "") && (SelectedLimit == Limit.GreaterThan || SelectedLimit == Limit.LessThan))
+            if ((Amount == null || Amount.ToString() == ""))
             {
-              
             }
-            else if (SelectedLimit == Limit.GreaterThan)
+            else if (SelectedAmountRange == AmountRange.A)
             {
-                query = query.Where
+                query = query.Where(t => t.Amount >= 0 && t.Amount <= 100);
             }
+            else if (SelectedAmountRange == AmountRange.B)
+            {
+                query = query.Where(t => t.Amount > 100 && t.Amount <=200);
+            }
+            else if (SelectedAmountRange == AmountRange.C)
+            {
+                query = query.Where(t => t.Amount > 200 && t.Amount <= 300);
+            }
+            else if (SelectedAmountRange == AmountRange.D)
+            {
+                query = query.Where(t => t.Amount > 300);
+            }
+            //TO DO: connect enum and custom amount entry 
+            query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
+
+            //date search criteria
+            if ((Date == null || Date.ToString() == ""))
+            {
+            }
+            else if (SelectedDateRange == DateRange.last15days)
+            {
+                query = query.Where(t => t.Amount >= 0 && t.Amount <= 100);
+            }
+            else if (SelectedDateRange == DateRange.last30days)
+            {
+                query = query.Where(t => t.Amount > 100 && t.Amount <= 200);
+            }
+            else if (SelectedDateRange == DateRange.last60days)
+            {
+                query = query.Where(t => t.Amount > 200 && t.Amount <= 300);
+            }
+            //TO DO: connect enum and custom amount entry 
+            query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
+
+            List<Transaction> SelectedTransactions = query.ToList();
+            ViewBag.All = db.TransactionsDbSet.ToList().Count;
+            ViewBag.Returned = SelectedTransactions.Count;
+
+            return View("Index", SelectedTransactions);
         }
     }
 }
