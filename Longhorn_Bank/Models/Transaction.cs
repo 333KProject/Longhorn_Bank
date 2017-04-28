@@ -21,6 +21,10 @@ namespace Longhorn_Bank.Models
         [Required(ErrorMessage = "Please enter a valid date")]
         public DateTime Date { get; set; }
 
+        public DateTime CustomDateRangeStart { get; set; }
+
+        public DateTime CustomDateRangeEnd { get; set; }
+
         [Required(ErrorMessage = "Please enter a description")]
         public String Description { get; set; }
 
@@ -33,13 +37,17 @@ namespace Longhorn_Bank.Models
         [Required]
         public Decimal Amount { get; set; }
 
+        public Decimal AmountStart { get; set; }
+
+        public Decimal AmountEnd { get; set; }
+
         //current date variable for detail search
         public static String GetTimestamp(DateTime value)
         {
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
-        public String TimeStamp = GetTimestamp(DateTime.Now);
+        public DateTime TimeStamp = DateTime.Now;
         public DateTime DateForPast15 = DateTime.Now.AddDays(-15);
         public DateTime DateForPast30 = DateTime.Now.AddDays(-30);
         public DateTime DateForPast60 = DateTime.Now.AddDays(-60);

@@ -14,6 +14,8 @@ namespace Longhorn_Bank.Models
 
         public string CheckingsName { get; set; }
 
+        public Int32 CheckingsAccountNumber { get; set; }
+
         public Decimal CheckingsBalance { get; set; }
 
         public TransactionType TransactionType { get; set; }
@@ -23,4 +25,6 @@ namespace Longhorn_Bank.Models
         public virtual List<Transaction> Transactions { get; set; }
 
     }
+
+    
 }

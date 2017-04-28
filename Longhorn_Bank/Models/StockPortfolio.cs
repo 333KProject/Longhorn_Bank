@@ -11,8 +11,7 @@ namespace Longhorn_Bank.Models
        
         public Int32 StockPortfolioID { get; set; }
 
-        //[Range(10, 10)]
-        public Int32 AccountNumber { get; set; }
+        public Int32 StockAccountNumber { get; set; }
 
         [Required]
         public Decimal CashBalance { get; set; }

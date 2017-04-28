@@ -38,7 +38,9 @@
 
             @* Create radiobutton for all dates *@
 
-            @Html.TextBox("CustomDateRange", null, new { @class = "form-control" })<br />
+            @Html.TextBox("CustomDateRangeStart", null, new { @class = "form-control" })<br />
+
+            @Html.TextBox("CustomDateRangeEnd", null, new { @class = "form-control" })<br />
         </div>
 
 
@@ -68,7 +70,9 @@
                 </label>
             </div>
 
-            @Html.TextBox("CustomAmountRange", null, new { @class = "form-control" })<br />
+            @Html.TextBox("AmountStart", null, new { @class = "form-control" })<br />
+
+            @Html.TextBox("AmountEnd", null, new {  @class = "form-control" })<br />
         </div>
 
     </p>

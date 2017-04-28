@@ -14,6 +14,8 @@ namespace Longhorn_Bank.Models
         //primary key property
         public Int32 SavingID { get; set; }
 
+        public Int32 SavingsAccountNumber { get; set; }
+
         public string SavingsName { get; set; }
 
         public Decimal SavingsBalance { get; set; }

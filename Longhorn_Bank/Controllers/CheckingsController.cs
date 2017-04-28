@@ -166,5 +166,15 @@ namespace Longhorn_Bank.Controllers
             return list;
         }
 
+        public static Int32 GetAccountNumber()
+        {
+            var query = from c in db.CheckingsDbSet
+                        orderby
+
+
+
+            return View();
+        }
+
     }
 }

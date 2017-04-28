@@ -158,7 +158,7 @@ namespace Longhorn_Bank.Controllers
         }
 
         //search method for description of transaction
-        public ActionResult TransactionSearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, Int32 TransactionNumber, DateTime Date, AmountRange SelectedAmountRange, DateRange SelectedDateRange)
+        public ActionResult TransactionSearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, Int32 TransactionNumber, DateTime Date, DateTime CustomDateRange1, DateTime CustomDateRange2, AmountRange SelectedAmountRange, DateRange SelectedDateRange)
         {
             //create variable
             var query = from t in db.TransactionsDbSet select t;
@@ -204,6 +204,11 @@ namespace Longhorn_Bank.Controllers
             {
                 query = query.Where(t => t.Amount > 300);
             }
+            else
+            {
+                query = query.Where(t => t.AmountStart >= Amount1);
+                query = query.Where(t => t.AmountEnd <= Amount2);
+            }
             //TO DO: connect enum and custom amount entry 
             query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
 
@@ -213,17 +218,22 @@ namespace Longhorn_Bank.Controllers
             }
             else if (SelectedDateRange == DateRange.last15days)
             {
-                query = query.Where(t => t.TimeStamp <=  );
+                query = query.Where(t => t.TimeStamp <= t.DateForPast15);
             }
             else if (SelectedDateRange == DateRange.last30days)
             {
-                query = query.Where(t => t.Amount > 100 && t.Amount <= 200);
+                query = query.Where(t => t.TimeStamp <= t.DateForPast30);
             }
             else if (SelectedDateRange == DateRange.last60days)
             {
-                query = query.Where(t => t.Amount > 200 && t.Amount <= 300);
+                query = query.Where(t => t.TimeStamp <= t.DateForPast60);
             }
-            //TO DO: connect enum and custom amount entry 
+            else
+            {
+                query = query.Where(t => t.CustomDateRangeStart >= CustomDateRange1);
+                query = query.Where(t => t.CustomDateRangeEnd <= CustomDateRange2);
+            }
+ 
             query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
 
             List<Transaction> SelectedTransactions = query.ToList();

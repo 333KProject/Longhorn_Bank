@@ -11,6 +11,8 @@ namespace Longhorn_Bank.Models
       
         public Int32 IRAID { get; set; }
 
+        public Int32 IRAAccountsNumber { get; set; }
+
         [Required]
         public Decimal CashBalance { get; set; }
 
