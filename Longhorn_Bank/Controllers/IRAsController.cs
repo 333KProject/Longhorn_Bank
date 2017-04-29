@@ -12,7 +12,8 @@ namespace Longhorn_Bank.Controllers
 {
     public class IRAsController : Controller
     {
-        private AppDbContext db = new AppDbContext();
+
+        AppDbContext db = new AppDbContext();
 
         // GET: IRAs
         public ActionResult Index()
