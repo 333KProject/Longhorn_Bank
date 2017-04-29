@@ -166,14 +166,38 @@ namespace Longhorn_Bank.Controllers
             return list;
         }
 
-       public Int32 GetAccountNumber()
-        {
-            var query = from a in db.CheckingsDbSet
-                        orderby a.CheckingsAccountNumber
-                        select a;
+       /*public SelectList CreateAccountNumberList(int? AccountNumber)
+       {
+            var queryCheckings = from a in db.CheckingsDbSet
+                                where a.CheckingsAccountNumber == AccountNumber
+                                select AccountNumber.Max();
+            var querySavings = from a in db.SavingsDbSet
+                               where a.SavingsAccountNumber == AccountNumber
+                                select a;
+            var queryIRAs = from a in db.IRAsDbSet
+                            where a.IRAAccountsNumber == AccountNumber
+                            select a;
+            var queryStocks = from a in db.StockPortfoliosDbSet
+                              where a.StockAccountNumber == AccountNumber
+                              select a;
 
-            return View();
-        }
+            List<Checking> allCheckingsAccountNumbers = queryCheckings.ToList();
+            List<Saving> allSavingsAccountNumbers = querySavings.ToList();
+            List<IRA> allIRAsAccountNumbers = queryIRAs.ToList();
+            List<StockPortfolio> allStockAccountNumbers = queryStocks.ToList();
+
+            SelectList allAccountNumbersList = new SelectList(allCheckingsAccountNumbers, "CheckingID", "CheckingsAccountNumber", allSavingsAccountNumbers, "SavingsID", "SavingsAccountNumber", allIRAsAccountNumbers, "IRAID", "IRAAccountNumber", allStockAccountNumbers, "StockPortfolioID", "StockAccountNumber");
+            return allAccountNumbersList;
+    
+       }*/
+
+        
+
+
+
+
+
+
 
     }
 }
