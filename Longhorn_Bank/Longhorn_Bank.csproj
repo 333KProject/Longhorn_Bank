@@ -189,6 +189,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IRAsController.cs" />
     <Compile Include="Controllers\SavingsController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,6 +236,11 @@
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Transactions\DetailedSearch.cshtml" />
+    <Content Include="Views\IRAs\Create.cshtml" />
+    <Content Include="Views\IRAs\Delete.cshtml" />
+    <Content Include="Views\IRAs\Details.cshtml" />
+    <Content Include="Views\IRAs\Edit.cshtml" />
+    <Content Include="Views\IRAs\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
