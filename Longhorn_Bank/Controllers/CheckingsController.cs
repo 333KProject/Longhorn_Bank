@@ -86,7 +86,7 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance,TransactionType")] Checking @checking, string Id, string[] SelectedUsers)
+        public ActionResult Edit([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, string Id, string[] SelectedUsers)
         {
             if (ModelState.IsValid)
             {
