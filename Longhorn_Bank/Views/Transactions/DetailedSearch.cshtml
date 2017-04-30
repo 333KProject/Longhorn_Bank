@@ -1,0 +1,79 @@
+﻿@using Longhorn_Bank.Controllers
+
+@{
+    ViewBag.Title = "Detailed Search";
+}
+
+<h2>Transaction Search</h2>
+
+@using (Html.BeginForm("SearchResults", "Home", FormMethod.Get))
+{
+    <p class="form-group">
+        Transaction Number: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
+
+        Transaction Type: @Html.DropDownList("SelectedTransaction", (SelectList)ViewBag.Transactions, new { @class = "form-control" }) <br/>
+
+        Description: @Html.TextBox("Description", null, new { @class = "form-control" })<br />
+
+        @* we should probably make this a drop down list once we figure it out *@
+        Date:
+        <div class="form-group">
+            <div class="form-check">
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedDateRange", DateRange.last15days, true, new { @class = "form-check-input" }) Last 15 Days
+                </label>
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedDateRange", DateRange.last30days, true, new { @class = "form-check-input" }) Last 30 Days
+                </label>
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedDateRange", DateRange.last60days, true, new { @class = "form-check-input" }) Last 60 Days
+                </label>
+            </div>
+
+            @* Create radiobutton for all dates *@
+
+            @Html.TextBox("CustomDateRangeStart", null, new { @class = "form-control" })<br />
+
+            @Html.TextBox("CustomDateRangeEnd", null, new { @class = "form-control" })<br />
+        </div>
+
+
+        Amount:
+        <div class="form-group">
+            <div class="form-check">
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedAmountRange", AmountRange.A, true, new { @class = "form-check-input" }) $0-$100
+                </label>
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedAmountRange", AmountRange.B, true, new { @class = "form-check-input" }) $100-$200
+                </label>
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedAmountRange", AmountRange.C, true, new { @class = "form-check-input" }) $200-$300
+                </label>
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    @Html.RadioButton("SelectedAmountRange", AmountRange.D, true, new { @class = "form-check-input" }) $300+
+                </label>
+            </div>
+
+            @Html.TextBox("AmountStart", null, new { @class = "form-control" })<br />
+
+            @Html.TextBox("AmountEnd", null, new {  @class = "form-control" })<br />
+        </div>
+
+    </p>
+}

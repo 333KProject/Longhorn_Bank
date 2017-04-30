@@ -189,7 +189,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IRAsController.cs" />
     <Compile Include="Controllers\SavingsController.cs" />
+    <Compile Include="Controllers\StockPortfoliosController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\UserHomePageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +207,7 @@
     <Compile Include="Models\Saving.cs" />
     <Compile Include="Models\StockPortfolio.cs" />
     <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\UserHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,7 +233,23 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Home\HomePage.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Transactions\Delete.cshtml" />
+    <Content Include="Views\Transactions\Details.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\Transactions\DetailedSearch.cshtml" />
+    <Content Include="Views\IRAs\Create.cshtml" />
+    <Content Include="Views\IRAs\Delete.cshtml" />
+    <Content Include="Views\IRAs\Details.cshtml" />
+    <Content Include="Views\IRAs\Edit.cshtml" />
+    <Content Include="Views\IRAs\Index.cshtml" />
+    <Content Include="Views\UserHomePage\Index.cshtml" />
+    <Content Include="Views\StockPortfolios\Create.cshtml" />
+    <Content Include="Views\StockPortfolios\Delete.cshtml" />
+    <Content Include="Views\StockPortfolios\Details.cshtml" />
+    <Content Include="Views\StockPortfolios\Edit.cshtml" />
+    <Content Include="Views\StockPortfolios\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

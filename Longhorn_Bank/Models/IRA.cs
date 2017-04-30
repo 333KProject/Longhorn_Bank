@@ -11,10 +11,12 @@ namespace Longhorn_Bank.Models
       
         public Int32 IRAID { get; set; }
 
-        [Required]
-        public Decimal CashBalance { get; set; }
+        public Int32 IRAAccountNumber { get; set; }
 
-        public String Name { get; set; }
+        [Required]
+        public Decimal IRACashBalance { get; set; }
+
+        public String IRAName { get; set; }
 
         //navigational properties
    

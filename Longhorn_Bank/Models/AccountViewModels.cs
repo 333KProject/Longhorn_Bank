@@ -49,7 +49,7 @@ namespace Longhorn_Bank.Models
         public string FirstName { get; set; }
 
         [Display(Name = "Middle Initial")]
-        public string Initial { get; set; }
+        public string MiddleInitial { get; set; }
 
         [Required(ErrorMessage = "Last Name Required.")]
         [Display(Name = "Last Name")]

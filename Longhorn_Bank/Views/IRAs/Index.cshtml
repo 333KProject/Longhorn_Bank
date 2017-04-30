@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Longhorn_Bank.Models.IRA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My IRA Account</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Account Name
+        </th>
+        <th>
+            Account Number
+        </th>
+        <th>
+            Account Balance
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IRAName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IRAAccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IRACashBalance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IRAID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IRAID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IRAID })
+        </td>
+    </tr>
+}
+
+</table>

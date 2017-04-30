@@ -13,7 +13,6 @@ namespace Longhorn_Bank.Models
     public enum StateAbrv { AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WV, WI, WY }
     public class AppUser : IdentityUser
     {
-
         //TODO: Put any additional fields that you need for your user here
         //For instance
         public string FirstName { get; set; }
@@ -30,6 +29,8 @@ namespace Longhorn_Bank.Models
         public virtual List<Saving> Savings { get; set; }
         public virtual IRA IRA { get; set; }
         public virtual StockPortfolio StockPortfolio { get; set; }
+
+        public virtual List<Transaction> Transactions { get; set; }
 
 
         //This method allows you to create a new user
@@ -48,10 +49,11 @@ namespace Longhorn_Bank.Models
         //TODO:  Add dbsets here, for instance there's one for books
         //Remember, Identity adds a db set for users, so you shouldn't add that one - you will get an error
         //public DbSet<Book> Books { get; set; }
-        public DbSet<Checking> Checkings { get; set; }
-        public DbSet<Saving> Savings { get; set; }
-        public DbSet<IRA> IRAs { get; set; }
-        public DbSet<StockPortfolio> StockPortfolios { get; set; }
+        public DbSet<Checking> CheckingsDbSet { get; set; }
+        public DbSet<Saving> SavingsDbSet { get; set; }
+        public DbSet<IRA> IRAsDbSet { get; set; }
+        public DbSet<StockPortfolio> StockPortfoliosDbSet { get; set; }
+        public DbSet<Transaction> TransactionsDbSet { get; set;  }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -80,4 +82,6 @@ namespace Longhorn_Bank.Models
 
         public DbSet<AppRole> AppRoles { get; set; }
     }
+
+   
 }
