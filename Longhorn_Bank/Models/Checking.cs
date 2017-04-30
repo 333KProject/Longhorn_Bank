@@ -13,13 +13,12 @@ namespace Longhorn_Bank.Models
         //primary key property
         public Int32 CheckingID { get; set; }
 
-        //public Checking()
-        //{
-        //    CheckingsName = "Longhorn Checking";
-        //}
-
-        [DefaultValue ("Longhorn Checking")]
-        public string CheckingsName { get; set; }
+        private string _checkingsName;
+        public String CheckingsName
+        {
+            get { return _checkingsName; }
+            set { _checkingsName = value ?? "Longhorn Checking"; }
+        }
 
         public Int32 CheckingsAccountNumber { get; set; }
 
