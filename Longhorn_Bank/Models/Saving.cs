@@ -18,11 +18,11 @@ namespace Longhorn_Bank.Models
 
         public Int32 SavingsAccountNumber { get; set; }
 
-        private string _sheckingsName;
-        public String SheckingsName
+        private string _savingsName;
+        public String SavingsName
         {
-            get { return _sheckingsName; }
-            set { _sheckingsName = value ?? "Longhorn Savings"; }
+            get { return _savingsName; }
+            set { _savingsName = value ?? "Longhorn Savings"; }
         }
 
         public Decimal SavingsBalance { get; set; }
