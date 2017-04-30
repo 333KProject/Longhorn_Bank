@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Savings Account</h2>
+<h2>My Savings Account</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SavingsName)
+            Account Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SavingsBalance)
+            Account Number
+        </th>
+        <th>
+            Account Balance
         </th>
         <th></th>
     </tr>
@@ -24,6 +27,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.SavingsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SavingsAccountNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SavingsBalance)

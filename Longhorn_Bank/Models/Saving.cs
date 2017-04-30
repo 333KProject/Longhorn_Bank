@@ -20,14 +20,12 @@ namespace Longhorn_Bank.Models
 
         public Saving()
         {
-            SavingsName = "Longhorn Saving";
+            SavingsName = "Longhorn Savings";
         }
 
         public string SavingsName { get; set; }
 
         public Decimal SavingsBalance { get; set; }
-
-        public TransactionType TransactionType { get; set; }
 
         //navigation properties 
         public virtual AppUser User { get; set; }

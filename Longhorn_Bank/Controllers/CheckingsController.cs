@@ -17,6 +17,7 @@ namespace Longhorn_Bank.Controllers
         // GET: Checkings
         public ActionResult Index()
         {
+            
             return View(db.CheckingsDbSet.ToList());
         }
 
@@ -49,7 +50,7 @@ namespace Longhorn_Bank.Controllers
         //TO DO: create customer ID to add into if loop
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance,TransactionType")] Checking @checking, string Id)
+        public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, string Id)
         {
             AppUser SelectedUser = db.Users.Find(Id);
             @checking.User = SelectedUser;
