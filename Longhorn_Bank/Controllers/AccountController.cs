@@ -101,7 +101,7 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
-        //
+        //Register
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
