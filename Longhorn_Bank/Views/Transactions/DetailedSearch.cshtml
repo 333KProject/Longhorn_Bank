@@ -6,7 +6,7 @@
 
 <h2>Transaction Search</h2>
 
-@using (Html.BeginForm("SearchResults", "Home", FormMethod.Get))
+@using (Html.BeginForm("TransactionSearchResults", "Transactions", FormMethod.Get))
 {
     <p class="form-group">
         Transaction Number: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />

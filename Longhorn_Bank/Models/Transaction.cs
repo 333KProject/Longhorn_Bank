@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Longhorn_Bank.Models
 {
     public enum TransType { Deposit, Withdrawal, Transfer }
+
     public class Transaction
     {
         [Required]

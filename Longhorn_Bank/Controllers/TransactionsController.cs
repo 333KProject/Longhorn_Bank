@@ -94,40 +94,40 @@ namespace Longhorn_Bank.Controllers
             return View(transaction);
         }
 
-        // GET: Transactions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Transaction transaction = db.TransactionsDbSet.Find(id);
-            if (transaction == null)
-            {
-                return HttpNotFound();
-            }
-            return View(transaction);
-        }
+        //// GET: Transactions/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Transaction transaction = db.TransactionsDbSet.Find(id);
+        //    if (transaction == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(transaction);
+        //}
 
-        // POST: Transactions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Transaction transaction = db.TransactionsDbSet.Find(id);
-            db.TransactionsDbSet.Remove(transaction);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Transactions/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Transaction transaction = db.TransactionsDbSet.Find(id);
+        //    db.TransactionsDbSet.Remove(transaction);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         //detailed search method for transaction type
         public ActionResult TransactionTypeSearch()
