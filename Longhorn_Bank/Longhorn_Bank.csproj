@@ -180,7 +180,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -197,6 +199,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704302238178_InitialCreate.cs" />
+    <Compile Include="Migrations\201704302238178_InitialCreate.Designer.cs">
+      <DependentUpon>201704302238178_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704302355185_InitialSetup.cs" />
+    <Compile Include="Migrations\201704302355185_InitialSetup.Designer.cs">
+      <DependentUpon>201704302355185_InitialSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\SeedIdentity.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Checking.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -259,6 +271,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704302238178_InitialCreate.resx">
+      <DependentUpon>201704302238178_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704302355185_InitialSetup.resx">
+      <DependentUpon>201704302355185_InitialSetup.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
