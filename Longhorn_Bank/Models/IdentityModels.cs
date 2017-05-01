@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace Longhorn_Bank.Models
 {
@@ -21,7 +22,7 @@ namespace Longhorn_Bank.Models
         public string City { get; set; }
         public StateAbrv State { get; set; }
         public string ZipCode { get; set; }
-        public string DOB { get; set; }
+        public DateTime DOB { get; set; }
         public string MiddleInitial { get; set; }
 
 
