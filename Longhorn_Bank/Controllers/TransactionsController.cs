@@ -140,7 +140,7 @@ namespace Longhorn_Bank.Controllers
             //select list
             SelectList ALLTransactions = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "TransactionType");
             ViewBag.Transactions = ALLTransactions;
-            return View();
+            return View("DetailedSearch");
         }
 
         //detailed search method for date
@@ -154,7 +154,7 @@ namespace Longhorn_Bank.Controllers
             //select list
             SelectList ALLDates = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "Date");
             ViewBag.Transactions = ALLDates;
-            return View();
+            return View("DetailedSEarch");
         }
 
         //search method for description of transaction
