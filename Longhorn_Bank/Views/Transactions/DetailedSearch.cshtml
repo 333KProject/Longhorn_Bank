@@ -13,19 +13,12 @@
         Transaction Number: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
 
         Transaction Type:  
-        <div class="form-group">
-            <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.TransactionType, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "text-danger" })
-            </div>
-        </div><br/>
+                @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "text-danger" })<br/>
         
-        <div>Description Search:</div>
-        <div class="form-check">
-            <label class="form-check-label">
-                @Html.TextBox("Description", null, new { @class = "form-control" })<br />
-            </label>
-        </div>
+
+        Description Search: @Html.TextBox("Description", null, new { @class = "form-control" })<br />
+
          
        
        @*Search Description: @Html.TextBox("Description", null, new { @class = "form-control" })<br />*@
@@ -88,6 +81,7 @@
                     @Html.RadioButton("SelectedAmountRange", AmountRange.D, true, new { @class = "form-check-input" }) $300+
                 </label>
             </div>
+
             <div class=" = " form-check">
                 <label class="" form-check-label">
                     @Html.RadioButton("SelectedAmountRange", AmountRange.customrange, true, new { @class = "form-check-input" }) Custom Amount Range <br />
