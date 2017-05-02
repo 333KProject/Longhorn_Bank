@@ -226,6 +226,7 @@
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\UserHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\BankAccountNumber.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
