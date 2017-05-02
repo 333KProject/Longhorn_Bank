@@ -27,7 +27,7 @@ namespace Longhorn_Bank.Migrations
             }
 
             //create users
-            String stru1Email = "cbaker@freezing.co.uk"; AppUser u1 = new AppUser() { Email = "cbaker@freezing.co.uk", PasswordHash = "gazing", FirstName = "Christopher", LastName = "Baker", MiddleInitial = "L", Address = "1245 Lake Austin Blvd.", City = "Austin", State = StateAbrv.TX, ZipCode = "78733", PhoneNumber = "5125571146", DOB = DateTime.Parse("2/7/1991") };
+            String stru1Email = "cbaker@freezing.co.uk"; AppUser u1 = new AppUser() { Email = "cbaker@freezing.co.uk", PasswordHash = "gazing", FirstName = "Christopher", LastName = "Baker", MiddleInitial = "L", Address = "1245 Lake Austin Blvd.", City = "Austin", State = StateAbrv.TX, ZipCode = "78733", PhoneNumber = "5125571146", DOB = "02/07/199" };
             AppUser userToAdd1 = userManager.FindByName(stru1Email);
             if (userToAdd1 == null) //this user doesn't exist yet	
             {
