@@ -230,7 +230,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModels.cs" />
     <Compile Include="Models\Saving.cs" />
-    <Compile Include="Models\StockPortfolio.cs" />
+    <Compile Include="Models\s.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\UserHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

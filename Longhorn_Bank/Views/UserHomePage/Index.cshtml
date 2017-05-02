@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Longhorn_Bank.Models>
+﻿@model IEnumerable<Longhorn_Bank.Models.UserHomePage>
 
 @{
     ViewBag.Title = "Index";
@@ -21,7 +21,7 @@
 <table class="table table-bordered">
     <tr>
         <th>
-            Account Name
+            
         </th>
         <th>
             Accounts Number
@@ -131,7 +131,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StockPortfolio.Name)
+                    @Html.DisplayFor(modelItem => item.StockPortfolioName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StockAccountNumber)
