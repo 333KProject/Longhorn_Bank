@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Longhorn_Bank.Controllers
 {
-    public class LiveStockController : Controller
+    public class StockQuoteController : Controller
     {
         // GET: LiveStock
         public ActionResult Index()
