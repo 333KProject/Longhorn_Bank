@@ -58,6 +58,8 @@ namespace Longhorn_Bank.Controllers
                 db.TransactionsDbSet.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
+                //call methods and insert logic with user parameters
             }
 
             return View(transaction);
@@ -158,7 +160,7 @@ namespace Longhorn_Bank.Controllers
         }
 
         //search method for description of transaction
-        public ActionResult DetailedSearch (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, Int32 TransactionNumber, DateTime Date, DateTime CustomDateRange1, DateTime CustomDateRange2, AmountRange SelectedAmountRange, DateRange SelectedDateRange)
+        public ActionResult DetailedSearch(string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, int? TransactionNumber, DateTime Date, DateTime CustomDateRange1, DateTime CustomDateRange2, AmountRange SelectedAmountRange, DateRange SelectedDateRange)
         {
             //create variable
             var query = from t in db.TransactionsDbSet select t;
@@ -194,7 +196,7 @@ namespace Longhorn_Bank.Controllers
             }
             else if (SelectedAmountRange == AmountRange.B)
             {
-                query = query.Where(t => t.Amount > 100 && t.Amount <=200);
+                query = query.Where(t => t.Amount > 100 && t.Amount <= 200);
             }
             else if (SelectedAmountRange == AmountRange.C)
             {
@@ -233,7 +235,7 @@ namespace Longhorn_Bank.Controllers
                 query = query.Where(t => t.CustomDateRangeStart >= CustomDateRange1);
                 query = query.Where(t => t.CustomDateRangeEnd <= CustomDateRange2);
             }
- 
+
             query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
 
             List<Transaction> SelectedTransactions = query.ToList();
@@ -242,5 +244,9 @@ namespace Longhorn_Bank.Controllers
 
             return View("Index", SelectedTransactions);
         }
+
     }
+
+    
+
 }

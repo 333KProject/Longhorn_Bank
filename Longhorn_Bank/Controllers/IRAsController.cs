@@ -51,6 +51,7 @@ namespace Longhorn_Bank.Controllers
         {
             if (ModelState.IsValid)
             {
+                //insert logic to validate if customer is younger than 70 (age)
                 db.IRAsDbSet.Add(iRA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
