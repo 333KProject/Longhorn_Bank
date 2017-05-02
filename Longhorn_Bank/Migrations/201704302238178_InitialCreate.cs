@@ -3,7 +3,7 @@ namespace Longhorn_Bank.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialSetup : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -39,7 +39,6 @@ namespace Longhorn_Bank.Migrations
                         CheckingsName = c.String(),
                         CheckingsAccountNumber = c.Int(nullable: false),
                         CheckingsBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        TransactionType = c.Int(nullable: false),
                         User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.CheckingID)
@@ -74,9 +73,9 @@ namespace Longhorn_Bank.Migrations
                 c => new
                     {
                         IRAID = c.Int(nullable: false, identity: true),
-                        IRAAccountsNumber = c.Int(nullable: false),
-                        CashBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Name = c.String(),
+                        IRAAccountNumber = c.Int(nullable: false),
+                        IRACashBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        IRAName = c.String(),
                         User_Id = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.IRAID)
@@ -144,7 +143,6 @@ namespace Longhorn_Bank.Migrations
                         SavingsAccountNumber = c.Int(nullable: false),
                         SavingsName = c.String(),
                         SavingsBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        TransactionType = c.Int(nullable: false),
                         User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.SavingID)
@@ -157,7 +155,7 @@ namespace Longhorn_Bank.Migrations
                     {
                         StockPortfolioID = c.Int(nullable: false, identity: true),
                         StockAccountNumber = c.Int(nullable: false),
-                        CashBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        PortfolioCashBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Name = c.String(),
                         User_Id = c.String(nullable: false, maxLength: 128),
                     })

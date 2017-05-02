@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Longhorn_Bank.Models.UserHomePage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Account Summary</h2>
+
+@using (Html.BeginForm())
+{
+    <p class="form-group">
+        @Html.ActionLink("Checking", "Index", "Checkings", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Saving", "Index", "Savings", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("IRA", "Index", "IRAs", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Stock Portfolio", "Index", "StockPortfolios", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Transaction", "Index", "Transactions", null, new { @class = "btn btn-info" })
+    </p>
+}
+<br/>
+<h2>My Checkings Accounts</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Account Name
+        </th>
+        <th>
+            Accounts Number
+        </th>
+        <th>
+            Account Balance
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model.Checkings)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckingsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckingsBalance)
+            </td>
+        </tr>
+    }*@
+
+</table>
+
+<br />
+<h2>My Savings Accounts</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Account Name
+        </th>
+        <th>
+            Accounts Number
+        </th>
+        <th>
+            Account Balance
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model.Checkings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsBalance)
+                </td>
+            </tr>
+        }*@
+
+</table>
+
+<br />
+<h2>My IRA Account</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Account Name
+        </th>
+        <th>
+            Accounts Number
+        </th>
+        <th>
+            Account Balance
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model.Checkings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsBalance)
+                </td>
+            </tr>
+        }*@
+
+</table>
+
+<br />
+<h2>My Stock Portfolio</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Account Name
+        </th>
+        <th>
+            Accounts Number
+        </th>
+        <th>
+            Account Balance
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model.Checkings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckingsBalance)
+                </td>
+            </tr>
+        }*@
+
+</table>
+
+

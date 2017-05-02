@@ -17,6 +17,7 @@ namespace Longhorn_Bank.Controllers
         // GET: Checkings
         public ActionResult Index()
         {
+            
             return View(db.CheckingsDbSet.ToList());
         }
 
@@ -49,7 +50,7 @@ namespace Longhorn_Bank.Controllers
         //TO DO: create customer ID to add into if loop
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance,TransactionType")] Checking @checking, string Id)
+        public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, string Id)
         {
             AppUser SelectedUser = db.Users.Find(Id);
             @checking.User = SelectedUser;
@@ -85,13 +86,14 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance,TransactionType")] Checking @checking, string Id, string[] SelectedUsers)
+        public ActionResult Edit([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, string Id, string[] SelectedUsers)
         {
             if (ModelState.IsValid)
             {
                 //find associated user
                 Checking checkingToChange = db.CheckingsDbSet.Find(@checking.CheckingID);
 
+                //edit error is there becauase there's no users in the database: check this after seeding to see if edit works
                 if (checkingToChange.User.Id != Id)
                 {
                     //find user
@@ -111,31 +113,33 @@ namespace Longhorn_Bank.Controllers
             return View(@checking);
         }
 
-        // GET: Checkings/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Checking @checking = db.CheckingsDbSet.Find(id);
-            if (@checking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@checking);
-        }
+        //user can't delete an account but can disable so use this to figure out code for that
+    
+        //// GET: Checkings/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Checking @checking = db.CheckingsDbSet.Find(id);
+        //    if (@checking == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(@checking);
+        //}
 
-        // POST: Checkings/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Checking @checking = db.CheckingsDbSet.Find(id);
-            db.CheckingsDbSet.Remove(@checking);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Checkings/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Checking @checking = db.CheckingsDbSet.Find(id);
+        //    db.CheckingsDbSet.Remove(@checking);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -162,7 +166,7 @@ namespace Longhorn_Bank.Controllers
                         orderby u.FirstName
                         select u;
             List<AppUser> allUsers = query.ToList();
-            SelectList list = new SelectList(allUsers, "Id", "FirstName", @checking.User.Id);
+            SelectList list = new SelectList(allUsers, "Id", "FirstName");
             return list;
         }
 

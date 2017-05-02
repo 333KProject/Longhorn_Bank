@@ -101,7 +101,7 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
-        //
+        //Register
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -111,7 +111,7 @@ namespace Longhorn_Bank.Controllers
             if (ModelState.IsValid)
             {
                 //TODO: Add fields to user here so they will be saved to do the database
-                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName };
+                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, DOB = model.DOB, PhoneNumber = model.PhoneNumber, Address = model.Address, City = model.City, State = model.State, ZipCode = model.ZipCode, };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 //TODO:  Once you get roles working, you may want to add users to roles upon creation

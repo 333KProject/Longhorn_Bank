@@ -18,16 +18,14 @@ namespace Longhorn_Bank.Models
 
         public Int32 SavingsAccountNumber { get; set; }
 
-        public Saving()
+        private string _savingsName;
+        public String SavingsName
         {
-            SavingsName = "Longhorn Saving";
+            get { return _savingsName; }
+            set { _savingsName = value ?? "Longhorn Savings"; }
         }
 
-        public string SavingsName { get; set; }
-
         public Decimal SavingsBalance { get; set; }
-
-        public TransactionType TransactionType { get; set; }
 
         //navigation properties 
         public virtual AppUser User { get; set; }

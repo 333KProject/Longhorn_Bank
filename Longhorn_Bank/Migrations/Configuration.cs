@@ -10,6 +10,7 @@ namespace Longhorn_Bank.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "Longhorn_Bank.Models.AppDbContext";
         }
 
         protected override void Seed(Longhorn_Bank.Models.AppDbContext context)
@@ -26,6 +27,8 @@ namespace Longhorn_Bank.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            SeedIdentity.SeedUsers(context);
+            context.SaveChanges();
         }
     }
 }
