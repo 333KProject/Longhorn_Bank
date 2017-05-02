@@ -158,7 +158,7 @@ namespace Longhorn_Bank.Controllers
         }
 
         //search method for description of transaction
-        public ActionResult TransactionSearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, Int32 TransactionNumber, DateTime Date, DateTime CustomDateRange1, DateTime CustomDateRange2, AmountRange SelectedAmountRange, DateRange SelectedDateRange)
+        public ActionResult DetailedSearch (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, Int32 TransactionNumber, DateTime Date, DateTime CustomDateRange1, DateTime CustomDateRange2, AmountRange SelectedAmountRange, DateRange SelectedDateRange)
         {
             //create variable
             var query = from t in db.TransactionsDbSet select t;
