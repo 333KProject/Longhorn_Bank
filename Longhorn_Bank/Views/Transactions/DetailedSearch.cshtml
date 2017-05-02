@@ -12,16 +12,23 @@
     <p class="form-group">
         Transaction Number: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
 
+        Transaction Type:  
         <div class="form-group">
             <div class="col-md-10">
-                Transaction Type:  @Html.EnumDropDownListFor(model => model.TransactionType, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.TransactionType, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "text-danger" })
             </div>
+        </div><br/>
+        
+        <div>Description Search:</div>
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.TextBox("Description", null, new { @class = "form-control" })<br />
+            </label>
         </div>
-
-
-       Search Description: @Html.TextBox("Description", null, new { @class = "form-control" })<br />
-
+         
+       
+       @*Search Description: @Html.TextBox("Description", null, new { @class = "form-control" })<br />*@
         @* we should probably make this a drop down list once we figure it out *@
         Date:
         <div class="form-group">
