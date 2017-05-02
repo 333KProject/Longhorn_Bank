@@ -207,10 +207,6 @@
     <Compile Include="Migrations\201704302355185_InitialSetup.Designer.cs">
       <DependentUpon>201704302355185_InitialSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705010130035_datefixpt2.cs" />
-    <Compile Include="Migrations\201705010130035_datefixpt2.Designer.cs">
-      <DependentUpon>201705010130035_datefixpt2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -282,9 +278,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704302355185_InitialSetup.resx">
       <DependentUpon>201704302355185_InitialSetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705010130035_datefixpt2.resx">
-      <DependentUpon>201705010130035_datefixpt2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

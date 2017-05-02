@@ -22,7 +22,7 @@ namespace Longhorn_Bank.Models
         public string City { get; set; }
         public StateAbrv State { get; set; }
         public string ZipCode { get; set; }
-        public string DOB { get; set; }
+        public DateTime DOB { get; set; }
         public string MiddleInitial { get; set; }
 
 

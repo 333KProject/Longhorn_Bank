@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Longhorn_Bank.Models;
-using System.Data.Entity.Migrations;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Longhorn_Bank.Migrations
@@ -28,8 +27,7 @@ namespace Longhorn_Bank.Migrations
             }
 
             //create users
-            String stru1Email = "cbaker@freezing.co.uk";
-            AppUser u1 = new AppUser() { Email = "cbaker@freezing.co.uk", PasswordHash = "gazing", FirstName = "Christopher", LastName = "Baker", MiddleInitial = "L", Address = "1245 Lake Austin Blvd.", City = "Austin", State = StateAbrv.TX, ZipCode = "78733", PhoneNumber = "5125571146", DOB = "2/7/1991" };
+            String stru1Email = "cbaker@freezing.co.uk"; AppUser u1 = new AppUser() { Email = "cbaker@freezing.co.uk", PasswordHash = "gazing", FirstName = "Christopher", LastName = "Baker", MiddleInitial = "L", Address = "1245 Lake Austin Blvd.", City = "Austin", State = StateAbrv.TX, ZipCode = "78733", PhoneNumber = "5125571146", DOB = DateTime.Parse("2/7/1991") };
             AppUser userToAdd1 = userManager.FindByName(stru1Email);
             if (userToAdd1 == null) //this user doesn't exist yet	
             {
@@ -42,8 +40,6 @@ namespace Longhorn_Bank.Migrations
                     userManager.AddToRole(userToAdd1.Id, roleName);
                 }
             }
-            db.Users.add(u1);
-            db.SaveChanges();
             /*
             String stru2Email = "mb@aool.com"; AppUser u2 = new AppUser() { Email = "mb@aool.com", PasswordHash = "ban2102678873uet", FirstName = "Michelle", LastName = "Banks", MiddleInitial = "", Address = "1300 Tall Pine Lane", City = "San Antonio", State = StateAbrv.TX, ZipCode = "78261", PhoneNumber = "2102678873", DOB = DateTime.Parse("6/23/1990") };
             AppUser userToAdd = userManager.FindByName(stru2Email);
