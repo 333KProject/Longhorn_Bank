@@ -193,6 +193,7 @@
     <Compile Include="Controllers\DepositsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRAsController.cs" />
+    <Compile Include="Controllers\LiveStockController.cs" />
     <Compile Include="Controllers\SavingsController.cs" />
     <Compile Include="Controllers\StockPortfoliosController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Models\UserHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\BankAccountNumber.cs" />
+    <Compile Include="Utilities\GetQuote.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -283,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\LiveStock\" />
     <Folder Include="Views\Withdrawals\" />
   </ItemGroup>
   <ItemGroup>

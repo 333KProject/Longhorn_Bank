@@ -7,6 +7,7 @@ namespace Longhorn_Bank.Models
 {
     public class StockQuote
     {
+        public Int32 StockId { get; set; }
         public String Symbol { get; set; }
         public String Name { get; set; }
         public Double PreviousClose { get; set; }
