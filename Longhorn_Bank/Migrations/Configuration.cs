@@ -28,6 +28,7 @@ namespace Longhorn_Bank.Migrations
             //    );
             //
             SeedIdentity.SeedUsers(context);
+            SeedAccounts.AddAccounts(context);
             context.SaveChanges();
         }
     }
