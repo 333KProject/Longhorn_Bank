@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My Deposits</h2>
+
+@using (Html.BeginForm("Index", "Deposit", FormMethod.Get))
+{
+    <p class="form-group">
+        @* drop down for all accounts that particular user has *@
+
+        Deposit Amount: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
+    </p>
+
