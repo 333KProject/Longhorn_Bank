@@ -14,6 +14,14 @@ namespace Longhorn_Bank.Migrations
         {
             //create a user manager to add users to databases
             UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(db));
+            userManager.PasswordValidator = new PasswordValidator
+            {
+                RequiredLength = 6,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false
+            };
 
             //create a role manager
             AppRoleManager roleManager = new AppRoleManager(new RoleStore<AppRole>(db));
@@ -27,18 +35,31 @@ namespace Longhorn_Bank.Migrations
             }
 
             //create users
-            String stru1Email = "cbaker@freezing.co.uk"; AppUser u1 = new AppUser() { Email = "cbaker@freezing.co.uk", PasswordHash = "gazing", FirstName = "Christopher", LastName = "Baker", MiddleInitial = "L", Address = "1245 Lake Austin Blvd.", City = "Austin", State = StateAbrv.TX, ZipCode = "78733", PhoneNumber = "5125571146", DOB = DateTime.Parse("2/7/1991") };
-            AppUser userToAdd1 = userManager.FindByName(stru1Email);
-            if (userToAdd1 == null) //this user doesn't exist yet	
-            {
-                userManager.Create(u1, "PasswordHash123!");
-                userToAdd1 = userManager.FindByName(stru1Email);
+            String stru1Email = "cbaker@example.com";
+            AppUser u1 = new AppUser();
+            u1.Email = stru1Email;
+            u1.UserName = stru1Email;
+            u1.FirstName = "Christopher";
+            u1.LastName = "Baker";
+            u1.MiddleInitial = "L";
+            u1.Address = "1245 Lake Austin Blvd.";
+            u1.City = "Austin";
+            u1.State = StateAbrv.TX;
+            u1.ZipCode = "78733";
+            u1.PhoneNumber = "5125571146";
+            u1.DOB = DateTime.Parse("2/7/1991") ;
+            //AppUser userToAdd1 = userManager.FindByName(stru1Email);
+            //if (userToAdd1 == null) //this user doesn't exist yet	
+            //{
+            userManager.Create(u1, "grazing123!");
+                //userToAdd1 = userManager.FindByName(stru1Email);
+                //db.SaveChanges();
 
                 //add the user to the role		
-                if (userManager.IsInRole(userToAdd1.Id, roleName) == false) //the user isn't in the role
-                {
-                    userManager.AddToRole(userToAdd1.Id, roleName);
-                }
+            //    if (userManager.IsInRole(userToAdd1.Id, roleName) == false) //the user isn't in the role
+            //    {
+            //        userManager.AddToRole(userToAdd1.Id, roleName);
+            //    }
             }
             /*
             String stru2Email = "mb@aool.com"; AppUser u2 = new AppUser() { Email = "mb@aool.com", PasswordHash = "ban2102678873uet", FirstName = "Michelle", LastName = "Banks", MiddleInitial = "", Address = "1300 Tall Pine Lane", City = "San Antonio", State = StateAbrv.TX, ZipCode = "78261", PhoneNumber = "2102678873", DOB = DateTime.Parse("6/23/1990") };
@@ -155,4 +176,3 @@ namespace Longhorn_Bank.Migrations
 
         }
     }
-}
