@@ -9,8 +9,8 @@ using System.Web.Mvc;
 using Longhorn_Bank.Models;
 
 
-public enum AmountRange { A, B, C, D }
-public enum DateRange { last15days, last30days, last60days }
+public enum AmountRange { A, B, C, D, customrange}
+public enum DateRange { last15days, last30days, last60days, customrange }
 
 namespace Longhorn_Bank.Controllers
 {
@@ -130,7 +130,7 @@ namespace Longhorn_Bank.Controllers
         }
 
         //detailed search method for transaction type
-        public ActionResult TransactionTypeSearch()
+        public ActionResult DetailedSearch ()
         {
             //create list for transaction type
             List<Transaction> Transactions = db.TransactionsDbSet.ToList();
@@ -154,11 +154,11 @@ namespace Longhorn_Bank.Controllers
             //select list
             SelectList ALLDates = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "Date");
             ViewBag.Transactions = ALLDates;
-            return View("DetailedSEarch");
+            return View("DetailedSearch");
         }
 
         //search method for description of transaction
-        public ActionResult DetailedSearch (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, Int32 TransactionNumber, DateTime Date, DateTime CustomDateRange1, DateTime CustomDateRange2, AmountRange SelectedAmountRange, DateRange SelectedDateRange)
+        public ActionResult SearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, int? TransactionNumber, DateTime? Date, DateTime? CustomDateRange1, DateTime? CustomDateRange2, AmountRange? SelectedAmountRange, DateRange? SelectedDateRange)
         {
             //create variable
             var query = from t in db.TransactionsDbSet select t;
