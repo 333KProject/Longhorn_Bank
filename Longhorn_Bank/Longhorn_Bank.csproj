@@ -212,6 +212,7 @@
       <DependentUpon>201705011806485_AfterEF.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Checking.cs" />
