@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Longhorn_Bank.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Longhorn_Bank.Controllers
 {
@@ -37,9 +38,23 @@ namespace Longhorn_Bank.Controllers
         }
 
         // GET: IRAs/Create
-        public ActionResult Create()
+        public ActionResult Create(IRA IRA)
         {
-            return View();
+            string Id = User.Identity.GetUserId();
+            AppUser UserIRA = db.Users.Find(Id);
+            if (UserIRA == null)
+            {
+                return HttpNotFound();
+            }
+            DateTime Age = UserIRA.DOB;
+            if (Age >= DateTime.Now.AddYears(-70) || IRA == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View("Error", new string[] { "You do not qualify for an Individual Retirement Account" });
+            } 
         }
 
         // POST: IRAs/Create
@@ -47,8 +62,9 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IRAID,IRAAccountsNumber,CashBalance,Name")] IRA iRA)
+        public ActionResult Create([Bind(Include = "IRAID,IRAAccountNumber,CashBalance,Name")] IRA iRA, AppUser User)
         {
+            
             if (ModelState.IsValid)
             {
                 db.IRAsDbSet.Add(iRA);
@@ -79,7 +95,7 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IRAID,IRAAccountsNumber,CashBalance,Name")] IRA iRA)
+        public ActionResult Edit([Bind(Include = "IRAID,IRAAccountNumber,CashBalance,Name")] IRA iRA)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +107,7 @@ namespace Longhorn_Bank.Controllers
         }
 
         // GET: IRAs/Delete/5
-        public ActionResult Delete(int? id)
+        /*public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -114,7 +130,7 @@ namespace Longhorn_Bank.Controllers
             db.IRAsDbSet.Remove(iRA);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        }*/
 
         protected override void Dispose(bool disposing)
         {
