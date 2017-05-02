@@ -166,7 +166,7 @@ namespace Longhorn_Bank.Controllers
             return list;
         }
 
-       /*public SelectList CreateAccountNumberList(int? AccountNumber)
+       public SelectList CreateAccountNumberList(int? AccountNumber)
        {
             var queryCheckings = from a in db.CheckingsDbSet
                                 where a.CheckingsAccountNumber == AccountNumber
@@ -188,8 +188,10 @@ namespace Longhorn_Bank.Controllers
 
             SelectList allAccountNumbersList = new SelectList(allCheckingsAccountNumbers, "CheckingID", "CheckingsAccountNumber", allSavingsAccountNumbers, "SavingsID", "SavingsAccountNumber", allIRAsAccountNumbers, "IRAID", "IRAAccountNumber", allStockAccountNumbers, "StockPortfolioID", "StockAccountNumber");
             return allAccountNumbersList;
+
+           
     
-       }*/
+       }
 
         
 
