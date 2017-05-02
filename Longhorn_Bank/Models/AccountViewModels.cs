@@ -9,7 +9,7 @@ namespace Longhorn_Bank.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Email/Username")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -26,7 +26,7 @@ namespace Longhorn_Bank.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email/Username")]
         public string Email { get; set; }
 
         [Required]
@@ -67,8 +67,8 @@ namespace Longhorn_Bank.Models
         [Display(Name = "State")]
         public StateAbrv State { get; set; }
 
-        [Required(ErrorMessage = "ZIP Code Required.")]
-        [Display(Name = "ZIP Code")]
+        [Required(ErrorMessage = "Zip Code Required.")]
+        [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "Phone Number Required.")]
