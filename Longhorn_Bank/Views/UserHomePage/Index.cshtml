@@ -21,7 +21,7 @@
 <table class="table table-bordered">
     <tr>
         <th>
-            Account Name
+            
         </th>
         <th>
             Accounts Number
@@ -31,7 +31,7 @@
         </th>
     </tr>
 
-    @*@foreach (var item in Model.Checkings)
+    @foreach (var item in Model.Checkings)
     {
         <tr>
             <td>
@@ -44,7 +44,7 @@
                 @Html.DisplayFor(modelItem => item.CheckingsBalance)
             </td>
         </tr>
-    }*@
+    }
 
 </table>
 
@@ -63,20 +63,20 @@
         </th>
     </tr>
 
-    @*@foreach (var item in Model.Checkings)
+    @foreach (var item in Model.Savings)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsName)
+                    @Html.DisplayFor(modelItem => item.SavingsName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
+                    @Html.DisplayFor(modelItem => item.SavingsAccountNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsBalance)
+                    @Html.DisplayFor(modelItem => item.SavingsBalance)
                 </td>
             </tr>
-        }*@
+        }
 
 </table>
 
@@ -95,20 +95,20 @@
         </th>
     </tr>
 
-    @*@foreach (var item in Model.Checkings)
+    @foreach (var item in Model.IRA)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsName)
+                    @Html.DisplayFor(modelItem => item.IRAName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
+                    @Html.DisplayFor(modelItem => item.IRAAccountNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsBalance)
+                    @Html.DisplayFor(modelItem => item.IRACashBalance)
                 </td>
             </tr>
-        }*@
+        }
 
 </table>
 
@@ -127,20 +127,20 @@
         </th>
     </tr>
 
-    @*@foreach (var item in Model.Checkings)
+    @foreach (var item in Model.StockPortfolio)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsName)
+                    @Html.DisplayFor(modelItem => item.StockPortfolioName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
+                    @Html.DisplayFor(modelItem => item.StockAccountNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CheckingsBalance)
+                    @Html.DisplayFor(modelItem => item.PortfolioCashBalance)
                 </td>
             </tr>
-        }*@
+        }
 
 </table>
 

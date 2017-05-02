@@ -193,7 +193,7 @@
     <Compile Include="Controllers\DepositsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRAsController.cs" />
-    <Compile Include="Controllers\LiveStockController.cs" />
+    <Compile Include="Controllers\StockQuoteController.cs" />
     <Compile Include="Controllers\SavingsController.cs" />
     <Compile Include="Controllers\StockPortfoliosController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201705011806485_AfterEF.Designer.cs">
       <DependentUpon>201705011806485_AfterEF.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705021642058_stockquote.cs" />
+    <Compile Include="Migrations\201705021642058_stockquote.Designer.cs">
+      <DependentUpon>201705021642058_stockquote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -226,7 +230,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModels.cs" />
     <Compile Include="Models\Saving.cs" />
-    <Compile Include="Models\StockPortfolio.cs" />
+    <Compile Include="Models\s.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\UserHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,6 +280,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Deposits\Index.cshtml" />
+    <Content Include="Views\StockQuote\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -285,7 +290,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\LiveStock\" />
     <Folder Include="Views\Withdrawals\" />
   </ItemGroup>
   <ItemGroup>
@@ -297,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705011806485_AfterEF.resx">
       <DependentUpon>201705011806485_AfterEF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705021642058_stockquote.resx">
+      <DependentUpon>201705021642058_stockquote.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -38,7 +38,7 @@ namespace Longhorn_Bank.Controllers
         }
 
         // GET: IRAs/Create
-        public ActionResult Create(IRA IRA)
+        public ActionResult Create()
         {
             string Id = User.Identity.GetUserId();
             AppUser UserIRA = db.Users.Find(Id);
@@ -47,7 +47,7 @@ namespace Longhorn_Bank.Controllers
                 return HttpNotFound();
             }
             DateTime Age = UserIRA.DOB;
-            if (Age >= DateTime.Now.AddYears(-70) || IRA == null)
+            if (Age >= DateTime.Now.AddYears(-70) || UserIRA.IRA == null)
             {
                 return View();
             }
@@ -62,17 +62,17 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IRAID,IRAAccountNumber,CashBalance,Name")] IRA iRA, AppUser User)
+        public ActionResult Create([Bind(Include = "IRAID,IRAAccountNumber,CashBalance,Name")] IRA IRA)
         {
             
             if (ModelState.IsValid)
             {
-                db.IRAsDbSet.Add(iRA);
+                db.IRAsDbSet.Add(IRA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(iRA);
+            return View(IRA);
         }
 
         // GET: IRAs/Edit/5
