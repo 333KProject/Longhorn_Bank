@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Longhorn_Bank.Models.Checking>
+﻿@using Longhorn_Bank.Models
+@model UserHomePage
 
 @{
     ViewBag.Title = "Index";
@@ -32,11 +33,11 @@
                     </th>
                 </tr>
 
-                @foreach (var item in Model.Checkings)
+                @foreach (var item in Model.Checking)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CheckingsName)
+                            @Html.DisplayFor(modelItem => item.Checking.CheckingsName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
@@ -57,187 +58,187 @@
                 @Html.ActionLink("Transaction", "Index", "Transactions", null, new { @class = "btn btn-info" })
             </p>
             }
-        </p>
-    </div>
-    <div id="savings" class="tab-pane fade">
-        <h3>My Savings</h3>
-        <p>Some content in menu 1.</p>
-    </div>
-    <div id="ira" class="tab-pane fade">
-        <h3>My IRA</h3>
-        <p>Some content in menu 2.</p>
-    </div>
-    <div id="stockportfolio" class="tab-pane fade">
-        <h3>My Stock Portfolio</h3>
-        <p>Some content in menu 2.</p>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<h2>Account Summary</h2>
-
-@using (Html.BeginForm())
-{
-    <p class="form-group">
-        @Html.ActionLink("Checking", "Index", "Checkings", null, new { @class = "btn btn-info" })
-        @Html.ActionLink("Saving", "Index", "Savings", null, new { @class = "btn btn-info" })
-        @Html.ActionLink("IRA", "Index", "IRAs", null, new { @class = "btn btn-info" })
-        @Html.ActionLink("Stock Portfolio", "Index", "StockPortfolios", null, new { @class = "btn btn-info" })
-        @Html.ActionLink("Transaction", "Index", "Transactions", null, new { @class = "btn btn-info" })
-    </p>
-}
-<br/>
-<h2>My Checkings Accounts</h2>
-<table class="table table-bordered">
-    <tr>
-        <th>
             
-        </th>
-        <th>
-            Accounts Number
-        </th>
-        <th>
-            Account Balance
-        </th>
-    </tr>
+        </div>
+        <div id="savings" class="tab-pane fade">
+            <h3>My Savings</h3>
+            <p>Some content in menu 1.</p>
+        </div>
+        <div id="ira" class="tab-pane fade">
+            <h3>My IRA</h3>
+            <p>Some content in menu 2.</p>
+        </div>
+        <div id="stockportfolio" class="tab-pane fade">
+            <h3>My Stock Portfolio</h3>
+            <p>Some content in menu 2.</p>
+        </div>
+    </div>
 
-    @foreach (var item in Model.Checkings)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckingsName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckingsBalance)
-            </td>
-        </tr>
-    }
 
-</table>
 
-<br />
-<h2>My Savings Accounts</h2>
-<table class="table table-bordered">
-    <tr>
-        <th>
-            Account Name
-        </th>
-        <th>
-            Accounts Number
-        </th>
-        <th>
-            Account Balance
-        </th>
-    </tr>
 
-    @foreach (var item in Model.Savings)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<h2>Account Summary</h2>
+
+        @using (Html.BeginForm())
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SavingsName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SavingsAccountNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SavingsBalance)
-                </td>
-            </tr>
+            <p class="form-group">
+                @Html.ActionLink("Checking", "Index", "Checkings", null, new { @class = "btn btn-info" })
+                @Html.ActionLink("Saving", "Index", "Savings", null, new { @class = "btn btn-info" })
+                @Html.ActionLink("IRA", "Index", "IRAs", null, new { @class = "btn btn-info" })
+                @Html.ActionLink("Stock Portfolio", "Index", "StockPortfolios", null, new { @class = "btn btn-info" })
+                @Html.ActionLink("Transaction", "Index", "Transactions", null, new { @class = "btn btn-info" })
+            </p>
         }
-
-</table>
-
-<br />
-<h2>My IRA Account</h2>
-<table class="table table-bordered">
-    <tr>
-        <th>
-            Account Name
-        </th>
-        <th>
-            Accounts Number
-        </th>
-        <th>
-            Account Balance
-        </th>
-    </tr>
-
-    @foreach (var item in Model.IRA)
-        {
+        <br/>
+        <h2>My Checkings Accounts</h2>
+        <table class="table table-bordered">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IRAName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IRAAccountNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IRACashBalance)
-                </td>
+                <th>
+
+                </th>
+                <th>
+                    Accounts Number
+                </th>
+                <th>
+                    Account Balance
+                </th>
             </tr>
-        }
 
-</table>
+            @foreach (var item in Model.Checkings)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CheckingsName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CheckingsBalance)
+                    </td>
+                </tr>
+            }
 
-<br />
-<h2>My Stock Portfolio</h2>
-<table class="table table-bordered">
-    <tr>
-        <th>
-            Account Name
-        </th>
-        <th>
-            Accounts Number
-        </th>
-        <th>
-            Account Balance
-        </th>
-    </tr>
+        </table>
 
-    @foreach (var item in Model.StockPortfolio)
-        {
+        <br />
+        <h2>My Savings Accounts</h2>
+        <table class="table table-bordered">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StockPortfolioName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StockAccountNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PortfolioCashBalance)
-                </td>
+                <th>
+                    Account Name
+                </th>
+                <th>
+                    Accounts Number
+                </th>
+                <th>
+                    Account Balance
+                </th>
             </tr>
-        }
 
-</table>*@
+            @foreach (var item in Model.Savings)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SavingsName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SavingsAccountNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SavingsBalance)
+                        </td>
+                    </tr>
+                }
+
+        </table>
+
+        <br />
+        <h2>My IRA Account</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    Account Name
+                </th>
+                <th>
+                    Accounts Number
+                </th>
+                <th>
+                    Account Balance
+                </th>
+            </tr>
+
+            @foreach (var item in Model.IRA)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IRAName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IRAAccountNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IRACashBalance)
+                        </td>
+                    </tr>
+                }
+
+        </table>
+
+        <br />
+        <h2>My Stock Portfolio</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    Account Name
+                </th>
+                <th>
+                    Accounts Number
+                </th>
+                <th>
+                    Account Balance
+                </th>
+            </tr>
+
+            @foreach (var item in Model.StockPortfolio)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockPortfolioName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockAccountNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PortfolioCashBalance)
+                        </td>
+                    </tr>
+                }
+
+        </table>*@
 
 

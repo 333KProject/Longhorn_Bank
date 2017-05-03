@@ -218,10 +218,28 @@
     <Compile Include="Migrations\201705021642058_stockquote.Designer.cs">
       <DependentUpon>201705021642058_stockquote.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705030143051_available-stock.cs" />
+    <Compile Include="Migrations\201705030143051_available-stock.Designer.cs">
+      <DependentUpon>201705030143051_available-stock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705030342051_morestock.cs" />
+    <Compile Include="Migrations\201705030342051_morestock.Designer.cs">
+      <DependentUpon>201705030342051_morestock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705030421598_newstock.cs" />
+    <Compile Include="Migrations\201705030421598_newstock.Designer.cs">
+      <DependentUpon>201705030421598_newstock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705030435299_stockpls.cs" />
+    <Compile Include="Migrations\201705030435299_stockpls.Designer.cs">
+      <DependentUpon>201705030435299_stockpls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
+    <Compile Include="Migrations\SeedStocks.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvailableStocks.cs" />
     <Compile Include="Models\Checking.cs" />
     <Compile Include="Models\StockQuote.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -304,6 +322,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705021642058_stockquote.resx">
       <DependentUpon>201705021642058_stockquote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705030143051_available-stock.resx">
+      <DependentUpon>201705030143051_available-stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705030342051_morestock.resx">
+      <DependentUpon>201705030342051_morestock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705030421598_newstock.resx">
+      <DependentUpon>201705030421598_newstock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705030435299_stockpls.resx">
+      <DependentUpon>201705030435299_stockpls.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -55,6 +55,7 @@ namespace Longhorn_Bank.Models
         public DbSet<IRA> IRAsDbSet { get; set; }
         public DbSet<StockPortfolio> StockPortfoliosDbSet { get; set; }
         public DbSet<Transaction> TransactionsDbSet { get; set;  }
+        public DbSet<AvailableStocks> AvailableStocks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -66,8 +67,7 @@ namespace Longhorn_Bank.Models
             modelBuilder.Entity<AppUser>()
                     .HasOptional(f => f.StockPortfolio)
                     .WithRequired(s => s.User);
-
-
+           
         }
 
         //TODO: Make sure that your connection string name is correct here.

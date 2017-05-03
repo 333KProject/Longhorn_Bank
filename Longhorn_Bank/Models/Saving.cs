@@ -30,6 +30,5 @@ namespace Longhorn_Bank.Models
         //navigation properties 
         public virtual AppUser User { get; set; }
         public virtual List<Transaction> Transactions { get; set; }
-
     }
 }

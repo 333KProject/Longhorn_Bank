@@ -11,7 +11,7 @@ namespace Longhorn_Bank.Models
         public String Symbol { get; set; }
         public String Name { get; set; }
         public Double PreviousClose { get; set; }
-        public Double LastTradePrice { get; set; }
         public Double Volume { get; set; }
+        public virtual AvailableStocks AvailableStocks { get; set; }
     }
 }

@@ -26,13 +26,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.StockAccountNumber)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PortfolioCashBalance)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.StockAccountNumber)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.StockPortfolioID }) |
