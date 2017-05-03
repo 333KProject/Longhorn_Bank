@@ -16,6 +16,7 @@ namespace Longhorn_Bank.Controllers
         public ActionResult Index()
         {
             string Id = User.Identity.GetUserId();
+
             AppUser UserAccounts = db.Users.Find(Id);
             UserAccounts.Checkings = UserAccounts.Checkings;
   
