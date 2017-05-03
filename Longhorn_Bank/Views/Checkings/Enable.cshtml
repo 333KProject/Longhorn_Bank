@@ -1,0 +1,45 @@
+﻿@model Longhorn_Bank.Models.Checking
+
+@{
+    ViewBag.Title = "Disable";
+}
+
+<h2>Disable Checking Account</h2>
+
+<h3>Are you sure you want to disable this checking account?</h3>
+<div>
+    @*<h4>Checking Account</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckingsName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingsAccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckingsAccountNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingsBalance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CheckingsBalance)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

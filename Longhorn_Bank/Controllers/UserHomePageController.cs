@@ -11,7 +11,14 @@ namespace Longhorn_Bank.Controllers
         // GET: UserHomePage
         public ActionResult Index()
         {
-            return View();
+            //if (Age >= DateTime.Now.AddYears(-70) || UserIRA.IRA == null)
+            //{
+            //    return View();
+            //}
+            //else
+            {
+                return View("Error", new string[] { "You must apply for a banking product to continue using the site." });
+            }
         }
     }
 }

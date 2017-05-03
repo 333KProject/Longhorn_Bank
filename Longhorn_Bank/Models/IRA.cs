@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Longhorn_Bank.Models
 {
@@ -18,9 +19,12 @@ namespace Longhorn_Bank.Models
 
         public String IRAName { get; set; }
 
+        [DefaultValue(true)]
+        public bool IRAActive { get; set; }
+
         //navigational properties
-   
-        
+
+
         public virtual List<Transaction> Transactions { get; set; }
         public virtual AppUser User { get; set; }
     }
