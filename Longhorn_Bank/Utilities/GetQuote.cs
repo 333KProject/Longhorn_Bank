@@ -52,7 +52,7 @@ namespace Longhorn_Bank.Utilities
                     stock.Volume = double.Parse(sa[2]);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //Throw some exception here.
             }
