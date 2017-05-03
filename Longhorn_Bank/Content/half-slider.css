@@ -47,13 +47,6 @@ background-repeat: repeat-x;
     /*-o-background-size: cover;*/
 }
 
-.panel-danger > .panel-heading {
-    background-image: none;
-    background-color: aliceblue;
-    color: white;
-
-}
-
 footer {
     margin: 50px 0;
 }

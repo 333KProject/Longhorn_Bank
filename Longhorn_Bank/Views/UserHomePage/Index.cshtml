@@ -1,5 +1,5 @@
 ﻿@using Longhorn_Bank.Models
-@model IEnumerable<Longhorn_Bank.Models.UserHomePage>
+@model AppUser
 
 @{
     ViewBag.Title = "Index";
@@ -33,7 +33,7 @@
                     </th>
                 </tr>
 
-                @foreach (var item in Model)
+                @foreach (var item in Model.Checkings)
                 {
                     <tr>
                         <td>

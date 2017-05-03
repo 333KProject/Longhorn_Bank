@@ -67,6 +67,11 @@ namespace Longhorn_Bank.Controllers
 
                 //validate if there are enough efunds in the selected account 
 
+                if (decWithdrawalAmount > AccountBalance)
+                {
+
+                }
+
                 //TO DO: deposits of over $5000 should be treated the same as when opening the account, meaning they must be approved by a manager before being added to the account balance
 
 
@@ -74,5 +79,8 @@ namespace Longhorn_Bank.Controllers
             }
             return View();
         }
+
+        public Int32 GetAccount Balance 
+
     }
 }
