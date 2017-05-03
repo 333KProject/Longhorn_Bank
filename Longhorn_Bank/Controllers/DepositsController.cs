@@ -79,12 +79,12 @@ namespace Longhorn_Bank.Controllers
 
         //TO DO: method to populate drop down list of all accounts that the user has and can deposit to
         //these can only be checkings, savings, and IRA
-        public SelectList GetAllDepositAccounts()
+        public SelectList GetAllDepositAccounts(AppDbContext db)
         {
             var query = from a in db.CheckingsDbSet
-                        orderby u.FirstName
-                        select u;
-            List<AppUser> allUsers = query.ToList();
+                        orderby a.User.FirstName
+                        select a;
+            List<Checking> allUsers = query.ToList();
             SelectList allUsersList = new SelectList(allUsers, "Id", "FirstName");
             return allUsersList;
         }

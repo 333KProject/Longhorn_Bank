@@ -29,6 +29,7 @@ namespace Longhorn_Bank.Migrations
             //
             SeedIdentity.SeedUsers(context);
             SeedAccounts.AddAccounts(context);
+            SeedStocks.AddStocks(context);
             context.SaveChanges();
         }
     }

@@ -13,5 +13,6 @@ namespace Longhorn_Bank.Models
         public Double PreviousClose { get; set; }
         public Double LastTradePrice { get; set; }
         public Double Volume { get; set; }
+        public virtual AvailableStocks AvailableStock { get; set; }
     }
 }
