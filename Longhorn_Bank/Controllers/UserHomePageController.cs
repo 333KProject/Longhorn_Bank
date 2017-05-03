@@ -14,7 +14,7 @@ namespace Longhorn_Bank.Controllers
         // GET: UserHomePage
         public ActionResult Index()
         {
-            var checkings = Checkings
+            //var checkings = Checkings
             return View();
         }
 
