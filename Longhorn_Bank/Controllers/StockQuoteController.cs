@@ -11,17 +11,14 @@ namespace Longhorn_Bank.Controllers
     public class StockQuoteController : Controller
     {
         // GET: LiveStock
-        public ActionResult Index()
+        public ActionResult Index(AvailableStocks Stocks)
         {
             List<StockQuote> Quotes = new List<StockQuote>();
-            StockQuote sq1 = GetQuote.GetStock("AAPL");
-            Quotes.Add(sq1);
 
-            StockQuote sq2 = GetQuote.GetStock("GOOG");
-            Quotes.Add(sq2);
-
-            StockQuote sq3 = GetQuote.GetStock("LUV");
-            Quotes.Add(sq3);
+            foreach (StockQuote q in Quotes)
+                {
+                    StockQuote sq1 = GetQuote.GetStock(Stocks.TickerSymbol);
+                }   
 
             return View(Quotes);
         }
