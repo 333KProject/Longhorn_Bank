@@ -9,7 +9,7 @@ using System;
 
 namespace Longhorn_Bank.Models
 {
-
+    public enum EmpType { Employee, Manager }
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public enum StateAbrv { AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WV, WI, WY }
     public class AppUser : IdentityUser
@@ -24,7 +24,8 @@ namespace Longhorn_Bank.Models
         public string ZipCode { get; set; }
         public DateTime DOB { get; set; }
         public string MiddleInitial { get; set; }
-
+        public string SSN { get; set; }
+        public EmpType EmpType { get; set; }
 
         public virtual List<Checking> Checkings { get; set; }
         public virtual List<Saving> Savings { get; set; }

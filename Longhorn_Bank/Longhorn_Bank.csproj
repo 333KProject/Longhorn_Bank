@@ -235,6 +235,14 @@
     <Compile Include="Migrations\201705030435299_stockpls.Designer.cs">
       <DependentUpon>201705030435299_stockpls.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705030646232_employees.cs" />
+    <Compile Include="Migrations\201705030646232_employees.Designer.cs">
+      <DependentUpon>201705030646232_employees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705030826183_employeeidentity.cs" />
+    <Compile Include="Migrations\201705030826183_employeeidentity.Designer.cs">
+      <DependentUpon>201705030826183_employeeidentity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -335,6 +343,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705030435299_stockpls.resx">
       <DependentUpon>201705030435299_stockpls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705030646232_employees.resx">
+      <DependentUpon>201705030646232_employees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705030826183_employeeidentity.resx">
+      <DependentUpon>201705030826183_employeeidentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
