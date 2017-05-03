@@ -85,8 +85,10 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
+        
+
         //method to populate drop down list of all accounts that the user has and can deposit to
-       
+
         //public SelectList GetAllAccounts()
         //{
 
@@ -99,14 +101,14 @@ namespace Longhorn_Bank.Controllers
         //    allAccountsList.Add(queryCheckings);
         //    allAccountsList.Add(querySavings);
         //    allAccountsList.Add(queryIRAs);
-           
+
 
 
         //    return allAccountsList;                                                                                                   
-            
+
         //}
 
-        
+
 
     }
 }

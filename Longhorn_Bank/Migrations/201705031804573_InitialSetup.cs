@@ -3,7 +3,7 @@ namespace Longhorn_Bank.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class InitialSetup : DbMigration
     {
         public override void Up()
         {
@@ -32,16 +32,46 @@ namespace Longhorn_Bank.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
-                "dbo.Checkings",
+                "dbo.AvailableStocks",
                 c => new
                     {
-                        CheckingID = c.Int(nullable: false, identity: true),
-                        CheckingsName = c.String(),
-                        CheckingsAccountNumber = c.Int(nullable: false),
-                        CheckingsBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        User_Id = c.String(maxLength: 128),
+                        AvailableStocksID = c.Int(nullable: false),
+                        TickerSymbol = c.String(),
+                        StockType = c.Int(nullable: false),
+                        StockName = c.String(),
+                        StockFee = c.Int(nullable: false),
+                        StockPortfolio_StockPortfolioID = c.Int(),
                     })
-                .PrimaryKey(t => t.CheckingID)
+                .PrimaryKey(t => t.AvailableStocksID)
+                .ForeignKey("dbo.StockPortfolios", t => t.StockPortfolio_StockPortfolioID)
+                .Index(t => t.StockPortfolio_StockPortfolioID);
+            
+            CreateTable(
+                "dbo.StockQuotes",
+                c => new
+                    {
+                        StockQuoteId = c.Int(nullable: false, identity: true),
+                        Symbol = c.String(),
+                        Name = c.String(),
+                        PreviousClose = c.Double(nullable: false),
+                        Volume = c.Double(nullable: false),
+                        AvailableStocks_AvailableStocksID = c.Int(),
+                    })
+                .PrimaryKey(t => t.StockQuoteId)
+                .ForeignKey("dbo.AvailableStocks", t => t.AvailableStocks_AvailableStocksID)
+                .Index(t => t.AvailableStocks_AvailableStocksID);
+            
+            CreateTable(
+                "dbo.StockPortfolios",
+                c => new
+                    {
+                        StockPortfolioID = c.Int(nullable: false, identity: true),
+                        StockAccountNumber = c.Int(nullable: false),
+                        PortfolioCashBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Name = c.String(),
+                        User_Id = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.StockPortfolioID)
                 .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
                 .Index(t => t.User_Id);
             
@@ -69,16 +99,16 @@ namespace Longhorn_Bank.Migrations
                 .Index(t => t.User_Id);
             
             CreateTable(
-                "dbo.IRAs",
+                "dbo.Checkings",
                 c => new
                     {
-                        IRAID = c.Int(nullable: false, identity: true),
-                        IRAAccountNumber = c.Int(nullable: false),
-                        IRACashBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        IRAName = c.String(),
-                        User_Id = c.String(nullable: false, maxLength: 128),
+                        CheckingID = c.Int(nullable: false, identity: true),
+                        CheckingsName = c.String(),
+                        CheckingsAccountNumber = c.Int(nullable: false),
+                        CheckingsBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        User_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.IRAID)
+                .PrimaryKey(t => t.CheckingID)
                 .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
                 .Index(t => t.User_Id);
             
@@ -93,8 +123,10 @@ namespace Longhorn_Bank.Migrations
                         City = c.String(),
                         State = c.Int(nullable: false),
                         ZipCode = c.String(),
-                        DOB = c.String(),
+                        DOB = c.DateTime(nullable: false),
                         MiddleInitial = c.String(),
+                        SSN = c.String(),
+                        EmpType = c.Int(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -124,6 +156,20 @@ namespace Longhorn_Bank.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.IRAs",
+                c => new
+                    {
+                        IRAID = c.Int(nullable: false, identity: true),
+                        IRAAccountNumber = c.Int(nullable: false),
+                        IRACashBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        IRAName = c.String(),
+                        User_Id = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.IRAID)
+                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+                .Index(t => t.User_Id);
+            
+            CreateTable(
                 "dbo.AspNetUserLogins",
                 c => new
                     {
@@ -150,31 +196,17 @@ namespace Longhorn_Bank.Migrations
                 .Index(t => t.User_Id);
             
             CreateTable(
-                "dbo.StockPortfolios",
+                "dbo.CheckingTransactions",
                 c => new
                     {
-                        StockPortfolioID = c.Int(nullable: false, identity: true),
-                        StockAccountNumber = c.Int(nullable: false),
-                        PortfolioCashBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Name = c.String(),
-                        User_Id = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.StockPortfolioID)
-                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
-                .Index(t => t.User_Id);
-            
-            CreateTable(
-                "dbo.TransactionCheckings",
-                c => new
-                    {
-                        Transaction_TransactionID = c.Int(nullable: false),
                         Checking_CheckingID = c.Int(nullable: false),
+                        Transaction_TransactionID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Transaction_TransactionID, t.Checking_CheckingID })
-                .ForeignKey("dbo.Transactions", t => t.Transaction_TransactionID, cascadeDelete: true)
+                .PrimaryKey(t => new { t.Checking_CheckingID, t.Transaction_TransactionID })
                 .ForeignKey("dbo.Checkings", t => t.Checking_CheckingID, cascadeDelete: true)
-                .Index(t => t.Transaction_TransactionID)
-                .Index(t => t.Checking_CheckingID);
+                .ForeignKey("dbo.Transactions", t => t.Transaction_TransactionID, cascadeDelete: true)
+                .Index(t => t.Checking_CheckingID)
+                .Index(t => t.Transaction_TransactionID);
             
             CreateTable(
                 "dbo.IRATransactions",
@@ -203,70 +235,76 @@ namespace Longhorn_Bank.Migrations
                 .Index(t => t.Transaction_TransactionID);
             
             CreateTable(
-                "dbo.StockPortfolioTransactions",
+                "dbo.TransactionStockPortfolios",
                 c => new
                     {
-                        StockPortfolio_StockPortfolioID = c.Int(nullable: false),
                         Transaction_TransactionID = c.Int(nullable: false),
+                        StockPortfolio_StockPortfolioID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.StockPortfolio_StockPortfolioID, t.Transaction_TransactionID })
-                .ForeignKey("dbo.StockPortfolios", t => t.StockPortfolio_StockPortfolioID, cascadeDelete: true)
+                .PrimaryKey(t => new { t.Transaction_TransactionID, t.StockPortfolio_StockPortfolioID })
                 .ForeignKey("dbo.Transactions", t => t.Transaction_TransactionID, cascadeDelete: true)
-                .Index(t => t.StockPortfolio_StockPortfolioID)
-                .Index(t => t.Transaction_TransactionID);
+                .ForeignKey("dbo.StockPortfolios", t => t.StockPortfolio_StockPortfolioID, cascadeDelete: true)
+                .Index(t => t.Transaction_TransactionID)
+                .Index(t => t.StockPortfolio_StockPortfolioID);
             
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.AvailableStocks", "StockPortfolio_StockPortfolioID", "dbo.StockPortfolios");
+            DropForeignKey("dbo.TransactionStockPortfolios", "StockPortfolio_StockPortfolioID", "dbo.StockPortfolios");
+            DropForeignKey("dbo.TransactionStockPortfolios", "Transaction_TransactionID", "dbo.Transactions");
             DropForeignKey("dbo.Transactions", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.StockPortfolios", "User_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.StockPortfolioTransactions", "Transaction_TransactionID", "dbo.Transactions");
-            DropForeignKey("dbo.StockPortfolioTransactions", "StockPortfolio_StockPortfolioID", "dbo.StockPortfolios");
             DropForeignKey("dbo.Savings", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.SavingTransactions", "Transaction_TransactionID", "dbo.Transactions");
             DropForeignKey("dbo.SavingTransactions", "Saving_SavingID", "dbo.Savings");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.IRAs", "User_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Checkings", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.IRATransactions", "Transaction_TransactionID", "dbo.Transactions");
             DropForeignKey("dbo.IRATransactions", "IRA_IRAID", "dbo.IRAs");
-            DropForeignKey("dbo.TransactionCheckings", "Checking_CheckingID", "dbo.Checkings");
-            DropForeignKey("dbo.TransactionCheckings", "Transaction_TransactionID", "dbo.Transactions");
-            DropIndex("dbo.StockPortfolioTransactions", new[] { "Transaction_TransactionID" });
-            DropIndex("dbo.StockPortfolioTransactions", new[] { "StockPortfolio_StockPortfolioID" });
+            DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Checkings", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.CheckingTransactions", "Transaction_TransactionID", "dbo.Transactions");
+            DropForeignKey("dbo.CheckingTransactions", "Checking_CheckingID", "dbo.Checkings");
+            DropForeignKey("dbo.StockQuotes", "AvailableStocks_AvailableStocksID", "dbo.AvailableStocks");
+            DropIndex("dbo.TransactionStockPortfolios", new[] { "StockPortfolio_StockPortfolioID" });
+            DropIndex("dbo.TransactionStockPortfolios", new[] { "Transaction_TransactionID" });
             DropIndex("dbo.SavingTransactions", new[] { "Transaction_TransactionID" });
             DropIndex("dbo.SavingTransactions", new[] { "Saving_SavingID" });
             DropIndex("dbo.IRATransactions", new[] { "Transaction_TransactionID" });
             DropIndex("dbo.IRATransactions", new[] { "IRA_IRAID" });
-            DropIndex("dbo.TransactionCheckings", new[] { "Checking_CheckingID" });
-            DropIndex("dbo.TransactionCheckings", new[] { "Transaction_TransactionID" });
-            DropIndex("dbo.StockPortfolios", new[] { "User_Id" });
+            DropIndex("dbo.CheckingTransactions", new[] { "Transaction_TransactionID" });
+            DropIndex("dbo.CheckingTransactions", new[] { "Checking_CheckingID" });
             DropIndex("dbo.Savings", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.IRAs", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.IRAs", new[] { "User_Id" });
-            DropIndex("dbo.Transactions", new[] { "User_Id" });
             DropIndex("dbo.Checkings", new[] { "User_Id" });
+            DropIndex("dbo.Transactions", new[] { "User_Id" });
+            DropIndex("dbo.StockPortfolios", new[] { "User_Id" });
+            DropIndex("dbo.StockQuotes", new[] { "AvailableStocks_AvailableStocksID" });
+            DropIndex("dbo.AvailableStocks", new[] { "StockPortfolio_StockPortfolioID" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropTable("dbo.StockPortfolioTransactions");
+            DropTable("dbo.TransactionStockPortfolios");
             DropTable("dbo.SavingTransactions");
             DropTable("dbo.IRATransactions");
-            DropTable("dbo.TransactionCheckings");
-            DropTable("dbo.StockPortfolios");
+            DropTable("dbo.CheckingTransactions");
             DropTable("dbo.Savings");
             DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.IRAs");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.IRAs");
-            DropTable("dbo.Transactions");
             DropTable("dbo.Checkings");
+            DropTable("dbo.Transactions");
+            DropTable("dbo.StockPortfolios");
+            DropTable("dbo.StockQuotes");
+            DropTable("dbo.AvailableStocks");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
         }
