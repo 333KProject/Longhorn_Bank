@@ -1,7 +1,6 @@
 ﻿using Longhorn_Bank.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
@@ -33,4 +32,5 @@ namespace Longhorn_Bank.Migrations
 
         }
     }
+
 }
