@@ -218,10 +218,6 @@
     <Compile Include="Migrations\201705021642058_stockquote.Designer.cs">
       <DependentUpon>201705021642058_stockquote.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705030605136_BoolUpdate.cs" />
-    <Compile Include="Migrations\201705030605136_BoolUpdate.Designer.cs">
-      <DependentUpon>201705030605136_BoolUpdate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -248,7 +244,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Checkings\Create.cshtml" />
-    <Content Include="Views\Checkings\Disable.cshtml" />
+    <Content Include="Views\Checkings\Delete.cshtml" />
     <Content Include="Views\Checkings\Details.cshtml" />
     <Content Include="Views\Checkings\Edit.cshtml" />
     <Content Include="Views\Checkings\Index.cshtml" />
@@ -285,8 +281,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Deposits\Index.cshtml" />
     <Content Include="Views\StockQuote\Index.cshtml" />
-    <Content Include="Views\Checkings\Enable.cshtml" />
-    <Content Include="Views\Shared\Error1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -310,9 +304,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705021642058_stockquote.resx">
       <DependentUpon>201705021642058_stockquote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705030605136_BoolUpdate.resx">
-      <DependentUpon>201705030605136_BoolUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

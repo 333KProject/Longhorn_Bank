@@ -113,34 +113,8 @@ namespace Longhorn_Bank.Controllers
             return View(@checking);
         }
 
-        // GET: Checkings/Delete/5
-        public ActionResult EnableDisable(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Checking @checking = db.CheckingsDbSet.Find(id);
-            if (@checking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@checking);
-        }
-
-        // POST: Checkings/Delete/5
-        [HttpPost, ActionName("Enable/Disable")]
-        [ValidateAntiForgeryToken]
-        public ActionResult EnableDisableConfirmed(int id)
-        {
-            Checking @checking = db.CheckingsDbSet.Find(id);
-            db.CheckingsDbSet.Remove(@checking);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         //user can't delete an account but can disable so use this to figure out code for that
-
+    
         //// GET: Checkings/Delete/5
         //public ActionResult Delete(int? id)
         //{
