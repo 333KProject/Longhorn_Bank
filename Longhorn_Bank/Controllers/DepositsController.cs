@@ -22,9 +22,9 @@ namespace Longhorn_Bank.Controllers
 
         //figure out how to populate with three different types of accounts
 
-        public ActionResult DepositResults (string DepositAmount, int SelectedDepositAccount)
+        public ActionResult DepositResults(string DepositAmount, int SelectedDepositAccount)
         {
-            // TO DO:
+            //TO DO:
             //    //Selected month is the selected value from the dropdown
             //they choose no deposit account
             //var query = from a in GetAllAccounts select a;
@@ -37,8 +37,9 @@ namespace Longhorn_Bank.Controllers
             //else
             //{
             //    ViewBag.SelectedDepositAccount = "Account selected was " + SelectedDepositAccount;
-            //    query = query.Where(a => a.)
-               
+            //    query = query.Where(a => a.);
+
+
             //}
 
 
@@ -78,14 +79,15 @@ namespace Longhorn_Bank.Controllers
                 }
 
                 //TO DO: deposits of over $5000 should be treated the same as when opening the account, meaning they must be approved by a manager before being added to the account balance
-
+                if (decDepositAmount >5000)
+                {
+                    //manager has to approve the transaction - route to manager approval 
+                }
 
 
             }
             return View();
         }
-
-        
 
         //method to populate drop down list of all accounts that the user has and can deposit to
 
@@ -96,19 +98,19 @@ namespace Longhorn_Bank.Controllers
         //    var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
         //    var queryIRAs = (from a in db.IRAsDbSet select a.IRAName);
 
-        //    SelectList allAccountsList = new SelectList(queryCheckings, "Id", "FirstName");
+        //    //SelectList allAccountsList = new SelectList(queryCheckings, "CheckingId", "FirstName");
 
-        //    allAccountsList.Add(queryCheckings);
-        //    allAccountsList.Add(querySavings);
-        //    allAccountsList.Add(queryIRAs);
+        //    //allAccountsList.Add(queryCheckings);
+        //    //allAccountsList.Add(querySavings);
+        //    //allAccountsList.Add(queryIRAs);
 
+        //    //var accounts = new[] {CheckingID }.SelectMany(id => GetAllAccounts(id)).ToList();
 
-
-        //    return allAccountsList;                                                                                                   
+        //    //return accounts;
 
         //}
 
-
+                                                                            
 
     }
-}
+}   

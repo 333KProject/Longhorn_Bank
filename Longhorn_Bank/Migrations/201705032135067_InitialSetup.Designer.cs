@@ -13,7 +13,7 @@ namespace Longhorn_Bank.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201705031804573_InitialSetup"; }
+            get { return "201705032135067_InitialSetup"; }
         }
         
         string IMigrationMetadata.Source

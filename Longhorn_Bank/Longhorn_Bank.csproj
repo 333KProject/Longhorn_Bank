@@ -204,9 +204,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705031804573_InitialSetup.cs" />
-    <Compile Include="Migrations\201705031804573_InitialSetup.Designer.cs">
-      <DependentUpon>201705031804573_InitialSetup.cs</DependentUpon>
+    <Compile Include="Migrations\201705032135067_InitialSetup.cs" />
+    <Compile Include="Migrations\201705032135067_InitialSetup.Designer.cs">
+      <DependentUpon>201705032135067_InitialSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
@@ -288,8 +288,8 @@
     <Folder Include="Views\Withdrawals\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705031804573_InitialSetup.resx">
-      <DependentUpon>201705031804573_InitialSetup.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705032135067_InitialSetup.resx">
+      <DependentUpon>201705032135067_InitialSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

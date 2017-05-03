@@ -11,12 +11,13 @@ using Microsoft.AspNet.Identity.Owin;
 //TODO: Change this reference to your project name
 using Longhorn_Bank.Models;
 using Longhorn_Bank;
+//Push
 
 namespace Myers_Kiara_HW7.Controllers
 {
     //RoleAdmin Controller
     //Authorization only Admin
-   
+    [Authorize(Roles = "Admin")]
     public class RoleAdminController : Controller
     {
         

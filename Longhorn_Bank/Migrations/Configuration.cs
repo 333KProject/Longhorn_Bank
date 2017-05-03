@@ -1,3 +1,5 @@
+
+
 namespace Longhorn_Bank.Migrations
 {
     using System;
@@ -6,12 +8,12 @@ namespace Longhorn_Bank.Migrations
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Longhorn_Bank.Models.AppDbContext>
-    {
+    {    
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
-
+        //Migrations
         protected override void Seed(Longhorn_Bank.Models.AppDbContext context)
         {
             //  This method will be called after migrating to the latest version.
