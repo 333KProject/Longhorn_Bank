@@ -12,11 +12,11 @@ namespace Longhorn_Bank.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: UserHomePage
-        public ActionResult Index()
-        {
-            var checkings = Checkings
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    var checkings = Checkings
+        //    return View();
+        //}
 
     }
 }
