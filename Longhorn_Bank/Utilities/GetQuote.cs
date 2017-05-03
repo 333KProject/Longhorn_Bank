@@ -48,7 +48,6 @@ namespace Longhorn_Bank.Utilities
                     stock.Symbol = symbol;
                     stock.Name = sa[3];
                     stock.PreviousClose = double.Parse(sa[0]);
-                    stock.LastTradePrice = double.Parse(sa[1]);
                     stock.Volume = double.Parse(sa[2]);
                 }
             }
