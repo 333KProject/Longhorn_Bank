@@ -1,4 +1,5 @@
 ﻿using Longhorn_Bank.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,13 @@ namespace Longhorn_Bank.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: UserHomePage
-        //public ActionResult Index()
-        //{
-        //    var checkings = Checkings
-        //    return View();
-        //}
+        public ActionResult Index(UserHomePage model)
+        {
+            string Id = User.Identity.GetUserId();
+            AppUser UserAccounts = db.Users.Find(Id);
+  
+            return View(model);
+        }
 
     }
 }
