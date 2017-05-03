@@ -59,7 +59,7 @@ namespace Longhorn_Bank.Migrations
             u1.ZipCode = "78733";
             u1.PhoneNumber = "5125571146";
             u1.DOB = DateTime.Parse("2/7/1991");
-            db.Users.AddOrUpdate(u => u.Email, u1);
+            //db.Users.AddOrUpdate(u => u.Email, u1);
             AppUser userToAdd1 = userManager.FindByName(stru1Email);
             if (userToAdd1 == null)
             {
@@ -75,7 +75,7 @@ namespace Longhorn_Bank.Migrations
 
             String stru2Email = "mb@aool.com"; AppUser u2 = new AppUser(); u2.Email = stru2Email; u2.UserName = stru2Email; u2.FirstName = "Michelle"; u2.LastName = "Banks"; u2.MiddleInitial = ""; u2.Address = "1300 Tall Pine Lane"; u2.City = "San Antonio"; u2.State = StateAbrv.TX; u2.ZipCode = "78261"; u2.PhoneNumber = "2102678873"; u2.DOB = DateTime.Parse("6/23/1990");
             String stru3Email = "fd@aool.com"; AppUser u3 = new AppUser(); u3.Email = stru3Email; u3.UserName = stru3Email; u3.FirstName = "Franco"; u3.LastName = "Broccolo"; u3.MiddleInitial = "V"; u3.Address = "62 Browning Rd"; u3.City = "Houston"; u3.State = StateAbrv.TX; u3.ZipCode = "77019"; u3.PhoneNumber = "8175659699"; u3.DOB = DateTime.Parse("5/6/1986");
-            db.Users.AddOrUpdate(u => u.Email, u3);
+           // db.Users.AddOrUpdate(u => u.Email, u3);
             AppUser userToAddu3 = userManager.FindByName(stru3Email);
             if (userToAddu3 == null)
             {
