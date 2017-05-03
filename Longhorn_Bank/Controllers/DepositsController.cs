@@ -8,7 +8,10 @@ using Longhorn_Bank.Models;
 namespace Longhorn_Bank.Controllers
 {
     public class DepositsController : Controller
+
     {
+        private AppDbContext db = new AppDbContext();
+
         // GET: Deposits
         public ActionResult Index()
         {
@@ -19,20 +22,25 @@ namespace Longhorn_Bank.Controllers
 
         //figure out how to populate with three different types of accounts
 
-        public ActionResult DepositResults (string DepositAmount)
+        public ActionResult DepositResults (string DepositAmount, int SelectedDepositAccount)
         {
             // TO DO:
             //    //Selected month is the selected value from the dropdown
-            //    if (SelectedDepositAccount == 0) //they choose no deposit account
-            //    {
-            //        ViewBag.SelectedDepositAccounts = "No account was selected";
-            //    }
-            //    else //depoosit account was selected
-            //    {
-            //        List<Month> AllMonths = MonthUtilities.GetMonths();
-            //        Month MonthToDisplay = AllDepositAccount.Find(m => m.ID == SelectedDepositAccount);
-            //        ViewBag.SelectedMonth = "The selected month is " + MonthToDisplay.MonthName;
-            //    }
+            //they choose no deposit account
+            //var query = from a in GetAllAccounts select a;
+
+            //if (SelectedDepositAccount == 0)
+            //{
+            //    ViewBag.SelectedDepositAccounts = "No account was selected";
+            //}
+            ////they pick a deposit 
+            //else
+            //{
+            //    ViewBag.SelectedDepositAccount = "Account selected was " + SelectedDepositAccount;
+            //    query = query.Where(a => a.)
+               
+            //}
+
 
             //code for textbox entry where user entires deposit amount
             if (DepositAmount != null && DepositAmount != "")
@@ -77,30 +85,28 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
-        ////TO DO: method to populate drop down list of all accounts that the user has and can deposit to
-        ////these can only be checkings, savings, and IRA
-        //public SelectList GetAllDepositAccounts()
+        //method to populate drop down list of all accounts that the user has and can deposit to
+       
+        //public SelectList GetAllAccounts()
         //{
-        //    var query = from a in db.CheckingsDbSet
-        //                orderby u.FirstName
-        //                select u;
-        //    List<AppUser> allUsers = query.ToList();
-        //    SelectList allUsersList = new SelectList(allUsers, "Id", "FirstName");
-        //    return allUsersList;
+
+        //    var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
+        //    var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
+        //    var queryIRAs = (from a in db.IRAsDbSet select a.IRAName);
+
+        //    SelectList allAccountsList = new SelectList(queryCheckings, "Id", "FirstName");
+
+        //    allAccountsList.Add(queryCheckings);
+        //    allAccountsList.Add(querySavings);
+        //    allAccountsList.Add(queryIRAs);
+           
+
+
+        //    return allAccountsList;                                                                                                   
+            
         //}
 
-        // TO DO:
-        //    //Selected month is the selected value from the dropdown
-        //    if (SelectedDepositAccount == 0) //they choose no deposit account
-        //    {
-        //        ViewBag.SelectedDepositAccounts = "No account was selected";
-        //    }
-        //    else //depoosit account was selected
-        //    {
-        //        List<Month> AllMonths = MonthUtilities.GetMonths();
-        //        Month MonthToDisplay = AllDepositAccount.Find(m => m.ID == SelectedDepositAccount);
-        //        ViewBag.SelectedMonth = "The selected month is " + MonthToDisplay.MonthName;
-        //    }
+        
 
     }
 }
