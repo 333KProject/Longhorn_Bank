@@ -236,7 +236,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Checkings\Create.cshtml" />
-    <Content Include="Views\Checkings\Delete.cshtml" />
+    <Content Include="Views\Checkings\EnableDisable.cshtml" />
     <Content Include="Views\Checkings\Details.cshtml" />
     <Content Include="Views\Checkings\Edit.cshtml" />
     <Content Include="Views\Checkings\Index.cshtml" />
