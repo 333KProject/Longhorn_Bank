@@ -79,17 +79,28 @@ namespace Longhorn_Bank.Controllers
 
         //TO DO: method to populate drop down list of all accounts that the user has and can deposit to
         //these can only be checkings, savings, and IRA
-        //public SelectList GetAllDepositAccounts()
-        //{
-        //    var query = from a in db.CheckingsDbSet
-        //                orderby u.FirstName
-        //                select u;
-        //    List<AppUser> allUsers = query.ToList();
-        //    SelectList allUsersList = new SelectList(allUsers, "Id", "FirstName");
-        //    return allUsersList;
-        //}
+        public SelectList GetAllDepositAccounts()
+        {
+            var query = from a in db.CheckingsDbSet
+                        orderby u.FirstName
+                        select u;
+            List<AppUser> allUsers = query.ToList();
+            SelectList allUsersList = new SelectList(allUsers, "Id", "FirstName");
+            return allUsersList;
+        }
 
-        
+        // TO DO:
+        //    //Selected month is the selected value from the dropdown
+        //    if (SelectedDepositAccount == 0) //they choose no deposit account
+        //    {
+        //        ViewBag.SelectedDepositAccounts = "No account was selected";
+        //    }
+        //    else //depoosit account was selected
+        //    {
+        //        List<Month> AllMonths = MonthUtilities.GetMonths();
+        //        Month MonthToDisplay = AllDepositAccount.Find(m => m.ID == SelectedDepositAccount);
+        //        ViewBag.SelectedMonth = "The selected month is " + MonthToDisplay.MonthName;
+        //    }
 
     }
 }
