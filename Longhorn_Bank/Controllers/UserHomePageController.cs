@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Longhorn_Bank.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,11 @@ namespace Longhorn_Bank.Controllers
     public class UserHomePageController : Controller
     {
         // GET: UserHomePage
-        public ActionResult Index()
+        public ActionResult Index(UserHomePage model)
         {
+            
             return View();
         }
+
     }
 }
