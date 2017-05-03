@@ -29,12 +29,12 @@ namespace Longhorn_Bank.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Checking @checking = db.CheckingsDbSet.Find(id);
-            if (@checking == null)
+            Checking checking = db.CheckingsDbSet.Find(id);
+            if (checking == null)
             {
                 return HttpNotFound();
             }
-            return View(@checking);
+            return View(checking);
         }
 
         // GET: Checkings/Create

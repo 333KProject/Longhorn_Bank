@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Longhorn_Bank.Models.Checking>
+﻿@using Longhorn_Bank.Models
+@model UserHomePage
 
 @{
     ViewBag.Title = "Index";
@@ -31,11 +32,12 @@
                         Account Balance
                     </th>
                 </tr>
-                @foreach (var item in Model)
+
+                @foreach (var item in Model.Checking)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CheckingsName)
+                            @Html.DisplayFor(modelItem => item.Checking.CheckingsName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
@@ -56,7 +58,7 @@
                 @Html.ActionLink("Transaction", "Index", "Transactions", null, new { @class = "btn btn-info" })
             </p>
             }
-            </p>
+            
         </div>
         <div id="savings" class="tab-pane fade">
             <h3>My Savings</h3>

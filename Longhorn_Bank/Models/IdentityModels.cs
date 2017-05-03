@@ -67,11 +67,7 @@ namespace Longhorn_Bank.Models
             modelBuilder.Entity<AppUser>()
                     .HasOptional(f => f.StockPortfolio)
                     .WithRequired(s => s.User);
-            modelBuilder.Entity<StockQuote>()
-                    .HasOptional(f => f.AvailableStock)
-                    .WithRequired(s => s.Price);
-            
-
+           
         }
 
         //TODO: Make sure that your connection string name is correct here.

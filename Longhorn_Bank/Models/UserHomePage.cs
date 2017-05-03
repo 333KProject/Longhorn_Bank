@@ -7,9 +7,9 @@ namespace Longhorn_Bank.Models
 {
     public class UserHomePage
     {
-        public virtual List<Checking> Checkings { get; set; }
-        public virtual List<Saving> Savings { get; set; }
-        public virtual IRA IRA { get; set; }
-        public virtual StockPortfolio StockPortfolio { get; set; }
+        public List<Checking> Checkings;
+        public List<Saving> Savings;
+        public IRA IRA;
+        public StockPortfolio Stockportfolio;
     }
 }

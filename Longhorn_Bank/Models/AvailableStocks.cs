@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Longhorn_Bank.Models
 {
     public  enum StockType { ETF, Ordinary, Futures, IndexFund, MutualFund}
     public class AvailableStocks
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Int32 AvailableStocksID { get; set; }
         public string TickerSymbol { get; set; }
         public StockType StockType {get;set;}
@@ -16,6 +19,6 @@ namespace Longhorn_Bank.Models
         public Int32 StockFee { get; set; }
 
         public virtual StockPortfolio StockPortfolio { get; set; }
-        public virtual StockQuote Price { get; set; }
+        public virtual List<StockQuote> Prices { get; set; }
     }
 }
