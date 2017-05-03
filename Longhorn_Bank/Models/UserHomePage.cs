@@ -11,6 +11,6 @@ namespace Longhorn_Bank.Models
         public List<Checking> Checkings { get; set; }
         public List<Saving> Savings { get; set; }
         public IRA IRA { get; set; }
-        public StockPortfolio Stockportfolio { get; set; }
+        public StockPortfolio StockPortfolio { get; set; }
     }
 }
