@@ -75,6 +75,18 @@ namespace Longhorn_Bank.Migrations
 
             String stru2Email = "mb@aool.com"; AppUser u2 = new AppUser(); u2.Email = stru2Email; u2.UserName = stru2Email; u2.FirstName = "Michelle"; u2.LastName = "Banks"; u2.MiddleInitial = ""; u2.Address = "1300 Tall Pine Lane"; u2.City = "San Antonio"; u2.State = StateAbrv.TX; u2.ZipCode = "78261"; u2.PhoneNumber = "2102678873"; u2.DOB = DateTime.Parse("6/23/1990");
             String stru3Email = "fd@aool.com"; AppUser u3 = new AppUser(); u3.Email = stru3Email; u3.UserName = stru3Email; u3.FirstName = "Franco"; u3.LastName = "Broccolo"; u3.MiddleInitial = "V"; u3.Address = "62 Browning Rd"; u3.City = "Houston"; u3.State = StateAbrv.TX; u3.ZipCode = "77019"; u3.PhoneNumber = "8175659699"; u3.DOB = DateTime.Parse("5/6/1986");
+            db.Users.AddOrUpdate(u => u.Email, u3);
+            AppUser userToAddu3 = userManager.FindByName(stru3Email);
+            if (userToAddu3 == null)
+            {
+                userManager.Create(u3, "666666");
+                userToAddu3 = userManager.FindByName(stru3Email);
+                
+                if (userManager.IsInRole(userToAddu3.Id, roleName) == false)
+                {
+                    userManager.AddToRole(userToAddu3.Id, roleName);
+                }
+            }
             String stru4Email = "wendy@ggmail.com"; AppUser u4 = new AppUser(); u4.Email = stru4Email; u4.UserName = stru4Email; u4.FirstName = "Wendy"; u4.LastName = "Chang"; u4.MiddleInitial = "L"; u4.Address = "202 Bellmont Hall"; u4.City = "Austin"; u4.State = StateAbrv.TX; u4.ZipCode = "78713"; u4.PhoneNumber = "5125943222"; u4.DOB = DateTime.Parse("12/21/1964");
             String stru5Email = "limchou@yaho.com"; AppUser u5 = new AppUser(); u5.Email = stru5Email; u5.UserName = stru5Email; u5.FirstName = "Lim"; u5.LastName = "Chou"; u5.MiddleInitial = ""; u5.Address = "1600 Teresa Lane"; u5.City = "San Antonio"; u5.State = StateAbrv.TX; u5.ZipCode = "78266"; u5.PhoneNumber = "2107724599"; u5.DOB = DateTime.Parse("6/14/1950");
             String stru6Email = "Dixon@aool.com"; AppUser u6 = new AppUser(); u6.Email = stru6Email; u6.UserName = stru6Email; u6.FirstName = "Shan"; u6.LastName = "Dixon"; u6.MiddleInitial = "D"; u6.Address = "234 Holston Circle"; u6.City = "Dallas"; u6.State = StateAbrv.TX; u6.ZipCode = "75208"; u6.PhoneNumber = "2142643255"; u6.DOB = DateTime.Parse("5/9/1930");
@@ -124,7 +136,6 @@ namespace Longhorn_Bank.Migrations
 
 
             AppUser userToAddu2 = userManager.FindByName(stru2Email); if (userToAddu2 == null) { userManager.Create(u2, "banquet"); userToAddu2 = userManager.FindByName(stru2Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu2.Id, roleName) == false) { userManager.AddToRole(userToAddu2.Id, roleName); } }
-            AppUser userToAddu3 = userManager.FindByName(stru3Email); if (userToAddu3 == null) { userManager.Create(u3, "666666"); userToAddu3 = userManager.FindByName(stru3Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu3.Id, roleName) == false) { userManager.AddToRole(userToAddu3.Id, roleName); } }
             AppUser userToAddu4 = userManager.FindByName(stru4Email); if (userToAddu4 == null) { userManager.Create(u4, "clover"); userToAddu4 = userManager.FindByName(stru4Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu4.Id, roleName) == false) { userManager.AddToRole(userToAddu4.Id, roleName); } }
             AppUser userToAddu5 = userManager.FindByName(stru5Email); if (userToAddu5 == null) { userManager.Create(u5, "austin"); userToAddu5 = userManager.FindByName(stru5Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu5.Id, roleName) == false) { userManager.AddToRole(userToAddu5.Id, roleName); } }
             AppUser userToAddu6 = userManager.FindByName(stru6Email); if (userToAddu6 == null) { userManager.Create(u6, "mailbox"); userToAddu6 = userManager.FindByName(stru6Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu6.Id, roleName) == false) { userManager.AddToRole(userToAddu6.Id, roleName); } }
