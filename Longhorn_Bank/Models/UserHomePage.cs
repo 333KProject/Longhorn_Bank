@@ -7,9 +7,9 @@ namespace Longhorn_Bank.Models
 {
     public class UserHomePage
     {
-        public IEnumerable<Checking> Checkings;
-        public Saving saving;
-        public IRA ira;
-        public StockPortfolio stockportfolio;
+        public List<Checking> Checkings;
+        public List<Saving> Savings;
+        public IRA IRA;
+        public StockPortfolio Stockportfolio;
     }
 }
