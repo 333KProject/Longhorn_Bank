@@ -9,11 +9,12 @@ namespace Longhorn_Bank.Controllers
 {
     public class UserHomePageController : Controller
     {
+        private AppDbContext db = new AppDbContext();
+
         // GET: UserHomePage
-        public ActionResult Index(UserHomePage model)
+        public ActionResult Index()
         {
-            
-            return View();
+            return View(db.CheckingsDbSet.ToList());
         }
 
     }

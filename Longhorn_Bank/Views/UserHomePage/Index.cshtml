@@ -32,17 +32,18 @@
                         Account Balance
                     </th>
                 </tr>
-                @foreach (var item in Model)
+
+                @foreach (var item in Model.Checkings)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Checking.CheckingsName)
+                            @Html.DisplayFor(modelItem => item.CheckingsName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Checking.CheckingsAccountNumber)
+                            @Html.DisplayFor(modelItem => item.CheckingsAccountNumber)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Checking.CheckingsBalance)
+                            @Html.DisplayFor(modelItem => item.CheckingsBalance)
                         </td>
                     </tr>
                 }
