@@ -271,7 +271,6 @@
     <Content Include="Views\IRAs\Details.cshtml" />
     <Content Include="Views\IRAs\Edit.cshtml" />
     <Content Include="Views\IRAs\Index.cshtml" />
-    <Content Include="Views\UserHomePage\Index.cshtml" />
     <Content Include="Views\StockPortfolios\Create.cshtml" />
     <Content Include="Views\StockPortfolios\Delete.cshtml" />
     <Content Include="Views\StockPortfolios\Details.cshtml" />
@@ -281,6 +280,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Deposits\Index.cshtml" />
     <Content Include="Views\StockQuote\Index.cshtml" />
+    <Content Include="Views\UserHomePage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
