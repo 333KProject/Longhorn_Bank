@@ -113,8 +113,57 @@ namespace Longhorn_Bank.Controllers
             return View(@checking);
         }
 
+        //// GET: Checkings/Edit/5
+        ////changed Id to id
+        //public ActionResult EnableDisable(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Checking @checking = db.CheckingsDbSet.Find(id);
+        //    if (@checking == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.AllUsers = GetAllUsers(@checking);
+        //    return View(@checking);
+        //}
+
+        //// POST: Checkings/EnableDisable/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult EndableDisable([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance,CheckingAccountActive")] Checking @checking, string Id, string[] SelectedUsers)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //find associated user
+        //        Checking checkingToChange = db.CheckingsDbSet.Find(@checking.CheckingID);
+
+        //        //edit error is there becauase there's no users in the database: check this after seeding to see if edit works
+        //        if (checkingToChange.User.Id != Id)
+        //        {
+        //            //find user
+        //            AppUser SelectedUser = db.Users.Find(Id);
+
+        //            //update user
+        //            checkingToChange.User = SelectedUser;
+        //        }
+
+        //        checkingToChange.CheckingsName = @checking.CheckingsName;
+
+        //        db.Entry(checkingToChange).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.AllUsers = GetAllUsers(@checking);
+        //    return View(@checking);
+        //}
+
         //user can't delete an account but can disable so use this to figure out code for that
-    
+
         //// GET: Checkings/Delete/5
         //public ActionResult Delete(int? id)
         //{

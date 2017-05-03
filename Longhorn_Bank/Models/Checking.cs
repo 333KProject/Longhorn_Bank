@@ -24,6 +24,9 @@ namespace Longhorn_Bank.Models
 
         public Decimal CheckingsBalance { get; set; }
 
+        //[DefaultValue(true)]
+        //public bool CheckingAccountActive { get; set; }
+
 
         //navigation properties 
         public virtual AppUser User { get; set; }

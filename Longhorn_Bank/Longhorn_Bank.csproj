@@ -194,6 +194,7 @@
     <Compile Include="Controllers\DepositsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRAsController.cs" />
+    <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\StockQuoteController.cs" />
     <Compile Include="Controllers\SavingsController.cs" />
     <Compile Include="Controllers\StockPortfoliosController.cs" />
@@ -203,45 +204,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704302238178_InitialCreate.cs" />
-    <Compile Include="Migrations\201704302238178_InitialCreate.Designer.cs">
-      <DependentUpon>201704302238178_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704302355185_InitialSetup.cs" />
-    <Compile Include="Migrations\201704302355185_InitialSetup.Designer.cs">
-      <DependentUpon>201704302355185_InitialSetup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705011806485_AfterEF.cs" />
-    <Compile Include="Migrations\201705011806485_AfterEF.Designer.cs">
-      <DependentUpon>201705011806485_AfterEF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705021642058_stockquote.cs" />
-    <Compile Include="Migrations\201705021642058_stockquote.Designer.cs">
-      <DependentUpon>201705021642058_stockquote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705030143051_available-stock.cs" />
-    <Compile Include="Migrations\201705030143051_available-stock.Designer.cs">
-      <DependentUpon>201705030143051_available-stock.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705030342051_morestock.cs" />
-    <Compile Include="Migrations\201705030342051_morestock.Designer.cs">
-      <DependentUpon>201705030342051_morestock.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705030421598_newstock.cs" />
-    <Compile Include="Migrations\201705030421598_newstock.Designer.cs">
-      <DependentUpon>201705030421598_newstock.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705030435299_stockpls.cs" />
-    <Compile Include="Migrations\201705030435299_stockpls.Designer.cs">
-      <DependentUpon>201705030435299_stockpls.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705030646232_employees.cs" />
-    <Compile Include="Migrations\201705030646232_employees.Designer.cs">
-      <DependentUpon>201705030646232_employees.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705030826183_employeeidentity.cs" />
-    <Compile Include="Migrations\201705030826183_employeeidentity.Designer.cs">
-      <DependentUpon>201705030826183_employeeidentity.cs</DependentUpon>
+    <Compile Include="Migrations\201705031804573_InitialSetup.cs" />
+    <Compile Include="Migrations\201705031804573_InitialSetup.Designer.cs">
+      <DependentUpon>201705031804573_InitialSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
@@ -271,7 +236,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Checkings\Create.cshtml" />
-    <Content Include="Views\Checkings\Delete.cshtml" />
+    <Content Include="Views\Checkings\EnableDisable.cshtml" />
     <Content Include="Views\Checkings\Details.cshtml" />
     <Content Include="Views\Checkings\Edit.cshtml" />
     <Content Include="Views\Checkings\Index.cshtml" />
@@ -308,6 +273,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Deposits\Index.cshtml" />
     <Content Include="Views\StockQuote\Index.cshtml" />
+    <Content Include="Views\RoleAdmin\Create.cshtml" />
+    <Content Include="Views\RoleAdmin\Edit.cshtml" />
+    <Content Include="Views\RoleAdmin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -320,35 +288,8 @@
     <Folder Include="Views\Withdrawals\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704302238178_InitialCreate.resx">
-      <DependentUpon>201704302238178_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704302355185_InitialSetup.resx">
-      <DependentUpon>201704302355185_InitialSetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705011806485_AfterEF.resx">
-      <DependentUpon>201705011806485_AfterEF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705021642058_stockquote.resx">
-      <DependentUpon>201705021642058_stockquote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705030143051_available-stock.resx">
-      <DependentUpon>201705030143051_available-stock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705030342051_morestock.resx">
-      <DependentUpon>201705030342051_morestock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705030421598_newstock.resx">
-      <DependentUpon>201705030421598_newstock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705030435299_stockpls.resx">
-      <DependentUpon>201705030435299_stockpls.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705030646232_employees.resx">
-      <DependentUpon>201705030646232_employees.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705030826183_employeeidentity.resx">
-      <DependentUpon>201705030826183_employeeidentity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705031804573_InitialSetup.resx">
+      <DependentUpon>201705031804573_InitialSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
