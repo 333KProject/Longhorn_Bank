@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201705040256264_SavingsIRAandSP.Designer.cs">
       <DependentUpon>201705040256264_SavingsIRAandSP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705040507253_Idk.cs" />
+    <Compile Include="Migrations\201705040507253_Idk.Designer.cs">
+      <DependentUpon>201705040507253_Idk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705040256264_SavingsIRAandSP.resx">
       <DependentUpon>201705040256264_SavingsIRAandSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705040507253_Idk.resx">
+      <DependentUpon>201705040507253_Idk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
