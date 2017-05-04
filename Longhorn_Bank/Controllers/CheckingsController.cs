@@ -54,13 +54,16 @@ namespace Longhorn_Bank.Controllers
         //TO DO: create customer ID to add into if loop
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, AppUser UserAccount, string Id)
+        public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, AppUser UserAccount, string Id, AppDbContext db)
         {
+   
             string Id2 = User.Identity.GetUserId();
             AppUser UserAccounts = db.Users.Find(Id2);
             AppUser SelectedUser = db.Users.Find(Id2);
             UserAccounts.Checkings = UserAccounts.Checkings;
-
+            Int32 AccNum = Utilities.BankAccountNumber.AccountNumberList(db);
+            @checking.CheckingsAccountNumber = AccNum;
+            
             @checking.User = SelectedUser;
             if (ModelState.IsValid)
             {
