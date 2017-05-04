@@ -136,7 +136,17 @@ namespace Longhorn_Bank.Migrations
 
 
             AppUser userToAddu2 = userManager.FindByName(stru2Email); if (userToAddu2 == null) { userManager.Create(u2, "banquet"); userToAddu2 = userManager.FindByName(stru2Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu2.Id, roleName) == false) { userManager.AddToRole(userToAddu2.Id, roleName); } }
-            AppUser userToAddu4 = userManager.FindByName(stru4Email); if (userToAddu4 == null) { userManager.Create(u4, "clover"); userToAddu4 = userManager.FindByName(stru4Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu4.Id, roleName) == false) { userManager.AddToRole(userToAddu4.Id, roleName); } }
+            AppUser userToAddu4 = userManager.FindByName(stru4Email);
+            if (userToAddu4 == null)
+            {
+                userManager.Create(u4, "clover");
+                userToAddu4 = userManager.FindByName(stru4Email);
+                if (userManager.IsInRole(userToAddu4.Id, roleName) == false)
+                {
+                    userManager.AddToRole(userToAddu4.Id, roleName);
+                }
+                db.SaveChanges();
+            }
             AppUser userToAddu5 = userManager.FindByName(stru5Email); if (userToAddu5 == null) { userManager.Create(u5, "austin"); userToAddu5 = userManager.FindByName(stru5Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu5.Id, roleName) == false) { userManager.AddToRole(userToAddu5.Id, roleName); } }
             AppUser userToAddu6 = userManager.FindByName(stru6Email); if (userToAddu6 == null) { userManager.Create(u6, "mailbox"); userToAddu6 = userManager.FindByName(stru6Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu6.Id, roleName) == false) { userManager.AddToRole(userToAddu6.Id, roleName); } }
             AppUser userToAddu7 = userManager.FindByName(stru7Email); if (userToAddu7 == null) { userManager.Create(u7, "aggies"); userToAddu7 = userManager.FindByName(stru7Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu7.Id, roleName) == false) { userManager.AddToRole(userToAddu7.Id, roleName); } }
@@ -165,7 +175,7 @@ namespace Longhorn_Bank.Migrations
             AppUser userToAddu30 = userManager.FindByName(stru30Email); if (userToAddu30 == null) { userManager.Create(u30, "iloveme"); userToAddu30 = userManager.FindByName(stru30Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu30.Id, roleName) == false) { userManager.AddToRole(userToAddu30.Id, roleName); } }
             AppUser userToAddu31 = userManager.FindByName(stru31Email); if (userToAddu31 == null) { userManager.Create(u31, "greedy"); userToAddu31 = userManager.FindByName(stru31Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu31.Id, roleName) == false) { userManager.AddToRole(userToAddu31.Id, roleName); } }
             AppUser userToAddu32 = userManager.FindByName(stru32Email); if (userToAddu32 == null) { userManager.Create(u32, "familiar"); userToAddu32 = userManager.FindByName(stru32Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu32.Id, roleName) == false) { userManager.AddToRole(userToAddu32.Id, roleName); } }
-            AppUser userToAddu33 = db.Users.Single(u => u.Email == stru33Email); if (userToAddu33 == null) { userManager.Create(u33, "historical"); userToAddu33 = db.Users.Single(u => u.Email == stru33Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu33.Id, roleName) == false) { userManager.AddToRole(userToAddu33.Id, roleName); } }
+            AppUser userToAddu33 = userManager.FindByName(stru33Email); if (userToAddu33 == null) { userManager.Create(u33, "historical"); userToAddu33 = userManager.FindByName(stru33Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu33.Id, roleName) == false) { userManager.AddToRole(userToAddu33.Id, roleName); } }
             AppUser userToAddu34 = userManager.FindByName(stru34Email); if (userToAddu34 == null) { userManager.Create(u34, "guiltless"); userToAddu34 = userManager.FindByName(stru34Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu34.Id, roleName) == false) { userManager.AddToRole(userToAddu34.Id, roleName); } }
             AppUser userToAddu35 = userManager.FindByName(stru35Email); if (userToAddu35 == null) { userManager.Create(u35, "frequent"); userToAddu35 = userManager.FindByName(stru35Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu35.Id, roleName) == false) { userManager.AddToRole(userToAddu35.Id, roleName); } }
             AppUser userToAddu36 = userManager.FindByName(stru36Email); if (userToAddu36 == null) { userManager.Create(u36, "history"); userToAddu36 = userManager.FindByName(stru36Email); db.SaveChanges(); if (userManager.IsInRole(userToAddu36.Id, roleName) == false) { userManager.AddToRole(userToAddu36.Id, roleName); } }

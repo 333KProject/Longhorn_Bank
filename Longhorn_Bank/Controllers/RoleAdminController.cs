@@ -17,7 +17,7 @@ namespace Myers_Kiara_HW7.Controllers
 {
     //RoleAdmin Controller
     //Authorization only Admin
-    [Authorize(Roles = "Admin")]
+    
     public class RoleAdminController : Controller
     {
         

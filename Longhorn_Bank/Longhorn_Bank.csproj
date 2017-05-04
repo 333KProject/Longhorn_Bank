@@ -209,6 +209,14 @@
     <Compile Include="Migrations\201705032135067_InitialSetup.Designer.cs">
       <DependentUpon>201705032135067_InitialSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705032258204_updated.cs" />
+    <Compile Include="Migrations\201705032258204_updated.Designer.cs">
+      <DependentUpon>201705032258204_updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705032328570_CheckingFix.cs" />
+    <Compile Include="Migrations\201705032328570_CheckingFix.Designer.cs">
+      <DependentUpon>201705032328570_CheckingFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -297,6 +305,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705032135067_InitialSetup.resx">
       <DependentUpon>201705032135067_InitialSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705032258204_updated.resx">
+      <DependentUpon>201705032258204_updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705032328570_CheckingFix.resx">
+      <DependentUpon>201705032328570_CheckingFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
