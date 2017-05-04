@@ -16,7 +16,7 @@ namespace Longhorn_Bank.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: Checkings
-        public ActionResult Index(int AccountNumber)
+        public ActionResult Index()
         {
             //AccountNumbers
             //Int32 AccNum = Utilities.BankAccountNumber.HideAccountNumber(AccountNumber);
