@@ -90,28 +90,29 @@ namespace Longhorn_Bank.Controllers
 
         //method to populate drop down list of all accounts that the user has and can deposit to
 
-        //public SelectList GetAllAccounts()
-        //{
+        public SelectList GetAllAccounts()
+        {
+            //AppUser UserAccounts = db.Users.Find(Id);
 
-        //    //var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName).ToList();
-        //    //var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
-        //    //var queryIRAs = (from a in db.IRAsDbSet select a.IRAName);
-        //    //var queryStock = (from a in db.StockPortfoliosDbSet select a.Name);
-
-
-        //    //SelectList allAccountsList = new SelectList(queryCheckings, "CheckingId", "CheckingsName");
-
-        //    //allAccountsList.Add(queryCheckings);
-        //    //allAccountsList.Add(querySavings);
-        //    //allAccountsList.Add(queryIRAs);
+            var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName).ToList();
+            var querySavings = (from a in db.SavingsDbSet select a.SavingsName).ToList();
+            var queryIRAs = (from a in db.IRAsDbSet select a.IRAName).ToList();
+            var queryStock = (from a in db.StockPortfoliosDbSet select a.Name).ToList();
 
 
-        //    //return allAccountsList;
+            SelectList allAccountsList = new SelectList(queryCheckings, "CheckingId", "CheckingsName");
 
-        //}
+            //allAccountsList.Add(queryCheckings);
+            //allAccountsList.Add(querySavings);
+            //allAccountsList.Add(queryIRAs);
+
+
+            return allAccountsList;
+
+        }
     }
 
-    //public Int32 GetAccount Balance
+        //public Int32 GetAccount Balance
 
-}
+    }
         
