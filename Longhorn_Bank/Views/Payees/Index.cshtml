@@ -6,11 +6,11 @@
 
 <h2>Pay Bills</h2>
 
-<p>
-    @Html.ActionLink("Add Payee", "Create")
+<p>   
+    @Html.ActionLink("Add Payee", "Create", "Payees", null, new { @class = "btn btn-info" })
 
 
-    @Html.ActionLink("Make a Payment", "MakeAPayment")
+    @Html.ActionLink("Make a Payment", "MakeAPayment", "Payees", null, new { @class = "btn btn-info" })
 
 
 </p>
