@@ -9,6 +9,8 @@
 <br />
 <h2>My Banking Summary</h2>
 
+@Html.ActionLink("Edit My Account", "Edit", "Account", new { area = "" }, new { @class = "navbar-brand" })<br/>
+
 <p>My Accounts</p>
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#checkings">My Checkings</a></li>
@@ -16,10 +18,6 @@
     <li><a data-toggle="tab" href="#ira">My IRA</a></li>
     <li><a data-toggle="tab" href="#stockportfolio">My Stock Portfolio</a></li>
 </ul>
-
-@Html.ActionLink("Edit My Account", "Edit", "Account", new { area = "" }, new { @class = "navbar-brand" })
-
-
 
 
 <div class="tab-content">
