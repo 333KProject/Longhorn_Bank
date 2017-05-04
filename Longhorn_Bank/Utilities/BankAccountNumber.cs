@@ -37,14 +37,19 @@ namespace Longhorn_Bank.Utilities
             return NewAccountNumber;
         }
 
-        //public static string LastFourDigitsAccount
-        //{
-        //    get
-        //    {
-        //        string LastFourDigitAccount = CheckingsAccountNumber.Substring(5, 4);
-        //        return "XXX-XX-" + LastFourDigitSSN;
-        //    }
-        //}
+        public string HideAccountNumber(string AccountNumber)
+        {
 
-    }
+
+            string hiddenString = AccountNumber.Substring(AccountNumber.Length - 4,4);
+            string HiddenString = hiddenString.PadLeft(AccountNumber.Length, 'X');
+            string MaskedNumber = HiddenString + hiddenString;
+
+
+            return MaskedNumber;
+
+
+
+        }
+    }         
 }

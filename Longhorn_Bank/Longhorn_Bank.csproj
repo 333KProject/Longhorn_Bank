@@ -230,9 +230,17 @@
     <Compile Include="Migrations\201705040518531_lastemployeeseed.Designer.cs">
       <DependentUpon>201705040518531_lastemployeeseed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705041739495_InitialSetup2.cs" />
-    <Compile Include="Migrations\201705041739495_InitialSetup2.Designer.cs">
-      <DependentUpon>201705041739495_InitialSetup2.cs</DependentUpon>
+    <Compile Include="Migrations\201705041732316_seedemp.cs" />
+    <Compile Include="Migrations\201705041732316_seedemp.Designer.cs">
+      <DependentUpon>201705041732316_seedemp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041746426_finishseed.cs" />
+    <Compile Include="Migrations\201705041746426_finishseed.Designer.cs">
+      <DependentUpon>201705041746426_finishseed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041757022_change.cs" />
+    <Compile Include="Migrations\201705041757022_change.Designer.cs">
+      <DependentUpon>201705041757022_change.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
@@ -309,6 +317,8 @@
     <Content Include="Views\Payees\Details.cshtml" />
     <Content Include="Views\Payees\Edit.cshtml" />
     <Content Include="Views\Payees\Index.cshtml" />
+    <Content Include="Views\Payees\MakeAPayment.cshtml" />
+    <Content Include="Views\Payees\ExistingPayee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -339,8 +349,14 @@
     <EmbeddedResource Include="Migrations\201705040518531_lastemployeeseed.resx">
       <DependentUpon>201705040518531_lastemployeeseed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705041739495_InitialSetup2.resx">
-      <DependentUpon>201705041739495_InitialSetup2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705041732316_seedemp.resx">
+      <DependentUpon>201705041732316_seedemp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041746426_finishseed.resx">
+      <DependentUpon>201705041746426_finishseed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041757022_change.resx">
+      <DependentUpon>201705041757022_change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

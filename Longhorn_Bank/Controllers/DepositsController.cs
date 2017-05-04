@@ -25,7 +25,7 @@ namespace Longhorn_Bank.Controllers
         public ActionResult DepositResults(string DepositAmount, int SelectedDepositAccount)
         {
             //TO DO:
-            //    //Selected month is the selected value from the dropdown
+            //    
             //they choose no deposit account
             //var query = from a in GetAllAccounts select a;
 
@@ -94,23 +94,24 @@ namespace Longhorn_Bank.Controllers
         //public SelectList GetAllAccounts()
         //{
 
-        //    var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
-        //    var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
-        //    var queryIRAs = (from a in db.IRAsDbSet select a.IRAName);
+        //    //var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName).ToList();
+        //    //var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
+        //    //var queryIRAs = (from a in db.IRAsDbSet select a.IRAName);
+        //    //var queryStock = (from a in db.StockPortfoliosDbSet select a.Name);
 
-        //    //SelectList allAccountsList = new SelectList(queryCheckings, "CheckingId", "FirstName");
+
+        //    //SelectList allAccountsList = new SelectList(queryCheckings, "CheckingId", "CheckingsName");
 
         //    //allAccountsList.Add(queryCheckings);
         //    //allAccountsList.Add(querySavings);
         //    //allAccountsList.Add(queryIRAs);
+            
 
-        //    //var accounts = new[] {CheckingID }.SelectMany(id => GetAllAccounts(id)).ToList();
-
-        //    //return accounts;
+        //    //return allAccountsList;
 
         //}
 
-                                                                            
+
 
     }
 }   

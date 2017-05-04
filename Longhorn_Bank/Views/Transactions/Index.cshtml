@@ -12,8 +12,21 @@
         @Html.ActionLink("Withdrawal", "Index", "Withdrawals", null, new { @class = "btn btn-info" })
         @Html.ActionLink("Stock Transactions", "Index", "StockTransactions", null, new { @class = "btn btn-info" })
         @Html.ActionLink("Transfer", "Index", "Transfers", null, new { @class = "btn btn-info" })
+
+        @Html.ActionLink("Pay Bills", "Index", "Payees", null, new { @class = "btn btn-info" })
     </p>
 }
+@using (Html.BeginForm())
+{
+    <p class="form-group">
+        Search: @Html.TextBox("SearchString", null, new { @class = "form-control" }) <br />
+        <input type="submit" value="Search" class="btn btn-default" />
+        @Html.ActionLink("Advanced Search", "DetailedSearch", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Show All", "Index", null, new { @class = "btn btn-default" })
+    </p>
+}
+
+Displaying @ViewBag.Returned out of @ViewBag.All Transactions
 <table class="table">
     <tr>
         <th>
