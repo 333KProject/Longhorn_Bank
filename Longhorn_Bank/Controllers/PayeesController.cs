@@ -156,8 +156,8 @@ namespace Longhorn_Bank.Controllers
         }
 
         //Select list for user checkings and savings to choose from to make a payment
-        public SelectList GetAllUserAccounts(/*AppUser Id*/)
-        {
+        //public SelectList GetAllUserAccounts(AppUser Id)
+        //{
 
             //List<Checking> userCheckings = new List<Checking>() { new Checking(), new Checking() };
             //List<Saving> userSavings = new List<Saving>() { new Saving(), new Saving { SavingsName = string.Empty } };
@@ -169,29 +169,32 @@ namespace Longhorn_Bank.Controllers
 
 
             ////figure out how to get checkings and savings for that one user 
+            
+
             //AppUser UserAccounts = db.Users.Find(Id);
 
-            //var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingID);
-            //var querySavings = (from a in db.SavingsDbSet select a.SavingID);
+            //var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
+            //var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
 
             //UserAccounts.Checkings = UserAccounts.Checkings;
             //UserAccounts.Savings = UserAccounts.Savings;
 
+            //int ID = int.Parse(Request.QueryString["Id"].ToString());
             //List<Int32> CheckingsANDSavings = new List<Int32>();
 
-            //CheckingsANDSavings.AddRange(UserAccounts.Checkings);
+            //CheckingsANDSavings.AddRange(queryCheckings);
             //CheckingsANDSavings.AddRange(querySavings);
 
             //SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
 
-            return GetAllUserAccounts();
-        }
+            //return allCheckingsSavings;
+        //}
 
         //GET: Make a Payment 
         public ActionResult MakeAPayment()
 
         {
-            ViewBag.AllAccounts = GetAllUserAccounts();
+            //ViewBag.AllAccounts = GetAllUserAccounts();
             return View();
         }
 
