@@ -155,42 +155,49 @@ namespace Longhorn_Bank.Controllers
 
         }
 
+        //Select list for user checkings and savings to choose from to make a payment
+        //public SelectList GetAllUserAccounts(AppUser Id)
+        //{
 
-        //Select list for users checkings and savings to choose from to make a payment
-        public SelectList GetAllUserAccounts()
-        {
+        //    ////figure out how to get checkings and savings for that one user 
+        //    AppUser UserAccounts = db.Users.Find(Id);
 
-            var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
-            var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
+        //    var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
+        //    var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
 
-            List<String> CheckingsANDSavings = new List<string>();
+        //    UserAccounts.Checkings = UserAccounts.Checkings;
+        //    UserAccounts.Savings = UserAccounts.Savings;
 
-            CheckingsANDSavings.AddRange(queryCheckings);
-            CheckingsANDSavings.AddRange(querySavings);
+        //    int ID = int.Parse(Request.QueryString["Id"].ToString());
+        //    List<Int32> CheckingsANDSavings = new List<Int32>();
 
-            SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
+        //    CheckingsANDSavings.AddRange(queryCheckings);
+        //    CheckingsANDSavings.AddRange(querySavings);
 
-            return GetAllUserAccounts();
-        }
+        //    SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
 
-        //GET: Make a Payment 
-        public ActionResult MakeAPayment()
+        //    return allCheckingsSavings;
+        //}
 
-        {
-            return View();
-        }
+        ////GET: Make a Payment 
+        //public ActionResult MakeAPayment()
+
+        //{
+        //    ViewBag.AllAccounts = GetAllUserAccounts();
+        //    return View();
+        //}
 
         //POST: Make a Payment
         public ActionResult PaymentConfirmed([Bind(Include = "PayeeID, PayeeName, PayeeAddress, PayeeCity, State, ZipCode, PayType")] AppUser  User, int[] SelectedAccount)
         {
             if (ModelState.IsValid)
             {
-
+                
             }
             return View();
         }
 
-        //GET: Add an Exisiting Account
+        //GET: Add an Existing Account
         public ActionResult ExistingPayee()
         {
             ViewBag.AllPayees = GetAllPayees();
@@ -198,7 +205,7 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
-        //POST: Add an Exisiting Account 
+        //POST: Add an Existing Account 
         public ActionResult ExistingPayeeConfirmed([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] AppUser User, int[] SelectedPayee)
         {
 

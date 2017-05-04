@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My Withdrawals</h2>
+
+@using (Html.BeginForm("Index", "Withdrawals", FormMethod.Get))
+{
+    <p class="form-group">
+        @* drop down for all accounts that particular user has *@
+
+        Withdrawal Amount: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
+    </p>
+}

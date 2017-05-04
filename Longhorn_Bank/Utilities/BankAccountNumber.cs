@@ -47,9 +47,17 @@ namespace Longhorn_Bank.Utilities
 
 
             return MaskedNumber;
-
-
-
         }
+
+        //public static string HideAccountNumber(AppDbContext db)
+        //{
+        //    var queryCheckingsAccountNumber = (from a in db.CheckingsDbSet select a.CheckingsAccountNumber);
+        //    var querySavingsAccountNUmber = (from a in db.SavingsDbSet select a.SavingsAccountNumber);
+        //    var queryIRAAccountNumber = (from a in db.IRAsDbSet select a.IRAAccountNumber);
+        //    var queryStockAccountNumber = (from a in db.StockPortfoliosDbSet select a.StockAccountNumber);
+
+        //    string hiddenString = queryCheckingsAccountNumber.Substring(CheckingsAccountNumber.Length - 4, 4);
+        //    return MaskedAccountNumber;
+        //}
     }         
 }
