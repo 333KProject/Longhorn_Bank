@@ -159,44 +159,33 @@ namespace Longhorn_Bank.Controllers
         //public SelectList GetAllUserAccounts(AppUser Id)
         //{
 
-            //List<Checking> userCheckings = new List<Checking>() { new Checking(), new Checking() };
-            //List<Saving> userSavings = new List<Saving>() { new Saving(), new Saving { SavingsName = string.Empty } };
+        //    ////figure out how to get checkings and savings for that one user 
+        //    AppUser UserAccounts = db.Users.Find(Id);
 
-            //List<Object> allAccounts = (from x in userCheckings select (Object)new { CheckingsNames = x.CheckingsName, SavingsName = string.Empty }).ToList();
-            //allAccounts.AddRange((from x in userSavings select (Object)new { CheckingsName = string.Empty, SavingsName = x.SavingsName }).ToList());
+        //    var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
+        //    var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
 
-            //SelectList allCheckingANDSaving = new SelectList(allAccounts, "Id", "Name");
+        //    UserAccounts.Checkings = UserAccounts.Checkings;
+        //    UserAccounts.Savings = UserAccounts.Savings;
 
+        //    int ID = int.Parse(Request.QueryString["Id"].ToString());
+        //    List<Int32> CheckingsANDSavings = new List<Int32>();
 
-            ////figure out how to get checkings and savings for that one user 
-            
+        //    CheckingsANDSavings.AddRange(queryCheckings);
+        //    CheckingsANDSavings.AddRange(querySavings);
 
-            //AppUser UserAccounts = db.Users.Find(Id);
+        //    SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
 
-            //var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
-            //var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
-
-            //UserAccounts.Checkings = UserAccounts.Checkings;
-            //UserAccounts.Savings = UserAccounts.Savings;
-
-            //int ID = int.Parse(Request.QueryString["Id"].ToString());
-            //List<Int32> CheckingsANDSavings = new List<Int32>();
-
-            //CheckingsANDSavings.AddRange(queryCheckings);
-            //CheckingsANDSavings.AddRange(querySavings);
-
-            //SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
-
-            //return allCheckingsSavings;
+        //    return allCheckingsSavings;
         //}
 
-        //GET: Make a Payment 
-        public ActionResult MakeAPayment()
+        ////GET: Make a Payment 
+        //public ActionResult MakeAPayment()
 
-        {
-            //ViewBag.AllAccounts = GetAllUserAccounts();
-            return View();
-        }
+        //{
+        //    ViewBag.AllAccounts = GetAllUserAccounts();
+        //    return View();
+        //}
 
         //POST: Make a Payment
         public ActionResult PaymentConfirmed([Bind(Include = "PayeeID, PayeeName, PayeeAddress, PayeeCity, State, ZipCode, PayType")] AppUser  User, int[] SelectedAccount)
