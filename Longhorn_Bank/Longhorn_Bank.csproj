@@ -230,6 +230,14 @@
     <Compile Include="Migrations\201705040518531_lastemployeeseed.Designer.cs">
       <DependentUpon>201705040518531_lastemployeeseed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705041732316_seedemp.cs" />
+    <Compile Include="Migrations\201705041732316_seedemp.Designer.cs">
+      <DependentUpon>201705041732316_seedemp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041746426_finishseed.cs" />
+    <Compile Include="Migrations\201705041746426_finishseed.Designer.cs">
+      <DependentUpon>201705041746426_finishseed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -334,6 +342,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705040518531_lastemployeeseed.resx">
       <DependentUpon>201705040518531_lastemployeeseed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041732316_seedemp.resx">
+      <DependentUpon>201705041732316_seedemp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041746426_finishseed.resx">
+      <DependentUpon>201705041746426_finishseed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
