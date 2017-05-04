@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201705040245257_payee.Designer.cs">
       <DependentUpon>201705040245257_payee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705040301246_InitialSetup1.cs" />
+    <Compile Include="Migrations\201705040301246_InitialSetup1.Designer.cs">
+      <DependentUpon>201705040301246_InitialSetup1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -319,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705040245257_payee.resx">
       <DependentUpon>201705040245257_payee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705040301246_InitialSetup1.resx">
+      <DependentUpon>201705040301246_InitialSetup1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

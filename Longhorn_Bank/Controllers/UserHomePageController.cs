@@ -13,7 +13,7 @@ namespace Longhorn_Bank.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: UserHomePage
-        public ActionResult UserHomePage()
+        public ActionResult Index()
         {
             string Id = User.Identity.GetUserId();
 

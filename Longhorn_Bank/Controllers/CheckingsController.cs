@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +18,9 @@ namespace Longhorn_Bank.Controllers
         // GET: Checkings
         public ActionResult Index()
         {
-            
+        
+
+
             return View(db.CheckingsDbSet.ToList());
         }
 
@@ -40,6 +43,7 @@ namespace Longhorn_Bank.Controllers
         // GET: Checkings/Create
         public ActionResult Create()
         {
+          
             ViewBag.AllUsers = GetAllUsers();
             return View();
         }
@@ -50,9 +54,13 @@ namespace Longhorn_Bank.Controllers
         //TO DO: create customer ID to add into if loop
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, string Id)
+        public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, AppUser UserAccount, string Id)
         {
-            AppUser SelectedUser = db.Users.Find(Id);
+            string Id2 = User.Identity.GetUserId();
+            AppUser UserAccounts = db.Users.Find(Id2);
+            AppUser SelectedUser = db.Users.Find(Id2);
+            UserAccounts.Checkings = UserAccounts.Checkings;
+
             @checking.User = SelectedUser;
             if (ModelState.IsValid)
             {
@@ -63,6 +71,10 @@ namespace Longhorn_Bank.Controllers
             ViewBag.AllUsers = GetAllUsers(@checking);
             return View(@checking);
         }
+
+
+    
+
 
         // GET: Checkings/Edit/5
         //changed Id to id
