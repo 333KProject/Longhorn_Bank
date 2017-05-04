@@ -49,6 +49,10 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.CheckingsBalance)
                         </td>
+                        <td>
+                            @Html.ActionLink("See Transactions", "Index", "Transactions", new { id = item.CheckingID }) |
+                            @Html.ActionLink("Disable", "EnableDisable", new { id = item.CheckingID }) |
+                        </td>
                     </tr>
                 }
             </table>

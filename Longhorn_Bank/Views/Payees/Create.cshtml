@@ -4,7 +4,13 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Add a Payee</h2>
+
+
+<p>
+    @Html.ActionLink("Click Here to Add an Existing Payee", "ExistingPayee")
+
+</p>
 
 
 @using (Html.BeginForm()) 
@@ -23,11 +29,12 @@
             </div>
         </div>
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.PayeeStreet, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PayeeAddress, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PayeeStreet, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PayeeStreet, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PayeeAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PayeeAddress, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -56,6 +63,16 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
             @Html.LabelFor(model => model.PayType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.PayType, htmlAttributes: new { @class = "form-control" })
@@ -65,7 +82,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-info" />
             </div>
         </div>
     </div>

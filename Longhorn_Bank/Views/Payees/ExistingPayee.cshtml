@@ -1,0 +1,29 @@
+﻿@model Longhorn_Bank.Models.Payee
+@{
+    ViewBag.Title = "ExistingPayee";
+}
+
+<h2>Add a Previously Used Payee</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-group">
+
+    <label class="control-label col-md-2">Existing Payees</label>
+
+    <div class="col-md-10">
+        @Html.ListBox("SelectedPayee", (SelectList)ViewBag.AllPayees, new { @class = "form-control" })
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-info" />
+    </div>
+</div>
+
+}
+
