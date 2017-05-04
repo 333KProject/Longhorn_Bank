@@ -10,8 +10,9 @@ namespace Longhorn_Bank.Models
     public  enum StockType { ETF, Ordinary, Futures, IndexFund, MutualFund}
     public class AvailableStocks
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        
         public Int32 AvailableStocksID { get; set; }
+        [Key]
         public string TickerSymbol { get; set; }
         public StockType StockType {get;set;}
 

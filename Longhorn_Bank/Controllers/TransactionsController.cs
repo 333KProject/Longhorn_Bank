@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -22,6 +23,7 @@ namespace Longhorn_Bank.Controllers
         // GET: Transactions
         public ActionResult Index(string SearchString)
         {
+
             //Create instance of Transaction list
             List<Transaction> SelectedTransactions = new List<Transaction>();
 

@@ -180,31 +180,31 @@ namespace Longhorn_Bank.Controllers
 
         //user can't delete an account but can disable so use this to figure out code for that
 
-        //// GET: Checkings/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Checking @checking = db.CheckingsDbSet.Find(id);
-        //    if (@checking == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(@checking);
-        //}
+        // GET: Checkings/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Checking @checking = db.CheckingsDbSet.Find(id);
+            if (@checking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(@checking);
+        }
 
-        //// POST: Checkings/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Checking @checking = db.CheckingsDbSet.Find(id);
-        //    db.CheckingsDbSet.Remove(@checking);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        // POST: Checkings/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Checking @checking = db.CheckingsDbSet.Find(id);
+            db.CheckingsDbSet.Remove(@checking);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
