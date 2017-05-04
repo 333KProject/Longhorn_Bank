@@ -1,0 +1,24 @@
+﻿@using Longhorn_Bank.Models
+@model AppUser
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2>Employee Tools</h2>
+
+<div class="tab-content">
+    <div id="checkings" class="tab-pane fade in active">
+        <p>
+            @using (Html.BeginForm())
+            {
+            <p class="form-group">
+                @Html.ActionLink("Transaction", "Index", "Transactions", null, new { @class = "btn btn-info" })
+            </p>
+            }
+            
+        </div>
+    </div>
+
+

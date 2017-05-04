@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckingsController.cs" />
     <Compile Include="Controllers\DepositsController.cs" />
+    <Compile Include="Controllers\EmployeeHomePageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRAsController.cs" />
     <Compile Include="Controllers\PayeesController.cs" />
@@ -220,6 +221,10 @@
     <Compile Include="Migrations\201705040245257_payee.cs" />
     <Compile Include="Migrations\201705040245257_payee.Designer.cs">
       <DependentUpon>201705040245257_payee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705040256264_SavingsIRAandSP.cs" />
+    <Compile Include="Migrations\201705040256264_SavingsIRAandSP.Designer.cs">
+      <DependentUpon>201705040256264_SavingsIRAandSP.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
@@ -296,6 +301,7 @@
     <Content Include="Views\Payees\Details.cshtml" />
     <Content Include="Views\Payees\Edit.cshtml" />
     <Content Include="Views\Payees\Index.cshtml" />
+    <Content Include="Views\EmployeeHomePage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -319,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705040245257_payee.resx">
       <DependentUpon>201705040245257_payee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705040256264_SavingsIRAandSP.resx">
+      <DependentUpon>201705040256264_SavingsIRAandSP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
