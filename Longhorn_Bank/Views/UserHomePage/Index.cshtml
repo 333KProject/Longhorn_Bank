@@ -1,4 +1,5 @@
 ﻿@using Longhorn_Bank.Models
+
 @model AppUser
 
 @{
@@ -10,17 +11,15 @@
 
 <p>My Accounts</p>
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#checkings">Checkings</a></li>
-    <li><a data-toggle="tab" href="#savings">Savings</a></li>
-    <li><a data-toggle="tab" href="#ira">IRA</a></li>
-    <li><a data-toggle="tab" href="#stockportfolio">Stock Portfolio</a></li>
+    <li class="active"><a data-toggle="tab" href="#checkings">My Checkings</a></li>
+    <li><a data-toggle="tab" href="#savings">My Savings</a></li>
+    <li><a data-toggle="tab" href="#ira">My IRA</a></li>
+    <li><a data-toggle="tab" href="#stockportfolio">My Stock Portfolio</a></li>
 </ul>
 
 <div class="tab-content">
     <div id="checkings" class="tab-pane fade in active">
-        <h3>My Checkings</h3>
-        <p>
-            <table class="table table-bordered">
+            <table class="table">
                 <tr>
                     <th>
                         Account Name
@@ -45,32 +44,95 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.CheckingsBalance)
                         </td>
+                        <td>
+                            @Html.ActionLink("See Transactions", "Index", "Transactions", new { id = item.CheckingID }) |
+                            @Html.ActionLink("Disable", "EnableDisable", new { id = item.CheckingID }) |
+                        </td>
                     </tr>
                 }
             </table>
-            @using (Html.BeginForm())
-            {
-            <p class="form-group">
-                @Html.ActionLink("Checking", "Index", "Checkings", null, new { @class = "btn btn-info" })
-                @Html.ActionLink("Saving", "Index", "Savings", null, new { @class = "btn btn-info" })
-                @Html.ActionLink("IRA", "Index", "IRAs", null, new { @class = "btn btn-info" })
-                @Html.ActionLink("Stock Portfolio", "Index", "StockPortfolios", null, new { @class = "btn btn-info" })
-                @Html.ActionLink("Transaction", "Index", "Transactions", null, new { @class = "btn btn-info" })
-            </p>
-            }
-            
         </div>
         <div id="savings" class="tab-pane fade">
-            <h3>My Savings</h3>
-            <p>Some content in menu 1.</p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Account Name
+                    </th>
+                    <th>
+                        Accounts Number
+                    </th>
+                    <th>
+                        Account Balance
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Savings)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SavingsName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SavingsAccountNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SavingsBalance)
+                        </td>
+                    </tr>
+                }
+            </table>
         </div>
         <div id="ira" class="tab-pane fade">
-            <h3>My IRA</h3>
-            <p>Some content in menu 2.</p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Account Name
+                    </th>
+                    <th>
+                        Accounts Number
+                    </th>
+                    <th>
+                        Account Balance
+                    </th>
+                </tr>
+                <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.IRA.IRAName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IRA.IRAAccountNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IRA.IRACashBalance)
+                        </td>
+                    </tr>
+            </table>
         </div>
         <div id="stockportfolio" class="tab-pane fade">
-            <h3>My Stock Portfolio</h3>
-            <p>Some content in menu 2.</p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Account Name
+                    </th>
+                    <th>
+                        Accounts Number
+                    </th>
+                    <th>
+                        Account Balance
+                    </th>
+                </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.StockPortfolio.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.StockPortfolio.StockAccountNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.StockPortfolio.PortfolioCashBalance)
+                        </td>
+                    </tr>
+            </table>
         </div>
     </div>
 

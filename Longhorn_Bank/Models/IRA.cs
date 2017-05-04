@@ -18,9 +18,17 @@ namespace Longhorn_Bank.Models
 
         public String IRAName { get; set; }
 
+        public bool IRAAccountActive { get; set; }
+
+        public IRA()
+        {
+            IRAAccountActive = true;
+        }
+
+
         //navigational properties
-   
-        
+
+
         public virtual List<Transaction> Transactions { get; set; }
         public virtual AppUser User { get; set; }
     }
