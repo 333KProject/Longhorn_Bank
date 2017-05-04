@@ -230,6 +230,10 @@
     <Compile Include="Migrations\201705040518531_lastemployeeseed.Designer.cs">
       <DependentUpon>201705040518531_lastemployeeseed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705041739495_InitialSetup2.cs" />
+    <Compile Include="Migrations\201705041739495_InitialSetup2.Designer.cs">
+      <DependentUpon>201705041739495_InitialSetup2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -334,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705040518531_lastemployeeseed.resx">
       <DependentUpon>201705040518531_lastemployeeseed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041739495_InitialSetup2.resx">
+      <DependentUpon>201705041739495_InitialSetup2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
