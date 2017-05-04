@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Longhorn_Bank.Models.Payee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Pay Bills</h2>
+
+<p>
+    @Html.ActionLink("Add Payee", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PayeeName)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayeeName)
+        </td>
+        
+        <td>
+            
+            @Html.ActionLink("Details", "Details", new { id=item.PayeeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PayeeID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model Longhorn_Bank.Models.Payee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Payee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PayeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayeeStreet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayeeStreet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayeeCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayeeCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PayeeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

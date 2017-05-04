@@ -85,6 +85,8 @@ namespace Longhorn_Bank.Models
         public DbSet<AppRole> AppRoles { get; set; }
 
         public System.Data.Entity.DbSet<Longhorn_Bank.Models.StockQuote> StockQuotes { get; set; }
+
+        public System.Data.Entity.DbSet<Longhorn_Bank.Models.Payee> Payees { get; set; }
     }
 
    
