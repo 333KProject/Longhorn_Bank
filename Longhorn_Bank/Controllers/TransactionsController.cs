@@ -20,9 +20,34 @@ namespace Longhorn_Bank.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: Transactions
-        public ActionResult Index()
+        public ActionResult Index(string SearchString)
         {
-            return View(db.TransactionsDbSet.ToList());
+            //Create instance of Transaction list
+            List<Transaction> SelectedTransactions = new List<Transaction>();
+
+            //If nothing entered
+            if (SearchString == null || SearchString == "")
+            {
+                //Return list of all customers
+                SelectedTransactions = db.TransactionsDbSet.ToList();
+            }
+            //If something entered
+            else
+            {
+
+                //Search database for customers with search string in their name
+                SelectedTransactions = db.TransactionsDbSet.Where(t => t.Description.Contains(SearchString)).ToList();
+                //Sort the list of customers
+                SelectedTransactions = SelectedTransactions.OrderBy(c => c.TransactionNumber).ThenBy(c => c.TransactionType).ThenBy(c => c.Description).ThenBy(c => c.Amount).ToList();
+            }
+
+            //ViewBag for total customer count
+            ViewBag.All = db.TransactionsDbSet.ToList().Count;
+            //ViewBag for SelectedCustomers count
+            ViewBag.Returned = SelectedTransactions.Count;
+            //Return view of SelectedCustomers  
+            return View(SelectedTransactions);
+            
         }
 
         // GET: Transactions/Details/5
