@@ -217,9 +217,14 @@
     <Compile Include="Migrations\201705032328570_CheckingFix.Designer.cs">
       <DependentUpon>201705032328570_CheckingFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705040245257_payee.cs" />
+    <Compile Include="Migrations\201705040245257_payee.Designer.cs">
+      <DependentUpon>201705040245257_payee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
+    <Compile Include="Migrations\SeedPayees.cs" />
     <Compile Include="Migrations\SeedStocks.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AvailableStocks.cs" />
@@ -311,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705032328570_CheckingFix.resx">
       <DependentUpon>201705032328570_CheckingFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705040245257_payee.resx">
+      <DependentUpon>201705040245257_payee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

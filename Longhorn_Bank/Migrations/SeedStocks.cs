@@ -1,6 +1,7 @@
 ﻿using Longhorn_Bank.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +12,7 @@ namespace Longhorn_Bank.Migrations
         AppDbContext db = new AppDbContext();
         public static void AddStocks(AppDbContext db)
         {
-            
+
             //AvailableStocks q1 = new AvailableStocks(); q1.TickerSymbol = "GOOG"; q1.StockType = StockType.Ordinary; q1.StockName = "Alphabet Inc."; q1.StockFee = 25; db.AvailableStocks.AddOrUpdate(q => q.TickerSymbol, q1);
             //AvailableStocks q2 = new AvailableStocks(); q2.TickerSymbol = "AAPL"; q2.StockType = StockType.Ordinary; q2.StockName = "Apple Inc."; q2.StockFee = 40; db.AvailableStocks.AddOrUpdate(q => q.TickerSymbol, q2);
             //AvailableStocks q3 = new AvailableStocks(); q3.TickerSymbol = "AMZN"; q3.StockType = StockType.Ordinary; q3.StockName = "Amazon.com Inc."; q3.StockFee = 15; db.AvailableStocks.AddOrUpdate(q => q.TickerSymbol, q3);

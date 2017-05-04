@@ -32,6 +32,7 @@ namespace Longhorn_Bank.Models
         public virtual IRA IRA { get; set; }
         public virtual StockPortfolio StockPortfolio { get; set; }
 
+        public virtual List<Payee> Payees { get; set; }
         public virtual List<Transaction> Transactions { get; set; }
 
 
@@ -57,6 +58,7 @@ namespace Longhorn_Bank.Models
         public DbSet<StockPortfolio> StockPortfoliosDbSet { get; set; }
         public DbSet<Transaction> TransactionsDbSet { get; set;  }
         public DbSet<AvailableStocks> AvailableStocks { get; set; }
+        public DbSet<Payee> PayeeDbSet { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -86,7 +88,7 @@ namespace Longhorn_Bank.Models
 
         public System.Data.Entity.DbSet<Longhorn_Bank.Models.StockQuote> StockQuotes { get; set; }
 
-        public System.Data.Entity.DbSet<Longhorn_Bank.Models.Payee> Payees { get; set; }
+      
     }
 
    

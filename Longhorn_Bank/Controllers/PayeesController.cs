@@ -17,7 +17,7 @@ namespace Longhorn_Bank.Controllers
         // GET: Payees
         public ActionResult Index()
         {
-            return View(db.Payees.ToList());
+            return View(db.PayeeDbSet.ToList());
         }
 
         // GET: Payees/Details/5
@@ -27,7 +27,7 @@ namespace Longhorn_Bank.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payee payee = db.Payees.Find(id);
+            Payee payee = db.PayeeDbSet.Find(id);
             if (payee == null)
             {
                 return HttpNotFound();
@@ -60,7 +60,7 @@ namespace Longhorn_Bank.Controllers
         //            Payee = SelectedPayee;
         //        }
 
-        //        db.Payees.Add(payee);
+        //        db.PayeeDbSet.Add(payee);
         //        db.SaveChanges();
         //        return RedirectToAction("Index");
         //    }
@@ -75,7 +75,7 @@ namespace Longhorn_Bank.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payee payee = db.Payees.Find(id);
+            Payee payee = db.PayeeDbSet.Find(id);
             if (payee == null)
             {
                 return HttpNotFound();
@@ -106,7 +106,7 @@ namespace Longhorn_Bank.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payee payee = db.Payees.Find(id);
+            Payee payee = db.PayeeDbSet.Find(id);
             if (payee == null)
             {
                 return HttpNotFound();
@@ -119,8 +119,8 @@ namespace Longhorn_Bank.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Payee payee = db.Payees.Find(id);
-            db.Payees.Remove(payee);
+            Payee payee = db.PayeeDbSet.Find(id);
+            db.PayeeDbSet.Remove(payee);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -137,7 +137,7 @@ namespace Longhorn_Bank.Controllers
         //Create Select list to gather all payee names from all customer
         //public SelectList GetAllPayees()
         //{
-        //    //var query = from c in db.PayeesDbSet
+        //    //var query = from c in db.PayeeDbSet
         //    //            orderby c.PayeeName
         //    //            select c;
         //    //List<Payee> allPayees = query.ToList();
