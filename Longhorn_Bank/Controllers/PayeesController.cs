@@ -40,7 +40,7 @@ namespace Longhorn_Bank.Controllers
 
         {
             //Show Existing Payees 
-            //ViewBag.AllPayees = GetAllPayees();
+            ViewBag.AllPayees = GetAllPayees();
 
             return View();
         }
@@ -50,23 +50,30 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] Payee @payee, )
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if GetAllPayees != null{
-        //            Payee SelectedPayee = db.PayeeDbSet.Find(PayeeID);
-        //            //the beginning part of this after adding navigational property on app user 
-        //            Payee = SelectedPayee;
-        //        }
+        public ActionResult Create([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] AppUser User, int[] SelectedPayee)
+        {
 
-        //        db.PayeeDbSet.Add(payee);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+            if (ModelState.IsValid)
+            {
 
-        //    return View(payee);
-        //}
+                AppUser Usertochange = db.Users.Find(@User.Id);
+
+                if (SelectedPayee != null)
+                {
+                    foreach (int PayeeId in SelectedPayee)
+                    {
+                        Payee payeetoadd = db.PayeeDbSet.Find(PayeeId);
+                        Usertochange.Payees.Add(payeetoadd);
+
+                    }
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
 
         // GET: Payees/Edit/5
         public ActionResult Edit(int? id)
@@ -135,21 +142,88 @@ namespace Longhorn_Bank.Controllers
         }
 
         //Create Select list to gather all payee names from all customer
-        //public SelectList GetAllPayees()
-        //{
-        //    //var query = from c in db.PayeeDbSet
-        //    //            orderby c.PayeeName
-        //    //            select c;
-        //    //List<Payee> allPayees = query.ToList();
+        public SelectList GetAllPayees()
+        {
+            var query = from c in db.PayeeDbSet
+                        orderby c.PayeeName
+                        select c;
+            List<Payee> allPayees = query.ToList();
 
-        //    //SelectList allPayeeslist = new SelectList(allPayees, "PayeeID", "PayeeName");
+            SelectList allPayeeslist = new SelectList(allPayees, "PayeeID", "PayeeName");
 
-        //    return allPayeeslist;
+            return allPayeeslist;
 
-        //}
+        }
 
 
+        //Select list for users checkings and savings to choose from to make a payment
+        public SelectList GetAllUserAccounts()
+        {
 
+            var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
+            var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
+
+            List<String> CheckingsANDSavings = new List<string>();
+
+            CheckingsANDSavings.AddRange(queryCheckings);
+            CheckingsANDSavings.AddRange(querySavings);
+
+            SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
+
+            return GetAllUserAccounts();
+        }
+
+        //GET: Make a Payment 
+        public ActionResult MakeAPayment()
+
+        {
+            return View();
+        }
+
+        //POST: Make a Payment
+        public ActionResult PaymentConfirmed([Bind(Include = "PayeeID, PayeeName, PayeeAddress, PayeeCity, State, ZipCode, PayType")] AppUser  User, int[] SelectedAccount)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View();
+        }
+
+        //GET: Add an Exisiting Account
+        public ActionResult ExistingPayee()
+        {
+            ViewBag.AllPayees = GetAllPayees();
+
+            return View();
+        }
+
+        //POST: Add an Exisiting Account 
+        public ActionResult ExistingPayeeConfirmed([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] AppUser User, int[] SelectedPayee)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                AppUser Usertochange = db.Users.Find(@User.Id);
+
+                if (SelectedPayee != null)
+                {
+                    foreach (int PayeeId in SelectedPayee)
+                    {
+                        Payee payeetoadd = db.PayeeDbSet.Find(PayeeId);
+                        Usertochange.Payees.Add(payeetoadd);
+                    }
+                }
+
+                db.Entry(Usertochange).State = EntityState.Modified;
+
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+            //return View();
+        }
 
     }
 }

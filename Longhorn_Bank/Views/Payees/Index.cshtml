@@ -8,7 +8,13 @@
 
 <p>
     @Html.ActionLink("Add Payee", "Create")
+
+
+    @Html.ActionLink("Make a Payment", "MakeAPayment")
+
+
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -25,7 +31,7 @@
         </td>
         
         <td>
-            
+            @Html.ActionLink("Edit","Edit", new { id = item.PayeeID }) |
             @Html.ActionLink("Details", "Details", new { id=item.PayeeID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.PayeeID })
         </td>

@@ -31,16 +31,16 @@ namespace Longhorn_Bank.Models
         [Display(Name = "State")]
         public StateAbrv State { get; set; }
 
-        [Required(ErrorMessage = "ZipCode Required.")]
+        [Required(ErrorMessage = "Zip Code Required.")]
         [Display(Name = "ZipCode")]
         public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "Payee Type Required.")]
-        [Display(Name = "First Name")]
+        [Display(Name = "Pay Type")]
         public PayeeType PayType { get; set; }
 
-        [Required(ErrorMessage = "Payee Type Required.")]
-        [Display(Name = "First Name")]
+        [Required(ErrorMessage = "Phone Number Required.")]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
        
