@@ -13,11 +13,11 @@ namespace Longhorn_Bank.Utilities
 {
     public class BankAccountNumber
     {
-        private AppDbContext db = new AppDbContext();
+        public AppDbContext db = new AppDbContext();
 
-        public Int32 AccountNumberList(int? AccountNumber)
+
+        public static Int32 AccountNumberList(AppDbContext db)
         {
-
             List<Int32> MaxList = new List<Int32>();
             var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsAccountNumber);
             var querySavings = (from a in db.SavingsDbSet select a.SavingsAccountNumber);
@@ -33,7 +33,7 @@ namespace Longhorn_Bank.Utilities
 
             Int32 NewAccountNumber = MaxNumber += 1;
 
-           
+
             return NewAccountNumber;
         }
 
@@ -54,7 +54,8 @@ namespace Longhorn_Bank.Utilities
 
 
         //    return hiddenString;
-            // }
 
-        }
+        // }
+
+    }      
 }

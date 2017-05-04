@@ -91,21 +91,17 @@
                         Account Balance
                     </th>
                 </tr>
-
-                @foreach (var item in Model.IRA)
-                {
-                    <tr>
+                <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IRAName)
+                            @Html.DisplayFor(model => model.IRA.IRAName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IRAAccountNumber)
+                            @Html.DisplayFor(model => model.IRA.IRAAccountNumber)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IRACashBalance)
+                            @Html.DisplayFor(model => model.IRA.IRACashBalance)
                         </td>
                     </tr>
-                }
             </table>
         </div>
         <div id="stockportfolio" class="tab-pane fade">
@@ -121,21 +117,17 @@
                         Account Balance
                     </th>
                 </tr>
-
-                @*@foreach (var item in Model.StockPortfolio)
-                {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.StockPortfolio.Name)
+                            @Html.DisplayFor(model => model.StockPortfolio.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.StockAccountNumber)
+                            @Html.DisplayFor(model => model.StockPortfolio.StockAccountNumber)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PortfolioCashBalance)
+                            @Html.DisplayFor(model => model.StockPortfolio.PortfolioCashBalance)
                         </td>
                     </tr>
-                }*@
             </table>
         </div>
     </div>
