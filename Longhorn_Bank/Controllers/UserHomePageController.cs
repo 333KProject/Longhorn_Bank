@@ -13,15 +13,21 @@ namespace Longhorn_Bank.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: UserHomePage
-        public ActionResult Index()
+        public ActionResult UserHomePage()
         {
             string Id = User.Identity.GetUserId();
 
             AppUser UserAccounts = db.Users.Find(Id);
+
             UserAccounts.Checkings = UserAccounts.Checkings;
-  
+            UserAccounts.Savings = UserAccounts.Savings;
+            UserAccounts.IRA = UserAccounts.IRA;
+            UserAccounts.StockPortfolio = UserAccounts.StockPortfolio;
+
             return View(UserAccounts);
         }
 
     }
 }
+
+
