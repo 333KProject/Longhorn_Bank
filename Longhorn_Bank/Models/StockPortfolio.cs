@@ -18,9 +18,17 @@ namespace Longhorn_Bank.Models
 
         public String Name { get; set; }
 
+        public bool StockPortfolioActive { get; set; }
+
+        public StockPortfolio()
+        {
+            StockPortfolioActive = true;
+        }
+
+
         //navigational properties
-     
-     
+
+
         public virtual List<Transaction> Transactions { get; set; }
         public virtual AppUser User { get; set; }
         //public virtual List<Bill> Bills { get; set; }

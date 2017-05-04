@@ -27,6 +27,14 @@ namespace Longhorn_Bank.Models
 
         public Decimal SavingsBalance { get; set; }
 
+        public bool SavingAccountActive { get; set; }
+
+        public Saving()
+        {
+            SavingAccountActive = true;
+        }
+
+
         //navigation properties 
         public virtual AppUser User { get; set; }
         public virtual List<Transaction> Transactions { get; set; }
