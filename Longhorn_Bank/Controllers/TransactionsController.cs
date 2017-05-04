@@ -20,7 +20,7 @@ namespace Longhorn_Bank.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: Transactions
-        public ActionResult Index()
+        public ActionResult Index(string SearchString)
         {
             return View(db.TransactionsDbSet.ToList());
         }
