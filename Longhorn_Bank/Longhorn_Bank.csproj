@@ -192,7 +192,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckingsController.cs" />
     <Compile Include="Controllers\DepositsController.cs" />
-    <Compile Include="Controllers\EmployeeHomePageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRAsController.cs" />
     <Compile Include="Controllers\PayeesController.cs" />
@@ -201,6 +200,7 @@
     <Compile Include="Controllers\SavingsController.cs" />
     <Compile Include="Controllers\StockPortfoliosController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Controllers\UserHomePageController.cs" />
     <Compile Include="Controllers\WithdrawalsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -222,13 +222,13 @@
     <Compile Include="Migrations\201705040245257_payee.Designer.cs">
       <DependentUpon>201705040245257_payee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705040256264_SavingsIRAandSP.cs" />
-    <Compile Include="Migrations\201705040256264_SavingsIRAandSP.Designer.cs">
-      <DependentUpon>201705040256264_SavingsIRAandSP.cs</DependentUpon>
+    <Compile Include="Migrations\201705040301246_InitialSetup1.cs" />
+    <Compile Include="Migrations\201705040301246_InitialSetup1.Designer.cs">
+      <DependentUpon>201705040301246_InitialSetup1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705040507253_Idk.cs" />
-    <Compile Include="Migrations\201705040507253_Idk.Designer.cs">
-      <DependentUpon>201705040507253_Idk.cs</DependentUpon>
+    <Compile Include="Migrations\201705040518531_lastemployeeseed.cs" />
+    <Compile Include="Migrations\201705040518531_lastemployeeseed.Designer.cs">
+      <DependentUpon>201705040518531_lastemployeeseed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
@@ -305,7 +305,6 @@
     <Content Include="Views\Payees\Details.cshtml" />
     <Content Include="Views\Payees\Edit.cshtml" />
     <Content Include="Views\Payees\Index.cshtml" />
-    <Content Include="Views\EmployeeHomePage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -330,11 +329,11 @@
     <EmbeddedResource Include="Migrations\201705040245257_payee.resx">
       <DependentUpon>201705040245257_payee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705040256264_SavingsIRAandSP.resx">
-      <DependentUpon>201705040256264_SavingsIRAandSP.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705040301246_InitialSetup1.resx">
+      <DependentUpon>201705040301246_InitialSetup1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705040507253_Idk.resx">
-      <DependentUpon>201705040507253_Idk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705040518531_lastemployeeseed.resx">
+      <DependentUpon>201705040518531_lastemployeeseed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
