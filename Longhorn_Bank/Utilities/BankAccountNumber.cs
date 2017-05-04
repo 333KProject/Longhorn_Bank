@@ -37,25 +37,14 @@ namespace Longhorn_Bank.Utilities
             return NewAccountNumber;
         }
 
-        //public string HideAccountNumber()
-        //{
-        //    List<string> MaxList = new List<string>();
-        //    var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsAccountNumber);
-        //    var querySavings = (from a in db.SavingsDbSet select a.SavingsAccountNumber);
-        //    var queryIRAs = (from a in db.IRAsDbSet select a.IRAAccountNumber);
-        //    var queryStocks = (from a in db.StockPortfoliosDbSet select a.StockAccountNumber);
+        public static string LastFourDigitsAccount
+        {
+            get
+            {
+                string LastFourDigitAccount = CheckingsAccountNumber.Substring(5, 4);
+                return "XXX-XX-" + LastFourDigitSSN;
+            }
+        }
 
-        //    MaxList.Add(queryCheckings.ToString());
-        //    MaxList.Add(querySavings.ToString());
-        //    MaxList.Add(queryIRAs.ToString());
-        //    MaxList.Add(queryStocks.ToString());
-
-        //    string hiddenString = MaxList.Substring(MaxList.Length - 4).PadLeft(MaxList.Length, 'X');
-
-
-        //    return hiddenString;
-
-        // }
-
-    }      
+    }
 }
