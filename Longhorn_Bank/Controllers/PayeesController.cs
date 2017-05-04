@@ -155,28 +155,46 @@ namespace Longhorn_Bank.Controllers
 
         }
 
+        //Select list for user checkings and savings to choose from to make a payment
+        //public SelectList GetAllUserAccounts(AppUser Id)
+        //{
 
-        //Select list for users checkings and savings to choose from to make a payment
-        public SelectList GetAllUserAccounts()
-        {
+            //List<Checking> userCheckings = new List<Checking>() { new Checking(), new Checking() };
+            //List<Saving> userSavings = new List<Saving>() { new Saving(), new Saving { SavingsName = string.Empty } };
 
-            var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
-            var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
+            //List<Object> allAccounts = (from x in userCheckings select (Object)new { CheckingsNames = x.CheckingsName, SavingsName = string.Empty }).ToList();
+            //allAccounts.AddRange((from x in userSavings select (Object)new { CheckingsName = string.Empty, SavingsName = x.SavingsName }).ToList());
 
-            List<String> CheckingsANDSavings = new List<string>();
+            //SelectList allCheckingANDSaving = new SelectList(allAccounts, "Id", "Name");
 
-            CheckingsANDSavings.AddRange(queryCheckings);
-            CheckingsANDSavings.AddRange(querySavings);
 
-            SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
+            ////figure out how to get checkings and savings for that one user 
+            
 
-            return GetAllUserAccounts();
-        }
+            //AppUser UserAccounts = db.Users.Find(Id);
+
+            //var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
+            //var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
+
+            //UserAccounts.Checkings = UserAccounts.Checkings;
+            //UserAccounts.Savings = UserAccounts.Savings;
+
+            //int ID = int.Parse(Request.QueryString["Id"].ToString());
+            //List<Int32> CheckingsANDSavings = new List<Int32>();
+
+            //CheckingsANDSavings.AddRange(queryCheckings);
+            //CheckingsANDSavings.AddRange(querySavings);
+
+            //SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
+
+            //return allCheckingsSavings;
+        //}
 
         //GET: Make a Payment 
         public ActionResult MakeAPayment()
 
         {
+            //ViewBag.AllAccounts = GetAllUserAccounts();
             return View();
         }
 
@@ -185,12 +203,12 @@ namespace Longhorn_Bank.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                
             }
             return View();
         }
 
-        //GET: Add an Exisiting Account
+        //GET: Add an Existing Account
         public ActionResult ExistingPayee()
         {
             ViewBag.AllPayees = GetAllPayees();
@@ -198,7 +216,7 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
-        //POST: Add an Exisiting Account 
+        //POST: Add an Existing Account 
         public ActionResult ExistingPayeeConfirmed([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] AppUser User, int[] SelectedPayee)
         {
 
