@@ -8,19 +8,26 @@ using System.Web.Mvc;
 
 namespace Longhorn_Bank.Controllers
 {
+
     public class StockQuoteController : Controller
     {
+        AppDbContext db = new AppDbContext();
         // GET: LiveStock
         public ActionResult Index(AvailableStocks Stocks)
         {
             List<StockQuote> Quotes = new List<StockQuote>();
 
-            foreach (StockQuote q in Quotes)
-                {
-                    StockQuote sq1 = GetQuote.GetStock(Stocks.TickerSymbol);
-                }   
+            //string Symbol = db.AvailableStocks;
+            var symbolquery = from c in db.AvailableStocks select c.TickerSymbol;
 
-            return View(Quotes);
+            foreach (var q in symbolquery)
+                {
+                    
+                    StockQuote sq = GetQuote.GetStock(q);
+                    Quotes.Add(sq);
+                }
+
+            return View(Quotes.ToList());
         }
     }
 }

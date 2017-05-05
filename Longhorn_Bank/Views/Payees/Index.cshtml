@@ -30,8 +30,7 @@
             @Html.DisplayFor(modelItem => item.PayeeName)
         </td>
         
-        <td>
-            @Html.ActionLink("Edit","Edit", new { id = item.PayeeID }) |
+        <td>          
             @Html.ActionLink("Details", "Details", new { id=item.PayeeID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.PayeeID })
         </td>

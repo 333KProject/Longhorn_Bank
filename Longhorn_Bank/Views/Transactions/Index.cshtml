@@ -79,7 +79,7 @@ Displaying @ViewBag.Returned out of @ViewBag.All Transactions
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TransactionID }) |
             @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TransactionID })
+            @Html.ActionLink("Dispute", "Disputes", "Transactions", null, new { @class = "btn btn-info" })
         </td>
     </tr>
 }

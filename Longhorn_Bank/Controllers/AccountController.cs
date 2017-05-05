@@ -83,10 +83,12 @@ namespace Longhorn_Bank.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var user = await UserManager.FindAsync(model.Email, model.Password);
             switch (result)
             {
+
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "UserHomePage"); ;
+                    return RedirectToAction("Manage", "Home");
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -323,56 +325,5 @@ namespace Longhorn_Bank.Controllers
             }
         }
         #endregion
-
-        private AppDbContext db = new AppDbContext();
-        // GET: Account/Edit/5
-        public ActionResult Edit(String Id)
-        {
-            if (Id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            AppUser user = db.Users.Find(Id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            if (user.Id != User.Identity.GetUserId() && !User.IsInRole("admins"))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            return View(user);
-        }
-
-        // POST: Account/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,MiddleInitial,Address,City,State,ZipCode,Email,PhoneNumber")] AppUser user)
-        {
-            if (ModelState.IsValid)
-            {
-                //Find associated member
-                AppUser userToChange = db.Users.Find(user.Id);
-
-                userToChange.FirstName = @user.FirstName;
-                userToChange.LastName = @user.LastName;
-                userToChange.MiddleInitial = @user.MiddleInitial;
-                userToChange.Address = @user.Address;
-                userToChange.City = @user.City;
-                userToChange.State = @user.State;
-                userToChange.ZipCode = @user.ZipCode;
-                userToChange.Email = @user.Email;
-                userToChange.PhoneNumber = @user.PhoneNumber;
-
-                db.Entry(userToChange).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(user);
-        }
     }
 }
