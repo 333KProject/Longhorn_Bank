@@ -10,10 +10,10 @@
 <h2>My Banking Summary</h2>
 
 <p>
-
-@Html.ActionLink("Transactions", "Index", "Transactions", null, new { @class = "btn btn-info" })
-@Html.ActionLink("Live Stock Prices", "Index", "StockQuote", null, new { @class = "btn btn-info" })
-
+    <div align="right">
+        @Html.ActionLink("Transactions", "Index", "Transactions", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Live Stock Prices", "Index", "StockQuote", null, new { @class = "btn btn-info" })
+    </div>
 </p>
 
 <ul class="nav nav-tabs">
