@@ -6,22 +6,15 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.DataProtection;
 using Longhorn_Bank.Models;
-using System.Net;
-using System.Data.Entity;
 
 namespace Longhorn_Bank.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        public enum ManageMessageId { AddPhoneSuccess, ResetPasswordSuccess, SetTwoFactorSuccess, RemoveLoginSuccess, RemovePhoneSuccess }
-
-        private AppDbContext db = new AppDbContext();
         private ApplicationSignInManager _signInManager;
         private AppUserManager _userManager;
 
@@ -29,7 +22,7 @@ namespace Longhorn_Bank.Controllers
         {
         }
 
-        public AccountController(AppUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(AppUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -41,9 +34,9 @@ namespace Longhorn_Bank.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -58,10 +51,6 @@ namespace Longhorn_Bank.Controllers
                 _userManager = value;
             }
         }
-
-        //
-
-
 
         //
         // GET: /Account/Login
@@ -92,10 +81,8 @@ namespace Longhorn_Bank.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            var user = await UserManager.FindAsync(model.Email, model.Password);
             switch (result)
             {
-
                 case SignInStatus.Success:
                     return RedirectToAction("Manage", "Home");
                 case SignInStatus.Failure:
@@ -105,7 +92,7 @@ namespace Longhorn_Bank.Controllers
             }
         }
 
-
+       
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -114,7 +101,7 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
-        //Register
+        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -123,20 +110,20 @@ namespace Longhorn_Bank.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO: Add fields to user here so they will be saved to do the database
-                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, DOB = model.DOB, PhoneNumber = model.PhoneNumber, Address = model.Address, City = model.City, State = model.State, ZipCode = model.ZipCode, };
+                //0TODO: Add fields to user here so they will be saved to do the database
+                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, Address = model.Address, City = model.City, State = model.State, ZipCode = model.ZipCode , PhoneNumber = model.PhoneNumber, DOB = model.DOB };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                //TODO:  Once you get roles working, you may want to add users to roles upon creation
-                // await UserManager.AddToRoleAsync(user.Id, "User");
+                //0TODO:  Once you get roles working, you may want to add users to roles upon creation
+                await UserManager.AddToRoleAsync(user.Id, "Users");
                 // --OR--
                 // await UserManager.AddToRoleAsync(user.Id, "Employee");
 
 
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -153,81 +140,40 @@ namespace Longhorn_Bank.Controllers
         }
 
         //
-        // GET: /Account/ChangePassword
+        // GET: /Account/ForgotPassword
         [AllowAnonymous]
-        public ActionResult ChangePassword()
+        public ActionResult ForgotPassword()
         {
             return View();
         }
 
-
-        // POST: /Account/ChangePassword
+        //
+        // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
-            }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    // Don't reveal that the user does not exist or is not confirmed
+                    return View("ForgotPasswordConfirmation");
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.PasswordSuccess });
+
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                // Send an email with this link
+                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
-            AddErrors(result);
+
+            // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //TODO: Ask about MULTIPLE VIEWS
-        // GET: /Account/EmployeeChangePassword
-        [AllowAnonymous]
-        public ActionResult EmployeeChangePassword()
-        {
-
-
-            return View();
-        }
-
-
-        // POST: /Account/EmployeeChangePassword
-        [HttpPost]
-        [Authorize(Roles = "Employee,Manager")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EmployeeChangePassword(EmployeeChangePasswordViewModel model)
-        {
-            //NOTE: The next 3 lines are stackoverflow code that I don't fully understand
-            var provider = new DpapiDataProtectionProvider("TuneOrange");
-
-            UserManager.UserTokenProvider = new DataProtectorTokenProvider<AppUser>(provider.Create("EmployeeChangePasswordViewModel"));
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            string resetToken = await UserManager.GeneratePasswordResetTokenAsync(User.Identity.GetUserId());
-            IdentityResult passwordChangeResult = await UserManager.ResetPasswordAsync(User.Identity.GetUserId(), resetToken, model.NewPassword);
-            if (passwordChangeResult.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ResetPasswordSuccess });
-            }
-            AddErrors(passwordChangeResult);
-            return View(model);
-        }
-
 
         //
         // GET: /Account/ForgotPasswordConfirmation
@@ -240,9 +186,9 @@ namespace Longhorn_Bank.Controllers
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
-        public ActionResult ResetPassword()
+        public ActionResult ResetPassword(string code)
         {
-            return View();
+            return code == null ? View("Error") : View();
         }
 
         //
@@ -256,15 +202,19 @@ namespace Longhorn_Bank.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(User.Identity.GetUserId());
-            if (user != null)
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user == null)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                // Don't reveal that the user does not exist
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            return RedirectToAction("Index", new { Message = ManageMessageId.ResetPasswordSuccess });
-        }
-        AddErrors(result);
-        return View(model);
+            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
+            }
+            AddErrors(result);
+            return View();
         }
 
         //
