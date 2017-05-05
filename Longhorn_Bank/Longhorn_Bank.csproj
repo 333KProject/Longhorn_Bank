@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201705051230283_deposits.Designer.cs">
       <DependentUpon>201705051230283_deposits.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705051309331_lastattempt.cs" />
+    <Compile Include="Migrations\201705051309331_lastattempt.Designer.cs">
+      <DependentUpon>201705051309331_lastattempt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -413,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705051230283_deposits.resx">
       <DependentUpon>201705051230283_deposits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051309331_lastattempt.resx">
+      <DependentUpon>201705051309331_lastattempt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

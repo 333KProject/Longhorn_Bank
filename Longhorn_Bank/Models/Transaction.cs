@@ -21,7 +21,7 @@ namespace Longhorn_Bank.Models
         [Required(ErrorMessage = "Please enter a valid date.")]
         [Display(Name = "Date of Transaction")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0-MM-dd-YYYY", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         //public DateTime CustomDateRangeStart { get; set; }

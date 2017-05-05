@@ -43,12 +43,14 @@ namespace Longhorn_Bank.Controllers
                 SelectedTransactions = SelectedTransactions.OrderBy(c => c.TransactionNumber).ThenBy(c => c.TransactionType).ThenBy(c => c.Description).ThenBy(c => c.Amount).ToList();
             }
 
+
             //ViewBag for total customer count
             ViewBag.All = db.TransactionsDbSet.ToList().Count;
             //ViewBag for SelectedCustomers count
             ViewBag.Returned = SelectedTransactions.Count;
             
             return View(SelectedTransactions);
+
             
         }
 
