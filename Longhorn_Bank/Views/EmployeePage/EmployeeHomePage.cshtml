@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeHomePage";
+}
+
+<h2>Employee Home Page</h2>
+@using (Html.BeginForm())
+{
+    <p class="form-group">
+        
+        @Html.ActionLink("Employee Table", "Index", "EmployeePage", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("View Available Stocks", "ViewAvailableStocks", "EmployeePage", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Deactivate Users", "Index", "RoleAdmin", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Activate Users", "Index", "RoleAdmin", null, new { @class = "btn btn-info" })
+
+    </p>
+}
