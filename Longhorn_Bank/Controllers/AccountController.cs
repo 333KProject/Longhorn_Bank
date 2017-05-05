@@ -9,8 +9,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Longhorn_Bank.Models;
-using System.Net;
-using System.Data.Entity;
 
 namespace Longhorn_Bank.Controllers
 {
@@ -24,7 +22,7 @@ namespace Longhorn_Bank.Controllers
         {
         }
 
-        public AccountController(AppUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(AppUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +34,9 @@ namespace Longhorn_Bank.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -83,10 +81,8 @@ namespace Longhorn_Bank.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            var user = await UserManager.FindAsync(model.Email, model.Password);
             switch (result)
             {
-
                 case SignInStatus.Success:
                     return RedirectToAction("Manage", "Home");
                 case SignInStatus.Failure:
@@ -96,7 +92,7 @@ namespace Longhorn_Bank.Controllers
             }
         }
 
-
+       
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -105,7 +101,7 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
-        //Register
+        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -114,20 +110,20 @@ namespace Longhorn_Bank.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO: Add fields to user here so they will be saved to do the database
-                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, DOB = model.DOB, PhoneNumber = model.PhoneNumber, Address = model.Address, City = model.City, State = model.State, ZipCode = model.ZipCode, };
+                //0TODO: Add fields to user here so they will be saved to do the database
+                var user = new AppUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleInitial = model.MiddleInitial, LastName = model.LastName, Address = model.Address, City = model.City, State = model.State, ZipCode = model.ZipCode , PhoneNumber = model.PhoneNumber, DOB = model.DOB };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                //TODO:  Once you get roles working, you may want to add users to roles upon creation
-                // await UserManager.AddToRoleAsync(user.Id, "User");
+                //0TODO:  Once you get roles working, you may want to add users to roles upon creation
+                await UserManager.AddToRoleAsync(user.Id, "Users");
                 // --OR--
                 // await UserManager.AddToRoleAsync(user.Id, "Employee");
 
 
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
