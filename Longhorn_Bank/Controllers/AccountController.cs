@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataProtection;
 using Longhorn_Bank.Models;
 using System.Net;
 using System.Data.Entity;
@@ -17,6 +19,9 @@ namespace Longhorn_Bank.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        public enum ManageMessageId { AddPhoneSuccess, ResetPasswordSuccess, SetTwoFactorSuccess, RemoveLoginSuccess, RemovePhoneSuccess }
+
+        private AppDbContext db = new AppDbContext();
         private ApplicationSignInManager _signInManager;
         private AppUserManager _userManager;
 
@@ -53,6 +58,10 @@ namespace Longhorn_Bank.Controllers
                 _userManager = value;
             }
         }
+
+        //
+
+
 
         //
         // GET: /Account/Login
@@ -144,40 +153,81 @@ namespace Longhorn_Bank.Controllers
         }
 
         //
-        // GET: /Account/ForgotPassword
+        // GET: /Account/ChangePassword
         [AllowAnonymous]
-        public ActionResult ForgotPassword()
+        public ActionResult ChangePassword()
         {
             return View();
         }
 
-        //
-        // POST: /Account/ForgotPassword
+
+        // POST: /Account/ChangePassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-                {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
-                }
-
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                return View(model);
             }
-
-            // If we got this far, something failed, redisplay form
+            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.PasswordSuccess });
+            }
+            AddErrors(result);
             return View(model);
         }
+
+        //TODO: Ask about MULTIPLE VIEWS
+        // GET: /Account/EmployeeChangePassword
+        [AllowAnonymous]
+        public ActionResult EmployeeChangePassword()
+        {
+
+
+            return View();
+        }
+
+
+        // POST: /Account/EmployeeChangePassword
+        [HttpPost]
+        [Authorize(Roles = "Employee,Manager")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EmployeeChangePassword(EmployeeChangePasswordViewModel model)
+        {
+            //NOTE: The next 3 lines are stackoverflow code that I don't fully understand
+            var provider = new DpapiDataProtectionProvider("TuneOrange");
+
+            UserManager.UserTokenProvider = new DataProtectorTokenProvider<AppUser>(provider.Create("EmployeeChangePasswordViewModel"));
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            string resetToken = await UserManager.GeneratePasswordResetTokenAsync(User.Identity.GetUserId());
+            IdentityResult passwordChangeResult = await UserManager.ResetPasswordAsync(User.Identity.GetUserId(), resetToken, model.NewPassword);
+            if (passwordChangeResult.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.ResetPasswordSuccess });
+            }
+            AddErrors(passwordChangeResult);
+            return View(model);
+        }
+
 
         //
         // GET: /Account/ForgotPasswordConfirmation
@@ -190,9 +240,9 @@ namespace Longhorn_Bank.Controllers
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
+        public ActionResult ResetPassword()
         {
-            return code == null ? View("Error") : View();
+            return View();
         }
 
         //
@@ -206,19 +256,15 @@ namespace Longhorn_Bank.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null)
+            var user = await UserManager.FindByNameAsync(User.Identity.GetUserId());
+            if (user != null)
             {
-                // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            AddErrors(result);
-            return View();
+            return RedirectToAction("Index", new { Message = ManageMessageId.ResetPasswordSuccess });
+        }
+        AddErrors(result);
+        return View(model);
         }
 
         //

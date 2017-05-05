@@ -73,6 +73,7 @@ namespace Longhorn_Bank.Controllers
             AppUser SelectedUser = db.Users.Find(Id2);
             UserAccounts.Checkings = UserAccounts.Checkings;
             Int32 AccNum = Utilities.BankAccountNumber.AccountNumberList(db);
+            string MaskCheckingNumber = AccNum.ToString();
            
       
             @checking.CheckingsAccountNumber = AccNum;
