@@ -58,5 +58,7 @@ namespace Longhorn_Bank.Models
         public virtual List<StockPortfolio> StockPortfolios { get; set; }
 
         public virtual AppUser User { get; set; }
+
+        public virtual Disputes Dispute { get; set; }
     }
 }
