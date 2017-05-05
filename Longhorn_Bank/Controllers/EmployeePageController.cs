@@ -7,18 +7,22 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Longhorn_Bank.Models;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Longhorn_Bank.Controllers
 {
     public class EmployeePageController : Controller
     {
-        private AppDbContext db = new AppDbContext();
+        public AppDbContext db = new AppDbContext();
 
         // GET: EmployeePage
         public ActionResult Index()
         {
-            var user = from u in db.Users where (User.IsInRole( "Employee")) select u;
-            return View(user.ToList());
+            //var user = from u in db.Users select u;
+            //var query = from r in db.AppRoles select r;
+            //List<AppUser> Employees = query.Where(r.RoleName = "Manager");
+            //User.IsInRole("Employee") || User.Identity.Name == "Manager"));
+            return View(/*user.ToList()*/);
         }
 
         // GET: EmployeePage/Details/5
