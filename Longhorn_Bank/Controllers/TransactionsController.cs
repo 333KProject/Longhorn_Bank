@@ -98,6 +98,7 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
+
         // POST: Transactions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -112,15 +113,9 @@ namespace Longhorn_Bank.Controllers
 
             //find the users associated selected account
             Checking SelectedCheckings = SelectedCheckingDepositAccount;
-            //if (SelectedCheckings.CheckingsBalance == )
-            //{
 
-            //}
             //create variable/link to that accounts balance
-            Decimal AccountsBalance = SelectedCheckings.CheckingsBalance;
 
-            //Int32 AccNum = Utilities.BankAccountNumber.AccountNumberList(db);
-            SelectedCheckingDepositAccount.CheckingsBalance = transaction.Amount + AccountsBalance;
 
             transaction.TransactionNumber = 1000;
             Int32 NewTransactionNumber = transaction.TransactionNumber += 1;
