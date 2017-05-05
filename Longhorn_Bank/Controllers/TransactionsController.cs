@@ -86,7 +86,7 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Deposits([Bind(Include = "TransactionID,TransactionNumber,Date,Description,TransactionType,EmployeeComment,Status,Amount")] Checking SelectedCheckings, Decimal Amount, Transaction transaction)
+        public ActionResult Deposits([Bind(Include = "TransactionID,TransactionNumber,Date,Description,TransactionType,EmployeeComment,Status,Amount")] Checking SelectedCheckingDepositAccount, Decimal Amount, Transaction transaction)
         {
             string Id4 = User.Identity.GetUserId();
             AppUser UserAccounts = db.Users.Find(Id4);
@@ -94,13 +94,16 @@ namespace Longhorn_Bank.Controllers
             UserAccounts.Checkings = UserAccounts.Checkings;
 
             //find the users associated selected account
-            Checking SelectedCheckingDepositAccount = SelectedCheckings;
+            Checking SelectedCheckings = SelectedCheckingDepositAccount;
+            //if (SelectedCheckings.CheckingsBalance == )
+            //{
 
+            //}
             //create variable/link to that accounts balance
-            Decimal AccountsBalance = SelectedCheckingDepositAccount.CheckingsBalance;
+            Decimal AccountsBalance = SelectedCheckings.CheckingsBalance;
 
             //Int32 AccNum = Utilities.BankAccountNumber.AccountNumberList(db);
-            SelectedCheckingDepositAccount.CheckingsBalance = Amount + AccountsBalance;
+            SelectedCheckingDepositAccount.CheckingsBalance = transaction.Amount + AccountsBalance;
 
             transaction.TransactionNumber = 1000;
             Int32 NewTransactionNumber = transaction.TransactionNumber += 1;
