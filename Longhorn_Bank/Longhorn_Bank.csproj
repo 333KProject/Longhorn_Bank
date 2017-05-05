@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckingsController.cs" />
     <Compile Include="Controllers\DepositsController.cs" />
+    <Compile Include="Controllers\EmployeePageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRAsController.cs" />
     <Compile Include="Controllers\PayeesController.cs" />
@@ -328,7 +329,11 @@
     <Content Include="Views\Payees\MakeAPayment.cshtml" />
     <Content Include="Views\Payees\ExistingPayee.cshtml" />
     <Content Include="Views\Withdrawals\Index.cshtml" />
-    <Content Include="Views\UserHomePage\Edit.cshtml" />
+    <Content Include="Views\EmployeePage\Create.cshtml" />
+    <Content Include="Views\EmployeePage\Delete.cshtml" />
+    <Content Include="Views\EmployeePage\Details.cshtml" />
+    <Content Include="Views\EmployeePage\Edit.cshtml" />
+    <Content Include="Views\EmployeePage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
