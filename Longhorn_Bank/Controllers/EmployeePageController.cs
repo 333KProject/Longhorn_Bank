@@ -169,5 +169,11 @@ namespace Longhorn_Bank.Controllers
         {
             return RedirectToAction("Index", "RoleAdmin");
         }
+       
+        [Authorize(Roles = "Manager, Employee")]
+        public ActionResult EmployeeHomePage()
+        {
+            return View();
+        }
     }
 }
