@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+
 
 namespace Longhorn_Bank.Models
 {
@@ -11,6 +13,7 @@ namespace Longhorn_Bank.Models
 
     public class Disputes
     {
+        [Key]
         public string DisputeID { get; set; }
 
         public string DisputeComments { get; set; }
