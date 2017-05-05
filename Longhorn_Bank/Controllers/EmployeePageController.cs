@@ -138,6 +138,10 @@ namespace Longhorn_Bank.Controllers
             return View();
         } 
 
+        public ActionResult ManagerHomePage()
+        {
+            return View();
+        }
 
     }
 }
