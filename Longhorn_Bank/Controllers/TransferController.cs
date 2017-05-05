@@ -30,7 +30,7 @@ namespace Longhorn_Bank.Controllers
                 int NewAccountBalanceTo = TransferAmount + AccountBalanceTo;
                 int NewAccountBalanceFrom = TransferAmount - AccountBalanceFrom;
             }
-
+            return View();
         }
 
 
