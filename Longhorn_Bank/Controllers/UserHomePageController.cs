@@ -76,7 +76,7 @@ namespace Longhorn_Bank.Controllers
                 userToChange.State = @user.State;
                 userToChange.ZipCode = @user.ZipCode;
                 userToChange.Email = @user.Email;
-                userToChange.UserName = @user.UserName;
+                userToChange.UserName = @user.Email;
                 userToChange.PhoneNumber = @user.PhoneNumber;
 
                 db.Entry(userToChange).State = EntityState.Modified;
