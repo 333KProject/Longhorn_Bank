@@ -18,21 +18,21 @@ namespace Longhorn_Bank.Controllers
         // GET: Checkings
         public ActionResult Index()
         {
-            string strId = User.Identity.GetUserId();
-            var query = from a in db.CheckingsDbSet
-                        select a;
-            query = query.Where(a => a.User.Id == strId);
-            List<string> CheckList = null;
-            foreach (var a in query)
-            {
-                string string1 = Convert.ToString(a);
-                CheckList.Add(string1);
-            }
+            //string strId = User.Identity.GetUserId();
+            //var query = from a in db.CheckingsDbSet
+            //            select a;
+            //query = query.Where(a => a.User.Id == strId);
+            //List<string> CheckList = null;
+            //foreach (var a in query)
+            //{
+            //    string string1 = Convert.ToString(a);
+            //    CheckList.Add(string1);
+            //}
 
-            ViewBag.CheckingNums = CheckList;
+            //ViewBag.CheckingNums = CheckList;
             //List<string> AccNum = Utilities.BankAccountNumber.HideAccountNumber(CheckingsAccNum);
             
-            return View();
+            return View(db.CheckingsDbSet.ToList());
         }
 
         // GET: Checkings/Details/5
