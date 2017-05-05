@@ -59,6 +59,7 @@ namespace Longhorn_Bank.Models
         public DbSet<Transaction> TransactionsDbSet { get; set;  }
         public DbSet<AvailableStocks> AvailableStocks { get; set; }
         public DbSet<Payee> PayeeDbSet { get; set; }
+        public DbSet<Disputes> Disputes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

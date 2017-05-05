@@ -70,6 +70,23 @@ namespace Longhorn_Bank.Controllers
             return View(transaction);
         }
 
+        //Get: Transactions/Withdrawals
+        public ActionResult Withdrawals()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Withdrawals([Bind(Include = "TransactionID, TransactionNumber, Date, Description, TransactionType, EmployeeComment, Status, Amount")] Transaction transaction)
+        {
+            return View();
+        }
+
+
+
+
+
         // GET: Transactions/Create
         public ActionResult Deposits()
         {
@@ -493,6 +510,40 @@ namespace Longhorn_Bank.Controllers
             return AllStockPortfolioDeposits;
         }
 
+        //GET Disputes
+        public ActionResult Disputes()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        //POST Disputes 
+        public ActionResult Disputes(AppUser Id)
+        {
+            return View(Id);
+        }
+
+
+
+        public ActionResult SeeAllTransactions()
+        {                   
+            string Id = User.Identity.GetUserId();
+
+            AppUser UserAccounts = db.Users.Find(Id);
+
+            UserAccounts.Checkings = UserAccounts.Checkings;
+            UserAccounts.Savings = UserAccounts.Savings;
+            UserAccounts.IRA = UserAccounts.IRA;
+            UserAccounts.StockPortfolio = UserAccounts.StockPortfolio;
+
+            return View(UserAccounts);
+        }
+    }
+
+
+
+
+
         
 
         //public SelectList GetAllUsers()
@@ -515,4 +566,4 @@ namespace Longhorn_Bank.Controllers
         //    return list;
         //}
     }
-}
+

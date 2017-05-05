@@ -81,7 +81,10 @@ Displaying @ViewBag.Returned out of @ViewBag.All Transactions
             @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) |           
         </td>
     </tr>
-    @Html.ActionLink("Dispute Transaction?", "Disputes", "Transactions", null, new { @class = "btn btn-info" })
+    
 }
 
 </table>
+
+@Html.ActionLink("Dispute Transaction?", "Disputes", "Transactions", null, new { @class = "btn btn-info" })
+()
