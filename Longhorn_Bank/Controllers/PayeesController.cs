@@ -7,7 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Longhorn_Bank.Models;
-
+using Longhorn_Bank.Migrations;
+using Microsoft.AspNet.Identity;
 
 namespace Longhorn_Bank.Controllers
 {
@@ -51,31 +52,21 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] AppUser User, int[] SelectedPayee)
+        public ActionResult Create([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")]  string Id, Payee @payee, AppUser UserAccount, AppDbContext db)
         {
-
+            string Id3 = User.Identity.GetUserId();
+            AppUser UserAccounts = db.Users.Find(Id3);
+            AppUser SelectedUser = db.Users.Find(Id3);
+            //@payee.AppUsers = SelectedUser;
             if (ModelState.IsValid)
             {
-
-                AppUser Usertochange = db.Users.Find(@User.Id);
-
-                if (SelectedPayee != null)
-                {
-                    foreach (int PayeeId in SelectedPayee)
-                    {
-                        Payee payeetoadd = db.PayeeDbSet.Find(PayeeId);
-                        Usertochange.Payees.Add(payeetoadd);
-                        db.PayeeDbSet.Add(@payeetoadd);
-                    }
-                }
-
+                db.PayeeDbSet.Add(@payee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.AllPayees = GetAllPayees();
-
-            return View();
+            return View(@payee);
         }
 
         // GET: Payees/Edit/5
