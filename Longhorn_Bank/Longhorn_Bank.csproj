@@ -334,6 +334,8 @@
     <Content Include="Views\EmployeePage\Details.cshtml" />
     <Content Include="Views\EmployeePage\Edit.cshtml" />
     <Content Include="Views\EmployeePage\Index.cshtml" />
+    <Content Include="Views\EmployeePage\ViewAvailableStocks.cshtml" />
+    <Content Include="Views\EmployeePage\AddNewStock.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

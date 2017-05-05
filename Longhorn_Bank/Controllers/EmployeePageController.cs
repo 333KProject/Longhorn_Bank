@@ -17,8 +17,7 @@ namespace Longhorn_Bank.Controllers
         // GET: EmployeePage
         public ActionResult Index()
         {
-            var appUsers = db.Users.Include(a => a.IRA).Include(a => a.StockPortfolio);
-            return View(appUsers.ToList());
+            return View();
         }
 
         // GET: EmployeePage/Details/5
@@ -127,5 +126,17 @@ namespace Longhorn_Bank.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ViewAvailableStocks()
+        {
+            return View(db.AvailableStocks.ToList());
+        }
+        public ActionResult AddNewStock()
+        {
+
+            return View();
+        } 
+
+
     }
 }
