@@ -259,9 +259,13 @@
     <Compile Include="Migrations\201705051104297_Transactions.Designer.cs">
       <DependentUpon>201705051104297_Transactions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705051228067_yeet.cs" />
-    <Compile Include="Migrations\201705051228067_yeet.Designer.cs">
-      <DependentUpon>201705051228067_yeet.cs</DependentUpon>
+    <Compile Include="Migrations\201705051147238_key.cs" />
+    <Compile Include="Migrations\201705051147238_key.Designer.cs">
+      <DependentUpon>201705051147238_key.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051230283_deposits.cs" />
+    <Compile Include="Migrations\201705051230283_deposits.Designer.cs">
+      <DependentUpon>201705051230283_deposits.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
@@ -402,8 +406,11 @@
     <EmbeddedResource Include="Migrations\201705051104297_Transactions.resx">
       <DependentUpon>201705051104297_Transactions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705051228067_yeet.resx">
-      <DependentUpon>201705051228067_yeet.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705051147238_key.resx">
+      <DependentUpon>201705051147238_key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051230283_deposits.resx">
+      <DependentUpon>201705051230283_deposits.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

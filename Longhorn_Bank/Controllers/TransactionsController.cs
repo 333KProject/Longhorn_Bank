@@ -46,9 +46,9 @@ namespace Longhorn_Bank.Controllers
             //ViewBag for total customer count
             ViewBag.All = db.TransactionsDbSet.ToList().Count;
             //ViewBag for SelectedCustomers count
-            ViewBag.Returned = SelectedTransactions.Count;
-            //Return view of SelectedCustomers  
-
+            //ViewBag.Returned = SelectedTransactions.Count;
+            ////Return view of SelectedCustomers  
+            //Transaction.Date = DateTime.Parse(SelectedTransations.Date);
             return View(SelectedTransactions);
             
         }
@@ -83,7 +83,7 @@ namespace Longhorn_Bank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Deposits([Bind(Include = "TransactionID,TransactionNumber,Date,Description,TransactionType,EmployeeComment,Status,Amount")] Transaction @transaction, AppUser UserAccount, string Id, AppDbContext db)
+        public ActionResult Deposits([Bind(Include = "TransactionID,TransactionNumber,Date,Description,TransactionType,EmployeeComment,Status,Amount")] Transaction transaction)
         {
             string Id4 = User.Identity.GetUserId();
             AppUser UserAccounts = db.Users.Find(Id4);
@@ -91,18 +91,17 @@ namespace Longhorn_Bank.Controllers
             UserAccounts.Checkings = UserAccounts.Checkings;
             //Int32 AccNum = Utilities.BankAccountNumber.AccountNumberList(db);
 
-
-            @transaction.TransactionNumber = 1000;
-            Int32 NewTransactionNumber = @transaction.TransactionNumber += 1;
+            transaction.TransactionNumber = 1000;
+            Int32 NewTransactionNumber = transaction.TransactionNumber += 1;
 
             
-            @transaction.User = SelectedUser;
-            //@transaction.Date = DateTime.Parse(date);
+            transaction.User = SelectedUser;
+           
 
             if (ModelState.IsValid)
             {
                 
-                db.TransactionsDbSet.Add(@transaction);
+                db.TransactionsDbSet.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -176,119 +175,119 @@ namespace Longhorn_Bank.Controllers
             base.Dispose(disposing);
         }
 
-        //detailed search method for transaction type
-        public ActionResult DetailedSearch ()
-        {
-            //create list for transaction type
-            List<Transaction> Transactions = db.TransactionsDbSet.ToList();
-            Transaction SelectNoTransactions = new Models.Transaction() { TransactionID = 0, TransactionName = "All Transactions" };
-            Transactions.Add(SelectNoTransactions);
+        ////detailed search method for transaction type
+        //public ActionResult DetailedSearch ()
+        //{
+        //    //create list for transaction type
+        //    List<Transaction> Transactions = db.TransactionsDbSet.ToList();
+        //    Transaction SelectNoTransactions = new Models.Transaction() { TransactionID = 0, TransactionName = "All Transactions" };
+        //    Transactions.Add(SelectNoTransactions);
 
-            //select list
-            SelectList ALLTransactions = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "TransactionType");
-            ViewBag.Transactions = ALLTransactions;
-            return View("DetailedSearch");
-        }
+        //    //select list
+        //    SelectList ALLTransactions = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "TransactionType");
+        //    ViewBag.Transactions = ALLTransactions;
+        //    return View("DetailedSearch");
+        //}
 
-        //detailed search method for date
-        public ActionResult DateSearch()
-        {
-            //create list for date
-            List<Transaction> Transactions = db.TransactionsDbSet.ToList();
-            Transaction SelectNoDates = new Models.Transaction() { TransactionID = 0, TransactionName = "All Dates" };
-            Transactions.Add(SelectNoDates);
+        ////detailed search method for date
+        //public ActionResult DateSearch()
+        //{
+        //    //create list for date
+        //    List<Transaction> Transactions = db.TransactionsDbSet.ToList();
+        //    Transaction SelectNoDates = new Models.Transaction() { TransactionID = 0, TransactionName = "All Dates" };
+        //    Transactions.Add(SelectNoDates);
 
-            //select list
-            SelectList ALLDates = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "Date");
-            ViewBag.Transactions = ALLDates;
-            return View("DetailedSearch");
-        }
+        //    //select list
+        //    SelectList ALLDates = new SelectList(Transactions.OrderBy(t => t.TransactionID), "TransactionID", "Date");
+        //    ViewBag.Transactions = ALLDates;
+        //    return View("DetailedSearch");
+        //}
 
-        //search method for description of transaction
-        public ActionResult SearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, int? TransactionNumber, DateTime? Date, DateTime? CustomDateRange1, DateTime? CustomDateRange2, AmountRange? SelectedAmountRange, DateRange? SelectedDateRange)
-        {
-            //create variable
-            var query = from t in db.TransactionsDbSet select t;
+        ////search method for description of transaction
+        //public ActionResult SearchResults (string SearchString, int? SelectedTransaction, string Description, decimal? Amount, decimal? Amount1, decimal? Amount2, int? TransactionNumber, DateTime? Date, DateTime? CustomDateRange1, DateTime? CustomDateRange2, AmountRange? SelectedAmountRange, DateRange? SelectedDateRange)
+        //{
+        //    //create variable
+        //    var query = from t in db.TransactionsDbSet select t;
 
-            //code for searching descriiption
-            if (SearchString == null || SearchString == "")
-            {
+        //    //code for searching descriiption
+        //    if (SearchString == null || SearchString == "")
+        //    {
 
-            }
-            else
-            {
-                ViewBag.SearchString = "Search string is " + SearchString;
-                query = query.Where(t => t.Description.Contains(SearchString));
-            }
+        //    }
+        //    else
+        //    {
+        //        ViewBag.SearchString = "Search string is " + SearchString;
+        //        query = query.Where(t => t.Description.Contains(SearchString));
+        //    }
 
-            //transaction type search criteria
-            if (SelectedTransaction != 0)
-            {
-                query = query.Where(t => t.TransactionID == SelectedTransaction);
-            }
-            else
-            {
+        //    //transaction type search criteria
+        //    if (SelectedTransaction != 0)
+        //    {
+        //        query = query.Where(t => t.TransactionID == SelectedTransaction);
+        //    }
+        //    else
+        //    {
 
-            }
+        //    }
 
-            //amount search criteria
-            if ((Amount == null || Amount.ToString() == ""))
-            {
-            }
-            else if (SelectedAmountRange == AmountRange.A)
-            {
-                query = query.Where(t => t.Amount >= 0 && t.Amount <= 100);
-            }
-            else if (SelectedAmountRange == AmountRange.B)
-            {
-                query = query.Where(t => t.Amount > 100 && t.Amount <=200);
-            }
-            else if (SelectedAmountRange == AmountRange.C)
-            {
-                query = query.Where(t => t.Amount > 200 && t.Amount <= 300);
-            }
-            else if (SelectedAmountRange == AmountRange.D)
-            {
-                query = query.Where(t => t.Amount > 300);
-            }
-            else
-            {
-                query = query.Where(t => t.AmountStart >= Amount1);
-                query = query.Where(t => t.AmountEnd <= Amount2);
-            }
-            //TO DO: connect enum and custom amount entry 
-            query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
+        //    //amount search criteria
+        //    if ((Amount == null || Amount.ToString() == ""))
+        //    {
+        //    }
+        //    else if (SelectedAmountRange == AmountRange.A)
+        //    {
+        //        query = query.Where(t => t.Amount >= 0 && t.Amount <= 100);
+        //    }
+        //    else if (SelectedAmountRange == AmountRange.B)
+        //    {
+        //        query = query.Where(t => t.Amount > 100 && t.Amount <=200);
+        //    }
+        //    else if (SelectedAmountRange == AmountRange.C)
+        //    {
+        //        query = query.Where(t => t.Amount > 200 && t.Amount <= 300);
+        //    }
+        //    else if (SelectedAmountRange == AmountRange.D)
+        //    {
+        //        query = query.Where(t => t.Amount > 300);
+        //    }
+        //    else
+        //    {
+        //        query = query.Where(t => t.AmountStart >= Amount1);
+        //        query = query.Where(t => t.AmountEnd <= Amount2);
+        //    }
+        //    //TO DO: connect enum and custom amount entry 
+        //    query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
 
-            //date search criteria
-            if ((Date == null || Date.ToString() == ""))
-            {
-            }
-            else if (SelectedDateRange == DateRange.last15days)
-            {
-                query = query.Where(t => t.TimeStamp <= t.DateForPast15);
-            }
-            else if (SelectedDateRange == DateRange.last30days)
-            {
-                query = query.Where(t => t.TimeStamp <= t.DateForPast30);
-            }
-            else if (SelectedDateRange == DateRange.last60days)
-            {
-                query = query.Where(t => t.TimeStamp <= t.DateForPast60);
-            }
-            else
-            {
-                query = query.Where(t => t.CustomDateRangeStart >= CustomDateRange1);
-                query = query.Where(t => t.CustomDateRangeEnd <= CustomDateRange2);
-            }
+        //    //date search criteria
+        //    if ((Date == null || Date.ToString() == ""))
+        //    {
+        //    }
+        //    else if (SelectedDateRange == DateRange.last15days)
+        //    {
+        //        query = query.Where(t => t.TimeStamp <= t.DateForPast15);
+        //    }
+        //    else if (SelectedDateRange == DateRange.last30days)
+        //    {
+        //        query = query.Where(t => t.TimeStamp <= t.DateForPast30);
+        //    }
+        //    else if (SelectedDateRange == DateRange.last60days)
+        //    {
+        //        query = query.Where(t => t.TimeStamp <= t.DateForPast60);
+        //    }
+        //    else
+        //    {
+        //        query = query.Where(t => t.CustomDateRangeStart >= CustomDateRange1);
+        //        query = query.Where(t => t.CustomDateRangeEnd <= CustomDateRange2);
+        //    }
  
-            query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
+        //    query = query.OrderBy(t => t.TransactionNumber).ThenBy(t => t.Amount);
 
-            List<Transaction> SelectedTransactions = query.ToList();
-            ViewBag.All = db.TransactionsDbSet.ToList().Count;
-            ViewBag.Returned = SelectedTransactions.Count;
+        //    List<Transaction> SelectedTransactions = query.ToList();
+        //    ViewBag.All = db.TransactionsDbSet.ToList().Count;
+        //    ViewBag.Returned = SelectedTransactions.Count;
 
-            return View("Index", SelectedTransactions);
-        }
+        //    return View("Index", SelectedTransactions);
+        //}
 
         public ActionResult DepositResults(int SelectedCheckingDepositAccount, int SelectedSavingsDepositAccount, int SelectedIRADepositAccount, int SelectedStockPortfolioDepositAccount, DateTime Date, string DepositAmount, string DepositDescription)
         {

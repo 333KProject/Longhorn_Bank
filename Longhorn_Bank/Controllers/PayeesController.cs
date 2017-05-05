@@ -19,7 +19,20 @@ namespace Longhorn_Bank.Controllers
         // GET: Payees
         public ActionResult Index()
         {
-            return View(db.PayeeDbSet.ToList());
+            
+            string stringId = User.Identity.GetUserId();
+            var query = from a in db.PayeeDbSet select a;
+            query = query.Where(a => a.AppUsers.ToList()== stringId);
+            List<string> PayeeList = null;
+            foreach (var a in query)
+            {
+                string string2 = Convert.ToString(a);
+                PayeeList.Add(string2);
+            }
+
+            ViewBag.UserPayees = PayeeList;
+
+            return View();
         }
 
         // GET: Payees/Details/5

@@ -9,7 +9,7 @@ namespace Longhorn_Bank.Models
     public enum TransType { Deposit, Withdrawal, Transfer }
     public class Transaction
     {
-       
+        [Key]
         public Int32 TransactionID { get; set; }
 
         public Int32 TransactionNumber { get; set; }
@@ -21,12 +21,12 @@ namespace Longhorn_Bank.Models
         [Required(ErrorMessage = "Please enter a valid date.")]
         [Display(Name = "Date of Transaction")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0-YYYY-MM-dd", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0-MM-dd-YYYY", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
-        public DateTime CustomDateRangeStart { get; set; }
-
-        public DateTime CustomDateRangeEnd { get; set; }
+        //public DateTime CustomDateRangeStart { get; set; }
+        
+        //public DateTime CustomDateRangeEnd { get; set; }
 
         [Required(ErrorMessage = "Please enter a description")]
         public String Description { get; set; }
@@ -50,10 +50,10 @@ namespace Longhorn_Bank.Models
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
-        public DateTime TimeStamp = DateTime.Now;
-        public DateTime DateForPast15 = DateTime.Now.AddDays(-15);
-        public DateTime DateForPast30 = DateTime.Now.AddDays(-30);
-        public DateTime DateForPast60 = DateTime.Now.AddDays(-60);
+       // public DateTime TimeStamp = DateTime.Now;
+       //public DateTime DateForPast15 = DateTime.Now.AddDays(-15);
+       // public DateTime DateForPast30 = DateTime.Now.AddDays(-30);
+       // public DateTime DateForPast60 = DateTime.Now.AddDays(-60);
 
         //navigational properties
         public virtual List<Checking> Checkings { get; set; }
