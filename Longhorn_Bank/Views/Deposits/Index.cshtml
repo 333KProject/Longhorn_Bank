@@ -1,6 +1,6 @@
 ﻿@using Longhorn_Bank.Models
 
-@model AppUser
+@model Transaction
 
 @{
     ViewBag.Title = "Index";
@@ -34,9 +34,23 @@
                 <br />
                 Deposit Account: @Html.DropDownList("SelectedCheckingDepositAccount", (SelectList)ViewBag.AllCheckingDeposits, new {  @class = "form-control"})
                 <br />
-                Deposit Amount: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
+                <div class="form-group">
+                    @*<div class="col-md-10">*@
+                Date: @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    @*</div>*@
+                </div>
+                <br />
+                Deposit Amount: @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                <br />
+                Description: @Html.TextBox("SearchString", null, new { @class = "form-control" })
             </p>
         }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
     </div>
     <div id="savings" class="tab-pane fade">
         @using (Html.BeginForm("Index", "Deposits", FormMethod.Get))

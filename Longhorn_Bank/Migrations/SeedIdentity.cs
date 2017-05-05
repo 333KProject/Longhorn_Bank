@@ -45,6 +45,9 @@ namespace Longhorn_Bank.Migrations
             {
                 roleManager.Create(new AppRole(Employee));
             }
+
+           
+
             //create users
             String stru1Email = "cbaker@example.com";
             AppUser u1 = new AppUser();
