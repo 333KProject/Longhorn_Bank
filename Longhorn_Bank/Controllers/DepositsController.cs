@@ -23,7 +23,7 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
-        public ActionResult DepositResults(int SelectedCheckingDepositAccount, int SelectedSavingsDepositAccount, int SelectedIRADepositAccount, int SelectedStockPortfolioDepositAccount)
+        public ActionResult DepositResults(int SelectedCheckingDepositAccount, int SelectedSavingsDepositAccount, int SelectedIRADepositAccount, int SelectedStockPortfolioDepositAccount, string Date, string DepositAmount, string DepositDescription)
         {
             string Id = User.Identity.GetUserId();
             AppUser UserAccounts = db.Users.Find(Id);
@@ -80,6 +80,56 @@ namespace Longhorn_Bank.Controllers
                 ViewBag.SelectedStockPortfolioDepositAccount = StockPortfolioToDisplay.Name;
             }
 
+            //textbox for date of transaction that is entered in by user
+            if(Date == null || Date == "") //if date is not entered
+            {
+                ViewBag.Date = "Date is null";
+            }
+            else //they entered in a date
+            {
+                ViewBag.Date = "The date is " + Date;
+            }
+
+            //textbox for deposit amount
+            if (DepositAmount != null && DepositAmount != "")
+            {
+                Decimal decDepositAmount;
+                try
+                {
+                    decDepositAmount = Convert.ToDecimal(DepositAmount);
+                }
+                catch
+                {
+                    ViewBag.Message = DepositAmount + "is not a valid input. Please try again.";
+
+                    //re-populate drop-downs
+                    ViewBag.AllCheckingDeposits = GetAllCheckingDepositAccounts();
+                    ViewBag.AllSavingsDeposits = GetAllSavingsDepositAccounts();
+                    ViewBag.AllIRADeposits = GetIRADepositAccount();
+                    ViewBag.AllStockPortfolioDeposits = GetStockPortfolioDepositAccount();
+
+                    //send user back to home page
+                    return View("Index");
+                }
+
+                //add value to view bag
+                ViewBag.UpdatedDepositAmount = "The updated deposit amount is " + decDepositAmount.ToString("n2");
+            }
+            else //they didn't enter in a deposit amount
+            {
+                ViewBag.UpdatedDepositAmount = "No deposit amount was entered.";
+            }
+
+                //textbox for description of deposit transaction
+                if (DepositDescription == null || DepositDescription == "") //if date is not entered
+                {
+                    ViewBag.DepositDescription = "Description is null";
+                }
+                else //they entered in a date
+                {
+                    ViewBag.DepositDescription = "Description " + DepositDescription;
+                }
+            
 
             ViewData["AllCheckingDeposits"] = SelectedCheckingDepositAccount;
             ViewData["AllSavingsDeposits"] = SelectedSavingsDepositAccount;
@@ -155,198 +205,5 @@ namespace Longhorn_Bank.Controllers
             SelectList AllStockPortfolioDeposits = new SelectList(StockPortfolioDeposits.OrderBy(a => a.StockPortfolioID), "StockPortfolioID", "Name");
             return AllStockPortfolioDeposits;
         }
-
-        ////code for checking deposit accounts drop-down list
-        ////selected checking deposit account is the selected value from the drop-down list
-        //string Id = User.Identity.GetUserId();
-
-        //AppUser UserAccounts = db.Users.Find(Id);
-
-
-        ////UserAccounts.Checkings = UserAccounts.Checkings;
-
-        ////var query = from a in db.CheckingsDbSet
-        ////            where Id == User.Identity.GetUserId()
-        ////            select a.CheckingsName;
-
-        //if (SelectedCheckingDepositAccount == null)
-        //{
-        //    ViewBag.SelectedCheckingDepositAccount = "No deposit account selected";
-        //}
-        //else
-        //{
-        //    List<Checking> CheckingsList = UserAccounts.Checkings;
-        //    SelectList AllCheckings = new SelectList(CheckingsList.OrderBy(c => c.CheckingID), "CheckingID", "CheckingsName");
-        //    //IEnumerable<Checking> AllCheckingDepositAccounts = UserAccounts.Checkings;
-        //    //IEnumerable<Checking> CheckingsDisplay = AllCheckingDepositAccounts.OrderBy(c => c.CheckingsName);
-        //    ViewBag.AllCheckingsAccounts = AllCheckings;
-        //    Checking CheckingDepositAccountToDisplay = CheckingsList.Find(c => c.CheckingsName == SelectedCheckingDepositAccount);
-        //    ViewBag.SelectedCheckingDepositAccount = "The selected deposit account is " + CheckingDepositAccountToDisplay.CheckingsName;
-        //}
-        //return View();
-
-        //ViewBag.AllCheckingDepositAccounts = GetAllCheckingDepositAccounts();
-        //ViewBag.AllSavingsDepositAccounts = GetAllSavingsDepositAccounts();
-        //ViewBag.IRADepositAccount = GetIRADepositAccount();
-        //ViewBag.StockPortfolioDepositAccount = GetStockPortfolioDepositAccount();
-        //return View();
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "CheckingID,CheckingsName,CheckingsBalance")] Checking @checking, AppUser UserAccount, string Id, AppDbContext db)
-        //{
-
-        //    string Id2 = User.Identity.GetUserId();
-        //    AppUser UserAccounts = db.Users.Find(Id2);
-        //    AppUser SelectedUser = db.Users.Find(Id2);
-        //    UserAccounts.Checkings = UserAccounts.Checkings;
-        //    Int32 AccNum = Utilities.BankAccountNumber.AccountNumberList(db);
-
-
-        //    @checking.CheckingsAccountNumber = AccNum;
-
-        //    @checking.User = SelectedUser;
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.CheckingsDbSet.Add(@checking);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.AllUsers = GetAllCheckingDepositAccounts();
-        //    return View(@checking);
-        //}
-
-
-
-
-
-        //figure out how to populate with three different types of accounts
-
-        //public ActionResult DepositResults(string DepositAmount, int SelectedCheckingDepositAccount)
-        //{
-        //    //code for checking deposit accounts drop-down list
-        //    //selected checking deposit account is the selected value from the drop-down list
-        //    string Id = User.Identity.GetUserId();
-
-        //    AppUser UserAccounts = db.Users.Find(Id);
-
-        //    UserAccounts.Checkings = UserAccounts.Checkings;
-
-        //    ////var query = from a in db.CheckingsDbSet
-        //    ////            select a.User.Id;
-
-        //    List<Checking> AllCheckingDepositAccounts = UserAccounts.Checkings;
-
-        //    Checking CheckingDepositAccountToDisplay = AllCheckingDepositAccounts.Find(a => a.CheckingID == SelectedCheckingDepositAccount);
-        //    ViewBag.SelectedCheckingDepositAccount = "The selected deposit account is " + CheckingDepositAccountToDisplay.CheckingsName;
-        //    return View(AllCheckingDepositAccounts);
-        //}
-
-        //public SelectList GetAllCheckingDepositAccounts()
-        //{
-        //    List<Checking> Checkings = db.CheckingsDbSet.ToList();
-
-        //    //convert list to select list
-        //    SelectList AllCheckingDepositAccounts = new SelectList(Checkings.OrderBy(a => a.CheckingID), "CheckingID", "CheckingsName");
-
-        //    //return the select list
-        //    return AllCheckingDepositAccounts;
-        //}
-
-
-
-
-
-
-        ////TO DO:
-
-        ////they choose no deposit account
-        //var query = from a in GetAllAccounts select a;
-
-        //if (SelectedDepositAccount == 0)
-        //{
-        //    ViewBag.SelectedDepositAccounts = "No account was selected";
-        //}
-        ////they pick a deposit 
-        //else
-        //{
-        //    ViewBag.SelectedDepositAccount = "Account selected was " + SelectedDepositAccount;
-        //    query = query.Where(a => a.);
-
-
-        //}
-
-
-        //code for textbox entry where user entires deposit amount
-        //    if (DepositAmount != null && DepositAmount != "")
-        //    {
-        //        //make sure string is a valid number
-        //        Decimal decDepositAmount;
-
-        //        try
-        //        {
-        //            decDepositAmount = Convert.ToDecimal(DepositAmount);
-        //        }
-        //        catch //this code will display when something is wrong
-        //        {
-        //            //add a message for the viewbag
-        //            ViewBag.Message = DepositAmount + "is not valid amount. Please try again.";
-
-        //            //re-populate dropdown
-        //            //ViewBag.AllDepositAccounts = GetAllDepositAccounts();
-
-        //            //send user back to home page
-        //            return View("Index");
-        //        }
-
-        //        //if deposit amount entered is negative or zero
-        //        if (decDepositAmount < 0 || decDepositAmount == 0)
-        //        {
-        //            //add a message for the viewbag
-        //            ViewBag.Message = DepositAmount + "is not a valid amount. Please try again.";
-
-        //            //re-populate dropdown
-        //            //ViewBag.AllDepositAccounts = GetAllDepositAccounts();
-
-        //            //send user back to home page
-        //            return View("Index");
-        //        }
-
-        //        //TO DO: deposits of over $5000 should be treated the same as when opening the account, meaning they must be approved by a manager before being added to the account balance
-        //        if (decDepositAmount >5000)
-        //        {
-        //            //manager has to approve the transaction - route to manager approval 
-        //        }
-
-
-        //    }
-        //    return View();
-        //}
-
-        //method to populate drop down list of all accounts that the user has and can deposit to
-
-        //public SelectList GetAllAccounts()
-        //{
-
-        //    //var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName).ToList();
-        //    //var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
-        //    //var queryIRAs = (from a in db.IRAsDbSet select a.IRAName);
-        //    //var queryStock = (from a in db.StockPortfoliosDbSet select a.Name);
-
-
-        //    //SelectList allAccountsList = new SelectList(queryCheckings, "CheckingId", "CheckingsName");
-
-        //    //allAccountsList.Add(queryCheckings);
-        //    //allAccountsList.Add(querySavings);
-        //    //allAccountsList.Add(queryIRAs);
-
-
-        //    //return allAccountsList;
-
-        //}{
-
-
-
     }
 }   

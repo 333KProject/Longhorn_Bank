@@ -18,7 +18,10 @@ namespace Longhorn_Bank.Models
         //only used to name variable in search method in transaction controller
         public string TransactionName { get; set; }
 
-        [Required(ErrorMessage = "Please enter a valid date")]
+        [Required(ErrorMessage = "Please enter a valid date.")]
+        [Display(Name = "Date of Transaction")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         public DateTime CustomDateRangeStart { get; set; }
