@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Longhorn_Bank.Models.AvailableStocks>
+
+@{
+    ViewBag.Title = "Available Stocks";
+}
+
+<h2>ViewAvailableStocks</h2>
+
+<p>
+    @Html.ActionLink("Add New Stock", "AddNewStock")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TickerSymbol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockFee)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TickerSymbol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StockType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StockName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StockFee)
+        </td>
+    </tr>
+}
+
+</table>
