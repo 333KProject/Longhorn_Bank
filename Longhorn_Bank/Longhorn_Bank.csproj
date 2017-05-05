@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckingsController.cs" />
     <Compile Include="Controllers\DepositsController.cs" />
+    <Compile Include="Controllers\DisputesController.cs" />
     <Compile Include="Controllers\EmployeePageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IRAsController.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AvailableStocks.cs" />
     <Compile Include="Models\Checking.cs" />
+    <Compile Include="Models\Disputes.cs" />
     <Compile Include="Models\Payee.cs" />
     <Compile Include="Models\StockQuote.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -356,7 +358,7 @@
     <Content Include="Views\EmployeePage\ViewAvailableStocks.cshtml" />
     <Content Include="Views\EmployeePage\AddNewStock.cshtml" />
     <Content Include="Views\EmployeePage\ManagerHomePage.cshtml" />
-    <Content Include="Views\EmployeePage\Disputes.cshtml" />
+    <Content Include="Views\Transactions\Disputes.cshtml" />
     <Content Include="Views\UserHomePage\Edit.cshtml" />
     <Content Include="Views\EmployeePage\EmployeeHomePage.cshtml" />
     <Content Include="Views\Transactions\Transfers.cshtml" />
@@ -370,6 +372,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Deposits\" />
+    <Folder Include="Views\Disputes\" />
     <Folder Include="Views\Withdrawals\" />
   </ItemGroup>
   <ItemGroup>

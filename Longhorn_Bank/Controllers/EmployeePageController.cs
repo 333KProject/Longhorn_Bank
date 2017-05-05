@@ -175,5 +175,11 @@ namespace Longhorn_Bank.Controllers
         {
             return View();
         }
+
+   
+        public ActionResult Disputes()
+        {
+            return View();
+        }
     }
 }

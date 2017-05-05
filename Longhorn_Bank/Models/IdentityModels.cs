@@ -70,6 +70,9 @@ namespace Longhorn_Bank.Models
             modelBuilder.Entity<AppUser>()
                     .HasOptional(f => f.StockPortfolio)
                     .WithRequired(s => s.User);
+            modelBuilder.Entity<Transaction>()
+                .HasOptional(f => f.Dispute)
+                .WithRequired(s => s.Transaction);
            
         }
 
