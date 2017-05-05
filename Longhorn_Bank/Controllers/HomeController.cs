@@ -33,7 +33,7 @@ namespace Longhorn_Bank.Controllers
             }
             if (User.IsInRole("User"))
             {
-                return RedirectToAction("User", "EmployeePage");
+                return RedirectToAction("UserHomePage", "EmployeePage");
             }
             return View();
         }
