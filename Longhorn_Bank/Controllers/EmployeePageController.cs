@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web.Security;
 using System.Web;
 using System.Web.Mvc;
 using Longhorn_Bank.Models;
@@ -18,11 +19,11 @@ namespace Longhorn_Bank.Controllers
         // GET: EmployeePage
         public ActionResult Index()
         {
-            //var user = from u in db.Users select u;
-            //var query = from r in db.AppRoles select r;
-            //List<AppUser> Employees = query.Where(r.RoleName = "Manager");
-            //User.IsInRole("Employee") || User.Identity.Name == "Manager"));
-            return View(/*user.ToList()*/);
+            //List<AppUser> user = db.Users.ToList();
+            //var query = from c in user select c;
+            //query = query.Where(c => c.UserRole = "Manager");
+
+            return View();
         }
 
         // GET: EmployeePage/Details/5
@@ -83,9 +84,10 @@ namespace Longhorn_Bank.Controllers
         // POST: EmployeePage/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,City,State,ZipCode,DOB,MiddleInitial,SSN,EmpType,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AppUser appUser)
+        public ActionResult EditManagers([Bind(Include = "Id,FirstName,LastName,Address,City,State,ZipCode,DOB,MiddleInitial,SSN,EmpType,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AppUser appUser)
         {
             if (ModelState.IsValid)
             {
@@ -94,6 +96,20 @@ namespace Longhorn_Bank.Controllers
                 return RedirectToAction("Index");
             }
             
+            return View(appUser);
+        }
+        [Authorize(Roles = "Employee")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditEmployees([Bind(Include = "Address,City,State,ZipCode,PhoneNumber")] AppUser appUser)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(appUser).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
             return View(appUser);
         }
 
@@ -136,16 +152,22 @@ namespace Longhorn_Bank.Controllers
         {
             return View(db.AvailableStocks.ToList());
         }
+        [Authorize(Roles = "Manager")]
         public ActionResult AddNewStock()
         {
 
             return View();
-        } 
-
+        }
+        [Authorize(Roles = "Manager")]
         public ActionResult ManagerHomePage()
         {
             return View();
         }
 
+        [Authorize(Roles="Manager, Employee")]
+        public ActionResult EditRoles()
+        {
+            return RedirectToAction("Index", "RoleAdmin");
+        }
     }
 }

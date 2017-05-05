@@ -9,7 +9,7 @@ namespace Longhorn_Bank.Models
     public enum TransType { Deposit, Withdrawal, Transfer }
     public class Transaction
     {
-        [Required]
+       
         public Int32 TransactionID { get; set; }
 
         public Int32 TransactionNumber { get; set; }
@@ -21,7 +21,7 @@ namespace Longhorn_Bank.Models
         [Required(ErrorMessage = "Please enter a valid date.")]
         [Display(Name = "Date of Transaction")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0-YYYY-MM-dd", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         public DateTime CustomDateRangeStart { get; set; }
