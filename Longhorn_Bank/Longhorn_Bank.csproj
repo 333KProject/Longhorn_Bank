@@ -347,7 +347,7 @@
     <Content Include="Views\Payees\Index.cshtml" />
     <Content Include="Views\Payees\MakeAPayment.cshtml" />
     <Content Include="Views\Payees\ExistingPayee.cshtml" />
-    <Content Include="Views\Withdrawals\Index.cshtml" />
+    <Content Include="Views\Transactions\Withdrawals.cshtml" />
     <Content Include="Views\EmployeePage\Create.cshtml" />
     <Content Include="Views\EmployeePage\Delete.cshtml" />
     <Content Include="Views\EmployeePage\Details.cshtml" />
@@ -370,6 +370,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Deposits\" />
+    <Folder Include="Views\Withdrawals\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705032135067_InitialSetup.resx">
