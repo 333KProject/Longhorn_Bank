@@ -46,9 +46,8 @@ namespace Longhorn_Bank.Controllers
             //ViewBag for total customer count
             ViewBag.All = db.TransactionsDbSet.ToList().Count;
             //ViewBag for SelectedCustomers count
-            //ViewBag.Returned = SelectedTransactions.Count;
-            ////Return view of SelectedCustomers  
-            //Transaction.Date = DateTime.Parse(SelectedTransations.Date);
+            ViewBag.Returned = SelectedTransactions.Count;
+            
             return View(SelectedTransactions);
             
         }
