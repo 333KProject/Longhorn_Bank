@@ -7,9 +7,9 @@ using System.Web;
 using System.Net.Mail;
 using System.Net;
 
-namespace Longhorn_Bank.Messaging
+namespace Longhorn_Bank.EmailMessaging
 {
-    public class EmailMessaging
+    public class Email
     {
         public static void SendEmail(String toEmailAddress, String emailSubject, String emailBody)
         {

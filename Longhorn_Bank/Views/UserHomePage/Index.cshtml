@@ -66,10 +66,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CheckingsBalance)
                     </td>
-                    <td>
-                        @Html.ActionLink("See Transactions", "Index", "Transactions") 
-                    </td>
-                </tr>
+                    
+                </tr><td>
+    @Html.ActionLink("See Transactions", "Index", "Transactions")
+</td>
             }
         </table>
     </div>
@@ -103,10 +103,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.SavingsBalance)
                     </td>
-                    <td>
-                        @Html.ActionLink("See Transactions", "Index", "Transactions") 
-                    </td>
+                    
                 </tr>
+                <td>
+                    @Html.ActionLink("See Transactions", "Index", "Transactions")
+                </td>
             }
         </table>
     </div>

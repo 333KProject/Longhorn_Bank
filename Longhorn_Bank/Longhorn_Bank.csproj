@@ -271,6 +271,14 @@
     <Compile Include="Migrations\201705051309331_lastattempt.Designer.cs">
       <DependentUpon>201705051309331_lastattempt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705051501081_InitialSetup3.cs" />
+    <Compile Include="Migrations\201705051501081_InitialSetup3.Designer.cs">
+      <DependentUpon>201705051501081_InitialSetup3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051514317_InitialSetup4.cs" />
+    <Compile Include="Migrations\201705051514317_InitialSetup4.Designer.cs">
+      <DependentUpon>201705051514317_InitialSetup4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -292,7 +300,7 @@
     <Compile Include="Models\UserHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\BankAccountNumber.cs" />
-    <Compile Include="Utilities\EmailMessaging.cs" />
+    <Compile Include="EmailMessaging\EmailMessaging.cs" />
     <Compile Include="Utilities\GetQuote.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -421,6 +429,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705051309331_lastattempt.resx">
       <DependentUpon>201705051309331_lastattempt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051501081_InitialSetup3.resx">
+      <DependentUpon>201705051501081_InitialSetup3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051514317_InitialSetup4.resx">
+      <DependentUpon>201705051514317_InitialSetup4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

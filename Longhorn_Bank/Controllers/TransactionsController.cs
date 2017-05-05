@@ -69,6 +69,23 @@ namespace Longhorn_Bank.Controllers
             return View(transaction);
         }
 
+        //Get: Transactions/Withdrawals
+        public ActionResult Withdrawals()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Withdrawals([Bind(Include = "TransactionID, TransactionNumber, Date, Description, TransactionType, EmployeeComment, Status, Amount")] Transaction transaction)
+        {
+            return View();
+        }
+
+
+
+
+
         // GET: Transactions/Create
         public ActionResult Deposits()
         {
