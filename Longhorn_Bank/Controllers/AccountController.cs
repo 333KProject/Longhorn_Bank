@@ -88,7 +88,7 @@ namespace Longhorn_Bank.Controllers
             {
 
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "UserHomePage");
+                    return RedirectToAction("Index", "Home");
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
