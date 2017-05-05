@@ -28,41 +28,45 @@
 
 <div class="tab-content">
     <div id="checkings" class="tab-pane fade in active">
-        @using (Html.BeginForm("Index", "Deposit", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Deposits", FormMethod.Get))
         {
             <p class="form-group">
-                @*@Html.DropDownList("SelectedCheckingsDepositAccount", (SelectList)ViewBag.AllCheckingsDepositAccounts, new { @class = "form-control" })*@
+                <br />
+                Deposit Account: @Html.DropDownList("SelectedCheckingDepositAccount", (SelectList)ViewBag.AllCheckingDeposits, new {  @class = "form-control"})
                 <br />
                 Deposit Amount: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
             </p>
         }
     </div>
     <div id="savings" class="tab-pane fade">
-        @using (Html.BeginForm("Index", "Deposit", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Deposits", FormMethod.Get))
         {
             <p class="form-group">
-                @* drop down for all accounts that particular user has *@
-
+                <br />
+                Deposit Account: @Html.DropDownList("SelectedSavingsDepositAccount", (SelectList)ViewBag.AllSavingsDeposits, new { @class = "form-control" })
+                <br />
                 Deposit Amount: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
             </p>
         }
     </div>
     <div id="ira" class="tab-pane fade">
-        @using (Html.BeginForm("Index", "Deposit", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Deposits", FormMethod.Get))
         {
             <p class="form-group">
-                @* drop down for all accounts that particular user has *@
-
+                <br />
+                Deposit Account: @Html.DropDownList("SelectedIRADepositAccount", (SelectList)ViewBag.AllIRADeposits, new { @class = "form-control" })
+                <br />
                 Deposit Amount: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
             </p>
         }
     </div>
     <div id="stockportfolio" class="tab-pane fade">
-        @using (Html.BeginForm("Index", "Deposit", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Deposits", FormMethod.Get))
         {
             <p class="form-group">
-                @* drop down for all accounts that particular user has *@
-
+                <br />
+                Deposit Account: @Html.DropDownList("SelectedStockPortfolioDepositAccount", (SelectList)ViewBag.AllStockPortfolioDeposits, new { @class = "form-control" })
+                <br />
                 Deposit Amount: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
             </p>
         }
