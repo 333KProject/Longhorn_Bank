@@ -90,13 +90,10 @@ namespace Longhorn_Bank.Controllers
                 ViewBag.Date = "The date is " + Date;
             }
 
-            Decimal decDepositAmount;
-
-
             //textbox for deposit amount
             if (DepositAmount != null && DepositAmount != "")
             {
-                
+                Decimal decDepositAmount;
                 try
                 {
                     decDepositAmount = Convert.ToDecimal(DepositAmount);
@@ -114,6 +111,7 @@ namespace Longhorn_Bank.Controllers
                     //send user back to home page
                     return View("Index");
                 }
+
                 //if deposit amount entered is negative or zero
                 if (decDepositAmount < 0 || decDepositAmount == 0)
                 {
@@ -126,26 +124,23 @@ namespace Longhorn_Bank.Controllers
                     ViewBag.AllIRADeposits = GetIRADepositAccount();
                     ViewBag.AllStockPortfolioDeposits = GetStockPortfolioDepositAccount();
 
-
                     //send user back to home page
                     return View("Index");
                 }
 
-                if (decDepositAmount > 0)
+                //TO DO: deposits of over $5000 should be treated the same as when opening the account, meaning they must be approved by a manager before being added to the account balance
+                if (decDepositAmount > 5000)
                 {
-
+                    //manager has to approve the transaction - route to manager approval 
+                    return View("Index");
                 }
+                
 
-          //TO DO: deposits of over $5000 should be treated the same as when opening the account, meaning they must be approved by a manager before being added to the account balance
-            if (decDepositAmount > 5000)
-            {
-                //manager has to approve the transaction - route to manager approval 
-                }
-                //int UpdatedDepositAccount = decDepositAmount + Checking.CheckingsBalance;
+                
+
                 //add value to view bag
-                //ViewBag.UpdatedDepositAmount = "The updated deposit amount is " + updatedDepositAccount.ToString("n2");
+                //ViewBag.UpdatedDepositAmount = "The updated deposit amount is " + UpdatedDepositBalance.ToString("n2");
             }
-
             else //they didn't enter in a deposit amount
             {
                 ViewBag.UpdatedDepositAmount = "No deposit amount was entered.";
@@ -160,8 +155,6 @@ namespace Longhorn_Bank.Controllers
                 {
                     ViewBag.DepositDescription = "Description " + DepositDescription;
                 }
-
-            
             
 
             ViewData["AllCheckingDeposits"] = SelectedCheckingDepositAccount;

@@ -272,6 +272,14 @@
     <Compile Include="Migrations\201705051309331_lastattempt.Designer.cs">
       <DependentUpon>201705051309331_lastattempt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705051511454_df.cs" />
+    <Compile Include="Migrations\201705051511454_df.Designer.cs">
+      <DependentUpon>201705051511454_df.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051525443_uhoh.cs" />
+    <Compile Include="Migrations\201705051525443_uhoh.Designer.cs">
+      <DependentUpon>201705051525443_uhoh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -426,6 +434,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705051309331_lastattempt.resx">
       <DependentUpon>201705051309331_lastattempt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051511454_df.resx">
+      <DependentUpon>201705051511454_df.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051525443_uhoh.resx">
+      <DependentUpon>201705051525443_uhoh.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

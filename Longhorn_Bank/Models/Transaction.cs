@@ -24,9 +24,7 @@ namespace Longhorn_Bank.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
-        //public DateTime CustomDateRangeStart { get; set; }
-        
-        //public DateTime CustomDateRangeEnd { get; set; }
+
 
         [Required(ErrorMessage = "Please enter a description")]
         public String Description { get; set; }
@@ -50,10 +48,7 @@ namespace Longhorn_Bank.Models
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
-       // public DateTime TimeStamp = DateTime.Now;
-       //public DateTime DateForPast15 = DateTime.Now.AddDays(-15);
-       // public DateTime DateForPast30 = DateTime.Now.AddDays(-30);
-       // public DateTime DateForPast60 = DateTime.Now.AddDays(-60);
+       
 
         //navigational properties
         public virtual List<Checking> Checkings { get; set; }
