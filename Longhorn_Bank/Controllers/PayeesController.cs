@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Longhorn_Bank.Models;
 
+
 namespace Longhorn_Bank.Controllers
 {
     public class PayeesController : Controller
@@ -64,13 +65,15 @@ namespace Longhorn_Bank.Controllers
                     {
                         Payee payeetoadd = db.PayeeDbSet.Find(PayeeId);
                         Usertochange.Payees.Add(payeetoadd);
-
+                        db.PayeeDbSet.Add(@payeetoadd);
                     }
                 }
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.AllPayees = GetAllPayees();
 
             return View();
         }
@@ -156,42 +159,52 @@ namespace Longhorn_Bank.Controllers
         }
 
         //Select list for user checkings and savings to choose from to make a payment
-        //public SelectList GetAllUserAccounts(AppUser Id)
-        //{
+        public SelectList GetAllUserCheckingAccounts(string Id)
+        {
 
-        //    ////figure out how to get checkings and savings for that one user 
-        //    AppUser UserAccounts = db.Users.Find(Id);
+            ////figure out how to get checkings and savings for that one user 
+            AppUser UserAccounts = db.Users.Find(Id);
 
-        //    var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName);
-        //    var querySavings = (from a in db.SavingsDbSet select a.SavingsName);
+            var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName).ToList();
+            SelectList allCheckings = new SelectList(queryCheckings, "Id", "Name");
 
-        //    UserAccounts.Checkings = UserAccounts.Checkings;
-        //    UserAccounts.Savings = UserAccounts.Savings;
+            return allCheckings;
+        }
 
-        //    int ID = int.Parse(Request.QueryString["Id"].ToString());
-        //    List<Int32> CheckingsANDSavings = new List<Int32>();
+        public SelectList GetAllUserSavingsAccounts(string Id)
+        {
 
-        //    CheckingsANDSavings.AddRange(queryCheckings);
-        //    CheckingsANDSavings.AddRange(querySavings);
+            ////figure out how to get checkings and savings for that one user 
+            AppUser UserAccounts = db.Users.Find(Id);
 
-        //    SelectList allCheckingsSavings = new SelectList(CheckingsANDSavings, "Id", "Name");
+            var querySavings = (from a in db.SavingsDbSet select a.SavingsName).ToList();
+            SelectList allSavings = new SelectList(querySavings, "Id", "Name");
 
-        //    return allCheckingsSavings;
-        //}
+            return allSavings;
+        }
 
         ////GET: Make a Payment 
-        //public ActionResult MakeAPayment()
+        public ActionResult MakeAPayment(string Id)
 
-        //{
-        //    ViewBag.AllAccounts = GetAllUserAccounts();
-        //    return View();
-        //}
+        {
+            ViewBag.AllCheckings = GetAllUserCheckingAccounts(Id);
+            ViewBag.AllSavings = GetAllUserSavingsAccounts(Id);
+
+            return View();
+        }
 
         //POST: Make a Payment
-        public ActionResult PaymentConfirmed([Bind(Include = "PayeeID, PayeeName, PayeeAddress, PayeeCity, State, ZipCode, PayType")] AppUser  User, int[] SelectedAccount)
+        public ActionResult PaymentConfirmed([Bind(Include = "PayeeID, PayeeName, PayeeAddress, PayeeCity, State, ZipCode, PayType")] AppUser  User, int[] SelectedAccount, Int32 Amount)
         {
             if (ModelState.IsValid)
             {
+                //deduct amount from selected account 
+
+            if (SelectedAccount != null)
+                {
+
+                }
+
                 
             }
             return View();
@@ -206,14 +219,13 @@ namespace Longhorn_Bank.Controllers
         }
 
         //POST: Add an Existing Account 
-        public ActionResult ExistingPayeeConfirmed([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] AppUser User, int[] SelectedPayee)
+        public ActionResult ExistingPayeeConfirmed([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] Payee @payee, AppUser User, int[] SelectedPayee)
         {
-
+            
+            AppUser Usertochange = db.Users.Find(@User.Id);
+    
             if (ModelState.IsValid)
             {
-
-                AppUser Usertochange = db.Users.Find(@User.Id);
-
                 if (SelectedPayee != null)
                 {
                     foreach (int PayeeId in SelectedPayee)
@@ -222,14 +234,11 @@ namespace Longhorn_Bank.Controllers
                         Usertochange.Payees.Add(payeetoadd);
                     }
                 }
-
                 db.Entry(Usertochange).State = EntityState.Modified;
-
                 db.SaveChanges();
-                //return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
-            //return View();
+            return View();
         }
 
     }

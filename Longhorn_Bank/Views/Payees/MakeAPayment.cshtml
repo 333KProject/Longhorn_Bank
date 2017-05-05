@@ -18,10 +18,19 @@
 
         <div class="form-group">
 
-            <label class="control-label col-md-2">Choose one of your accounts</label>
+            <label class="control-label col-md-2">Checkings?</label>
 
             <div class="col-md-10">
-                @Html.ListBox("SelectedAccount", (SelectList)ViewBag.AllAccounts, new { @class = "form-control" })
+                @Html.ListBox("SelectedAccount", (SelectList)ViewBag.AllCheckings, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label class="control-label col-md-2">Savings?</label>
+
+            <div class="col-md-10">
+                @Html.ListBox("SelectedAccount", (SelectList)ViewBag.AllSavings, new { @class = "form-control" })
             </div>
         </div>
 
