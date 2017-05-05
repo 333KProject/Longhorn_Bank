@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201705051104297_Transactions.Designer.cs">
       <DependentUpon>201705051104297_Transactions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705051228067_yeet.cs" />
+    <Compile Include="Migrations\201705051228067_yeet.Designer.cs">
+      <DependentUpon>201705051228067_yeet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedAccounts.cs" />
     <Compile Include="Migrations\SeedIdentity.cs" />
@@ -397,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705051104297_Transactions.resx">
       <DependentUpon>201705051104297_Transactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051228067_yeet.resx">
+      <DependentUpon>201705051228067_yeet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
