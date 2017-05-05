@@ -19,19 +19,19 @@ namespace Longhorn_Bank.Controllers
 
 
         //GET Transfer
-        public ActionResult Transfer(int TransferAmount, int AccountBalanceFrom, int AccountBalanceTo, string SelectedTransferFrom, string SelectedTransferTo)
-        {
-            if(TransferAmount > AccountBalanceFrom)
-            {
-                return View("Error", new string[] { "This account does not have enough money to transfer" });
-            }
-            else
-            {
-                int NewAccountBalanceTo = TransferAmount + AccountBalanceTo;
-                int NewAccountBalanceFrom = TransferAmount - AccountBalanceFrom;
-            }
+        //public ActionResult Transfer(int TransferAmount, int AccountBalanceFrom, int AccountBalanceTo, string SelectedTransferFrom, string SelectedTransferTo)
+        //{
+        //    if(TransferAmount > AccountBalanceFrom)
+        //    {
+        //        return View("Error", new string[] { "This account does not have enough money to transfer" });
+        //    }
+        //    else
+        //    {
+        //        int NewAccountBalanceTo = TransferAmount + AccountBalanceTo;
+        //        int NewAccountBalanceFrom = TransferAmount - AccountBalanceFrom;
+        //    }
 
-        }
+        //}
 
 
 
