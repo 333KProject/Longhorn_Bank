@@ -12,48 +12,41 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
 
-        @* Include a drop down of checkings and savings account *@
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#checkings">My Checkings</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#savings">My Savings</a>
+        </li>
+    </ul>
 
-        <div class="form-group">
-
-            <label class="control-label col-md-2">Checkings?</label>
-
-            <div class="col-md-10">
-                @Html.ListBox("SelectedAccount", (SelectList)ViewBag.AllCheckings, new { @class = "form-control" })
+    <div class="tab-content">
+        <div id="checkings" class="tab-pane fade in active">
+            @using (Html.BeginForm("Index", "Deposits", FormMethod.Get))
+            {
+                <p class="form-group">
+                    <br />
+                    Deposit Account: @Html.DropDownList("SelectedCheckingDepositAccount", (SelectList)ViewBag.AllCheckingDeposits, new { @class = "form-control" })
+                    <br />
+                    Payment Date: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
+                </p>
+            }
+        </div>
+        <div id="savings" class="tab-pane fade">
+            @using (Html.BeginForm("Index", "Deposits", FormMethod.Get))
+            {
+                <p class="form-group">
+                    <br />
+                    Deposit Account: @Html.DropDownList("SelectedSavingsDepositAccount", (SelectList)ViewBag.AllSavingsDeposits, new { @class = "form-control" })
+                    <br />
+                    Payment Date: @Html.TextBox("SearchString", null, new { @class = "form-control" })<br />
+                </p>
+            }
+            
             </div>
         </div>
-
-        <div class="form-group">
-
-            <label class="control-label col-md-2">Savings?</label>
-
-            <div class="col-md-10">
-                @Html.ListBox("SelectedAccount", (SelectList)ViewBag.AllSavings, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-    </div>
-
-
 }
 
 

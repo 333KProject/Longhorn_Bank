@@ -1,0 +1,70 @@
+﻿@model Longhorn_Bank.Models.Transaction
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<br />
+<h2>My Transfers</h2>
+
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a data-toggle="tab" href="#checkings">My Checkings</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#savings">My Savings</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#ira">My IRA</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#stockportfolio">My Stock Portfolio</a>
+    </li>
+</ul>
+
+
+
+<div class="tab-content">
+    <div id="checkings" class="tab-pane fade in active">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <p class="form-group">
+                <br />
+                Transfer Money From: @Html.DropDownList("SelectedCheckingDepositAccount", (SelectList)ViewBag.AllCheckingDeposits, new { @class = "form-control" })
+                <br />
+                <div class="form-group">
+                    @*<div class="col-md-10">*@
+                    Date: @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    @*</div>*@
+                </div>
+               
+                <br />
+                Transfer Money To: @Html.DropDownList("SelectedCheckingDepositAccount", (SelectList)ViewBag.AllCheckingDeposits, new { @class = "form-control" })
+                <br />
+                <div class="form-group">
+                    @*<div class="col-md-10">*@
+                    Date: @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    @*</div>*@
+                </div>
+                <br />
+                Deposit Amount: @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                <br />
+                Description:  @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </p>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+           
+        }
+
+
+
+</div>
+</div>

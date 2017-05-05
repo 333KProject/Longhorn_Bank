@@ -19,7 +19,21 @@ namespace Longhorn_Bank.Controllers
         // GET: Payees
         public ActionResult Index()
         {
-            return View(db.PayeeDbSet.ToList());
+            
+            string stringId = User.Identity.GetUserId();
+            int integerId = Convert.ToInt32(stringId);
+            var query = from a in db.PayeeDbSet select a;
+            query = query.Where(a => a.PayeeID == integerId);
+            List<string> PayeeList = null;
+            foreach (var a in query)
+            {
+                string string2 = Convert.ToString(a);
+                PayeeList.Add(string2);
+            }
+
+            ViewBag.UserPayees = PayeeList;
+
+            return View();
         }
 
         // GET: Payees/Details/5
@@ -149,56 +163,88 @@ namespace Longhorn_Bank.Controllers
 
         }
 
-        //Select list for user checkings and savings to choose from to make a payment
-        public SelectList GetAllUserCheckingAccounts(string Id)
+        //select list checkings
+        public SelectList GetAllCheckingDepositAccounts()
         {
+            string strId = User.Identity.GetUserId();
+            var query = from a in db.CheckingsDbSet
+                            //where strId == User.Identity.GetUserId()
+                        select a;
+            query = query.Where(a => a.User.Id == strId);
+            List<Checking> CheckingDeposits = query.ToList();
 
-            ////figure out how to get checkings and savings for that one user 
-            AppUser UserAccounts = db.Users.Find(Id);
+            //Checking SelectNone = new Models.Checking() { CheckingID = 0, CheckingsName = "All Checkings" };
+            //CheckingDeposits.Add(SelectNone);
 
-            var queryCheckings = (from a in db.CheckingsDbSet select a.CheckingsName).ToList();
-            SelectList allCheckings = new SelectList(queryCheckings, "Id", "Name");
-
-            return allCheckings;
+            SelectList AllCheckingDeposits = new SelectList(CheckingDeposits.OrderBy(a => a.CheckingID), "CheckingID", "CheckingsName");
+            return AllCheckingDeposits;
         }
 
-        public SelectList GetAllUserSavingsAccounts(string Id)
+        //select list savings
+        public SelectList GetAllSavingsDepositAccounts()
         {
+            string strId = User.Identity.GetUserId();
+            var query = from a in db.SavingsDbSet
+                            //where strId == User.Identity.GetUserId()
+                        select a;
+            query = query.Where(a => a.User.Id == strId);
+            List<Saving> SavingsDeposits = query.ToList();
 
-            ////figure out how to get checkings and savings for that one user 
-            AppUser UserAccounts = db.Users.Find(Id);
+            //Checking SelectNone = new Models.Checking() { CheckingID = 0, CheckingsName = "All Checkings" };
+            //CheckingDeposits.Add(SelectNone);
 
-            var querySavings = (from a in db.SavingsDbSet select a.SavingsName).ToList();
-            SelectList allSavings = new SelectList(querySavings, "Id", "Name");
-
-            return allSavings;
+            SelectList AllSavingsDeposits = new SelectList(SavingsDeposits.OrderBy(a => a.SavingID), "SavingID", "SavingsName");
+            return AllSavingsDeposits;
         }
 
         ////GET: Make a Payment 
         public ActionResult MakeAPayment(string Id)
 
         {
-            ViewBag.AllCheckings = GetAllUserCheckingAccounts(Id);
-            ViewBag.AllSavings = GetAllUserSavingsAccounts(Id);
+            ViewBag.AllCheckingDeposits = GetAllCheckingDepositAccounts();
+            ViewBag.AllSavingsDeposits = GetAllSavingsDepositAccounts();
 
             return View();
         }
 
         //POST: Make a Payment
-        public ActionResult PaymentConfirmed([Bind(Include = "PayeeID, PayeeName, PayeeAddress, PayeeCity, State, ZipCode, PayType")] AppUser  User, int[] SelectedAccount, Int32 Amount)
+        public ActionResult PaymentConfirmed([Bind(Include = "PayeeID, PayeeName, PayeeAddress, PayeeCity, State, ZipCode, PayType")] int SelectedCheckingDepositAccount, int SelectedSavingsDepositAccount)
         {
-            if (ModelState.IsValid)
+            string Id = User.Identity.GetUserId();
+            AppUser UserAccounts = db.Users.Find(Id);
+            UserAccounts.Checkings = UserAccounts.Checkings;
+            UserAccounts.Savings = UserAccounts.Savings;
+
+
+            if (UserAccounts.Checkings == null)
             {
-                //deduct amount from selected account 
-
-            if (SelectedAccount != null)
-                {
-
-                }
-
-                
+                ViewBag.SelectedCheckingDepositAccount = "No deposit account selected";
             }
+            else
+            {
+                List<Checking> AllCheckingDeposits = UserAccounts.Checkings;
+                Checking CheckingToDisplay = AllCheckingDeposits.Find(a => a.CheckingID == SelectedCheckingDepositAccount);
+                ViewBag.SelectedCheckingDepositAccount = CheckingToDisplay.CheckingsName;
+            }
+
+            //savings
+            if (UserAccounts.Savings == null)
+            {
+                ViewBag.SelectedSavingsDepositAccount = "No deposit account selected";
+            }
+            else
+            {
+                List<Saving> AllSavingsDeposits = UserAccounts.Savings;
+                Saving SavingsToDisplay = AllSavingsDeposits.Find(a => a.SavingID == SelectedSavingsDepositAccount);
+                ViewBag.SelectedSavingsDepositAccount = SavingsToDisplay.SavingsName;
+            }
+
+            ViewData["AllCheckingDeposits"] = SelectedCheckingDepositAccount;
+            ViewData["AllSavingsDeposits"] = SelectedSavingsDepositAccount;
+
             return View();
+
+           
         }
 
         //GET: Add an Existing Account
@@ -209,11 +255,13 @@ namespace Longhorn_Bank.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         //POST: Add an Existing Account 
-        public ActionResult ExistingPayeeConfirmed([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] Payee @payee, AppUser User, int[] SelectedPayee)
+        public ActionResult ExistingPayee([Bind(Include = "PayeeID,PayeeName,PayeeAddress,PayeeCity,State,ZipCode,PayType")] Payee @payee, AppUser User, int[] SelectedPayee, string Id, AppDbContext db)
         {
-            
-            AppUser Usertochange = db.Users.Find(@User.Id);
+
+            AppUser Usertochange = db.Users.Find(User.Id);
     
             if (ModelState.IsValid)
             {
@@ -221,7 +269,8 @@ namespace Longhorn_Bank.Controllers
                 {
                     foreach (int PayeeId in SelectedPayee)
                     {
-                        Payee payeetoadd = db.PayeeDbSet.Find(PayeeId);
+                        Payee payeetoadd = db.PayeeDbSet.Find(SelectedPayee);
+                       //Payee payeetoadd = db.PayeeDbSet.Find(PayeeId);
                         Usertochange.Payees.Add(payeetoadd);
                     }
                 }
@@ -229,8 +278,12 @@ namespace Longhorn_Bank.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View();
+
+            ViewBag.AllPayees = GetAllPayees();
+            return View(@payee);
         }
+
+        
 
     }
 }
