@@ -13,4 +13,5 @@ namespace Longhorn_Bank.Models
         public IRA IRA { get; set; }
         public StockPortfolio StockPortfolio { get; set; }
     }
+
 }
