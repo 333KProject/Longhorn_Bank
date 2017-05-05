@@ -1,0 +1,60 @@
+﻿@*@model Longhorn_Bank.Models.Disputes
+@{
+    ViewBag.Title = "DisputeResolutionPage";
+}
+
+<h2>Resolve Customer Dispute</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DisputeComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisputeAmount)
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisputeComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisputeAmount)
+            </td>
+                     
+        </tr>
+    }
+
+</table>
+
+ Status: <div class="form-group">
+    <div class="form-check">
+        <label class="form-check-label">
+            @Html.RadioButton("SelectedStatus", DisputeStatus.Submitted, true, new { @class = "form-check-input" }) All
+        </label>
+    </div>
+
+    <div class="form-check">
+        <label class="form-check-label">
+            @Html.RadioButton("SelectedStatus", DisputeStatus.Accepted, true, new { @class = "form-check-input" }) Male
+        </label>
+    </div>
+
+    <div class="form-check">
+        <label class="form-check-label">
+            @Html.RadioButton("SelectedStatus", DisputeStatus.Rejected, true, new { @class = "form-check-input" }) Female
+        </label>
+    </div>
+     <div class="form-check">
+        <label class="form-check-label">
+            @Html.RadioButton("SelectedStatus", DisputeStatus.Adjusted, true, new { @class = "form-check-input" }) Female
+        </label>
+    </div>
+</div>*@
+
+

@@ -363,6 +363,8 @@
     <Content Include="Views\UserHomePage\Edit.cshtml" />
     <Content Include="Views\EmployeePage\EmployeeHomePage.cshtml" />
     <Content Include="Views\Transactions\Transfers.cshtml" />
+    <Content Include="Views\EmployeePage\ViewCustomerDisputes.cshtml" />
+    <Content Include="Views\EmployeePage\DisputeResolutionPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
