@@ -123,8 +123,8 @@ namespace Longhorn_Bank.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-               
+
+                    Messaging.Email.SendEmail(model.Email, "Account Creation", "Thank you for creating an account with TuneOrange!");
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -212,7 +212,7 @@ namespace Longhorn_Bank.Controllers
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                EmailMessaging.Email.SendEmail(model.Email, "Password Reset", "You have successfully reset your account password for Longhorn Bank!");
+                Messaging.Email.SendEmail(model.Email, "Password Reset", "Your password was succesfully reset");
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             AddErrors(result);
