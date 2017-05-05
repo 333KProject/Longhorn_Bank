@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "ManagerHomePage";
+}
+
+<h2>Manager Home Page</h2>
+
+@using (Html.BeginForm())
+{
+    <p class="form-group">
+        @Html.ActionLink("Customer Disputes", "Disputes", "Transactions", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Manage Employee", "Index", "EmployeePage", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Employee Table", "Index", "EmployeePage", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("View Available Stocks", "ViewAvailableStocks", "EmployeePage", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Add New Stock", "AddNewStock", "EmployeePage", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Balanced Portfolio Bonus", "ViewAvailableStocks", "EmployeePage", null, new { @class = "btn btn-info" })
+
+
+    </p>
+}
+

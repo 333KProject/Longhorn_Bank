@@ -17,7 +17,8 @@ namespace Longhorn_Bank.Controllers
         // GET: EmployeePage
         public ActionResult Index()
         {
-            return View();
+            var user = from u in db.Users where (User.Identity.Name == "Employee" || User.Identity.Name == "Manager") select u;
+            return View(user.ToList());
         }
 
         // GET: EmployeePage/Details/5

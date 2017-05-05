@@ -336,6 +336,8 @@
     <Content Include="Views\EmployeePage\Index.cshtml" />
     <Content Include="Views\EmployeePage\ViewAvailableStocks.cshtml" />
     <Content Include="Views\EmployeePage\AddNewStock.cshtml" />
+    <Content Include="Views\EmployeePage\ManagerHomePage.cshtml" />
+    <Content Include="Views\EmployeePage\Disputes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
