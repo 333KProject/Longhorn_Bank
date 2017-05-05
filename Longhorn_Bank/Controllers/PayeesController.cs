@@ -21,8 +21,9 @@ namespace Longhorn_Bank.Controllers
         {
             
             string stringId = User.Identity.GetUserId();
+            int integerId = Convert.ToInt32(stringId);
             var query = from a in db.PayeeDbSet select a;
-            query = query.Where(a => a.AppUsers.ToList()== stringId);
+            query = query.Where(a => a.PayeeID == integerId);
             List<string> PayeeList = null;
             foreach (var a in query)
             {
