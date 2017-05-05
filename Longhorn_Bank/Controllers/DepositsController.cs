@@ -112,8 +112,34 @@ namespace Longhorn_Bank.Controllers
                     return View("Index");
                 }
 
+                //if deposit amount entered is negative or zero
+                if (decDepositAmount < 0 || decDepositAmount == 0)
+                {
+                    //add a message for the viewbag
+                    ViewBag.Message = DepositAmount + "is not a valid amount. Please try again.";
+
+                    //re-populate dropdown
+                    ViewBag.AllCheckingDeposits = GetAllCheckingDepositAccounts();
+                    ViewBag.AllSavingsDeposits = GetAllSavingsDepositAccounts();
+                    ViewBag.AllIRADeposits = GetIRADepositAccount();
+                    ViewBag.AllStockPortfolioDeposits = GetStockPortfolioDepositAccount();
+
+                    //send user back to home page
+                    return View("Index");
+                }
+
+                //TO DO: deposits of over $5000 should be treated the same as when opening the account, meaning they must be approved by a manager before being added to the account balance
+                if (decDepositAmount > 5000)
+                {
+                    //manager has to approve the transaction - route to manager approval 
+                    return View("Index");
+                }
+                
+
+                
+
                 //add value to view bag
-                ViewBag.UpdatedDepositAmount = "The updated deposit amount is " + decDepositAmount.ToString("n2");
+                //ViewBag.UpdatedDepositAmount = "The updated deposit amount is " + UpdatedDepositBalance.ToString("n2");
             }
             else //they didn't enter in a deposit amount
             {
