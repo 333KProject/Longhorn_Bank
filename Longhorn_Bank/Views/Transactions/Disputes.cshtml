@@ -1,0 +1,41 @@
+﻿@model Longhorn_Bank.Models.Disputes
+@{
+    ViewBag.Title = "Disputes";
+}
+
+<h2>Disputes</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+          Comments:  @Html.LabelFor(model => model.DisputeComments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisputeComments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisputeComments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+           Corrected Amount: @Html.LabelFor(model => model.DisputeAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisputeAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisputeAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Delete, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Label("Request to delete transaction?", new {@class = "form-check-label" })
+                @Html.CheckBox("Delete", true, new {@class ="form-check-label"})
+                @Html.Hidden("Delete")
+            </div>
+        </div>
+
+    </div>
+}

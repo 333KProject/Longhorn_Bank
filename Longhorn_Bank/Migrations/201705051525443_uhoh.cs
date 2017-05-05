@@ -3,7 +3,7 @@ namespace Longhorn_Bank.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class lastattempt : DbMigration
+    public partial class uhoh : DbMigration
     {
         public override void Up()
         {

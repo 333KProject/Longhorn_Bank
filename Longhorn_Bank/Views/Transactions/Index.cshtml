@@ -30,28 +30,25 @@ Displaying @ViewBag.Returned out of @ViewBag.All Transactions
 <table class="table">
     <tr>
         <th>
-            Transaction Number
+            @Html.DisplayNameFor(model => model.TransactionNumber)
         </th>
         <th>
-            Transaction Name
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            Transaction Date
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            Description
+            @Html.DisplayNameFor(model => model.TransactionType)
         </th>
         <th>
-            Transaction Type
+            @Html.DisplayNameFor(model => model.EmployeeComment)
         </th>
         <th>
-            Employee Comments
+            @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            Status
-        </th>
-        <th>
-            Transaction Amount
+            @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th></th>
     </tr>
@@ -61,9 +58,6 @@ Displaying @ViewBag.Returned out of @ViewBag.All Transactions
         <td>
             @Html.DisplayFor(modelItem => item.TransactionNumber)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransactionName)
-        </td>>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
         </td>
@@ -83,9 +77,11 @@ Displaying @ViewBag.Returned out of @ViewBag.All Transactions
             @Html.DisplayFor(modelItem => item.Amount)
         </td>
         <td>
-            @Html.ActionLink("Dispute", "Disputes", "Transactions", null, new { @class = "btn btn-info" })
+            @Html.ActionLink("Edit", "Edit", new { id=item.TransactionID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) |           
         </td>
     </tr>
+    @Html.ActionLink("Dispute Transaction?", "Disputes", "Transactions", null, new { @class = "btn btn-info" })
 }
 
 </table>

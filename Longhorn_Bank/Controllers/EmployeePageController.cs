@@ -23,7 +23,7 @@ namespace Longhorn_Bank.Controllers
             //var query = from c in user select c;
             //query = query.Where(c => c.UserRole = "Manager");
 
-            return View();
+            return View(db.Users.ToList());
         }
 
         // GET: EmployeePage/Details/5
@@ -87,7 +87,7 @@ namespace Longhorn_Bank.Controllers
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditManagers([Bind(Include = "Id,FirstName,LastName,Address,City,State,ZipCode,DOB,MiddleInitial,SSN,EmpType,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AppUser appUser)
+        public ActionResult EditManagers([Bind(Include = "Id,FirstName,LastName,Address,City,State,ZipCode,DOB,MiddleInitial,SEmail,PhoneNumber,UserName")] AppUser appUser)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace Longhorn_Bank.Controllers
         [Authorize(Roles = "Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditEmployees([Bind(Include = "Address,City,State,ZipCode,PhoneNumber")] AppUser appUser)
+        public ActionResult EditEmployees([Bind(Include = "FirstName,MiddleInitial,LastName,Address,City,State,ZipCode,PhoneNumber,Email")] AppUser appUser)
         {
             if (ModelState.IsValid)
             {
@@ -172,6 +172,12 @@ namespace Longhorn_Bank.Controllers
        
         [Authorize(Roles = "Manager, Employee")]
         public ActionResult EmployeeHomePage()
+        {
+            return View();
+        }
+
+   
+        public ActionResult Disputes()
         {
             return View();
         }
