@@ -302,7 +302,6 @@
     <Compile Include="Models\UserHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\BankAccountNumber.cs" />
-    <Compile Include="Utilities\EmailMessaging.cs" />
     <Compile Include="Utilities\GetDates.cs" />
     <Compile Include="Utilities\GetQuote.cs" />
   </ItemGroup>
