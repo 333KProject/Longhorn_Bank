@@ -13,14 +13,23 @@ namespace Longhorn_Bank.Controllers
 {
     public class CheckingsController : Controller
     {
-        private AppDbContext db = new AppDbContext();
+        public AppDbContext db = new AppDbContext();
 
         // GET: Checkings
         public ActionResult Index()
         {
             //AccountNumbers
-            //Int32 AccNum = Utilities.BankAccountNumber.HideAccountNumber(AccountNumber);
-            return View(db.CheckingsDbSet.ToList());
+            var query = from a in db.CheckingsDbSet
+                        select a.CheckingsAccountNumber;
+            //List<string> CheckingsAccNum = User.Identity.GetUserId(); ;
+            //foreach (var a in query)
+            //{
+            //    CheckingsAccNum.Add(Convert.ToString(a));
+            //}
+
+            //List<string> AccNum = Utilities.BankAccountNumber.HideAccountNumber(CheckingsAccNum);
+            //ViewBag.AccountNum = AccNum;
+            return View();
         }
 
         // GET: Checkings/Details/5
